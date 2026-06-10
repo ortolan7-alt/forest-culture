@@ -215,7 +215,7 @@ def main():
     with st.sidebar:
         st.markdown("### 🔍 산림문화자원 키워드 검색 필터")
         st.write("분류별 단어 검색
-        (`22년 보완조사 자료 일부)")
+        \n(`22년 보완조사 자료 일부)")
         st.divider()
         search_query = st.text_input("통합 검색", placeholder="명칭, 주소, 설명 등...")
         
