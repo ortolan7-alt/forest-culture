@@ -275,65 +275,143 @@ def main():
                                 item_to_show = item
                             st.write("")
 
-    # [탭 2] 3D 전시 하이라이트 (경고 없음 / 완벽 안정화 버전)
+    # [탭 2] 3D 전시 하이라이트 
     with tab2:
         st.write("")
         display_df = filtered_df.head(10)
         
-        # 3D 캐러셀 데이터 구성
         image_tags = ""
-        angle_step = 360 / len(display_df) if len(display_df) > 0 else 0
-        translate_z = 450 
+        js_data = [] 
+        num_items = len(display_df)
+        angle_step = 360 / num_items if num_items > 0 else 0
+        translate_z = 480 
 
         for i, row in display_df.iterrows():
             img_paths_str = str(row.get('이미지경로', ''))
             first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
-            # 이미지 베이스64 변환 (필요 시 get_base64_of_image 함수 활용)
-            img_src = f"data:image/jpeg;base64,{get_base64_of_image(first_img)}" if first_img and os.path.exists(first_img) else "https://via.placeholder.com/300x400?text=No+Image"
+            base64_str = get_base64_of_image(first_img)
+            img_src = f"data:image/jpeg;base64,{base64_str}" if base64_str else "https://via.placeholder.com/300x400?text=No+Image"
             
-            title = str(row.get("명칭", ""))
+            title = str(row.get("명칭", "")).replace("'", "\\'").replace('"', '&quot;')
+            addr = str(row.get("주소", "")).replace("'", "\\'").replace('"', '&quot;')
+            desc = str(row.get("내용", "")).replace("'", "\\'").replace('"', '&quot;').replace("\n", "<br>")
+            
+            js_data.append(f"{{ title: '{title}', addr: '{addr}', desc: '{desc}', img: '{img_src}' }}")
+
             style = f"transform: rotateY({i * angle_step}deg) translateZ({translate_z}px);"
-            image_tags += f'''
-            <div class="carousel-item" style="{style}">
-                <img src="{img_src}" style="width:100%; height:280px; object-fit:cover;">
-                <div style="padding:15px; font-weight:bold; font-size:14px;">{title}</div>
-            </div>'''
+            image_tags += f'<div class="carousel-item" style="{style}" onclick="openModal({i})"><img src="{img_src}"><div class="title">{title}</div></div>'
 
-        # HTML 렌더링 (st.html 사용으로 경고 제거)
-        st.html(f"""
-        <div style="height: 450px; width: 100%; position: relative; perspective: 1500px; display: flex; flex-direction: column; align-items: center;">
-            <div class="scene" style="width: 250px; height: 350px; position: relative;">
-                <div class="carousel" id="carousel" style="width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; transition: transform 0.8s;">
-                    {image_tags}
-                </div>
-            </div>
-            <script>
-                let cur = 0; const step = {angle_step};
-                function rotate(dir) {{ 
-                    cur += dir * step; 
-                    document.getElementById('carousel').style.transform = 'rotateY(' + (-cur) + 'deg)'; 
+        js_array_str = "[\n" + ",\n".join(js_data) + "\n]"
+
+        html_code = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+            
+            :root {{
+                --bg-1: #ffffff;
+                --bg-2: #f0f2f5;
+                --card-bg: #ffffff;
+                --text-main: #222222;
+                --text-desc: #444444;
+                --text-muted: #888888;
+                --border-color: #eaeaea;
+                --primary-green: #2ea043;
+            }}
+            
+            @media (prefers-color-scheme: dark) {{
+                :root {{
+                    --bg-1: #0E1117;
+                    --bg-2: #1E1E1E;
+                    --card-bg: #262730;
+                    --text-main: #FAFAFA;
+                    --text-desc: #DDDDDD;
+                    --text-muted: #AAAAAA;
+                    --border-color: #444444;
+                    --primary-green: #2ea043;
                 }}
-            </script>
+            }}
+            
+            body {{ 
+                margin: 0; display: flex; flex-direction: column; align-items: center; 
+                justify-content: center; height: 100vh; 
+                background: radial-gradient(circle at center, var(--bg-1) 0%, var(--bg-2) 100%); 
+                overflow: hidden; font-family: 'Noto Sans KR', sans-serif; 
+                color: var(--text-main);
+            }}
+            .scene {{ width: 300px; height: 400px; perspective: 1400px; margin-bottom: 80px; }}
+            .carousel {{ width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }}
+            
+            .carousel-item {{ 
+                position: absolute; width: 280px; height: 380px; left: 10px; top: 10px; 
+                border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+                background: var(--card-bg); text-align: center; backface-visibility: hidden; 
+                border: 1px solid var(--border-color); cursor: pointer; transition: all 0.2s ease; 
+            }}
+            .carousel-item:hover {{ border: 2px solid var(--primary-green); transform: scale(1.02); }}
+            .carousel-item img {{ width: 100%; height: 300px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px; }}
+            .carousel-item .title {{ padding: 18px 15px; font-weight: 700; color: var(--text-main); font-size: 16px; letter-spacing: -0.5px; pointer-events: none; }}
+            
+            .controls-wrapper {{ position: absolute; bottom: 40px; display: flex; gap: 20px; z-index: 100; }}
+            button {{ 
+                padding: 14px 30px; font-size: 15px; cursor: pointer; border: none; border-radius: 50px; 
+                background-color: var(--primary-green); color: white; font-weight: 700; 
+                box-shadow: 0 8px 20px rgba(46, 160, 67, 0.3); transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; 
+            }}
+            button:hover {{ background-color: #238636; transform: translateY(-3px); }}
+            
+            .modal {{ display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); }}
+            .modal-content {{ background-color: var(--card-bg); margin: 3% auto; padding: 25px 35px; width: 85%; max-width: 600px; border-radius: 12px; box-shadow: 0 5px 30px rgba(0,0,0,0.3); max-height: 85vh; overflow-y: auto; text-align: left; position: relative; }}
+            .close {{ color: var(--text-muted); position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }}
+            .close:hover {{ color: var(--text-main); }}
+            
+            .modal-img {{ width: 100%; height: 260px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; }}
+            .modal-title {{ font-size: 22px; color: var(--text-main); font-weight: bold; margin: 0 0 5px 0; }}
+            .modal-addr {{ font-size: 13px; color: var(--text-muted); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }}
+            .modal-desc-title {{ font-size: 13px; color: var(--primary-green); font-weight: bold; margin-bottom: 5px; }}
+            .modal-desc {{ font-size: 14px; color: var(--text-desc); line-height: 1.6; }}
+        </style>
+        </head>
+        <body>
+        
+        <div class="scene"><div class="carousel" id="carousel">{image_tags}</div></div>
+        
+        <div class="controls-wrapper">
+            <button onclick="rotate(-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg> PREV</button>
+            <button onclick="rotate(1)">NEXT <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg></button>
         </div>
-        """)
 
-        # 외부 조작 버튼 및 상세보기 제어
-        st.divider()
-        col1, col2, col3 = st.columns([1, 2, 1])
+        <div id="modal" class="modal" onclick="if(event.target==this) closeModal()">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <img id="modal-img" class="modal-img" src="">
+                <h2 id="modal-title" class="modal-title"></h2>
+                <div id="modal-addr" class="modal-addr"></div>
+                <div class="modal-desc-title">📖 자원 설명</div>
+                <div id="modal-desc" class="modal-desc"></div>
+            </div>
+        </div>
         
-        with col1:
-            if st.button("◀ 왼쪽 회전", use_container_width=True):
-                st.js("rotate(-1)") # Streamlit 1.35+ 대응
-        
-        with col2:
-            selected_name = st.selectbox("전시 중인 자원 선택", display_df['명칭'].tolist(), label_visibility="collapsed")
-            if st.button("🔍 선택 자원 상세보기", use_container_width=True):
-                item_to_show = display_df[display_df['명칭'] == selected_name].iloc[0]
-                show_detail_modal(item_to_show)
-                
-        with col3:
-            if st.button("오른쪽 회전 ▶", use_container_width=True):
-                st.js("rotate(1)")
+        <script>
+            let currentAngle = 0; const angleStep = {angle_step};
+            function rotate(dir) {{ currentAngle += dir * angleStep; document.getElementById('carousel').style.transform = `rotateY(${{-currentAngle}}deg)`; }}
+            const assetData = {js_array_str};
+            function openModal(index) {{
+                const data = assetData[index];
+                document.getElementById('modal-img').src = data.img;
+                document.getElementById('modal-title').innerText = data.title;
+                document.getElementById('modal-addr').innerText = "📍 " + data.addr;
+                document.getElementById('modal-desc').innerHTML = data.desc;
+                document.getElementById('modal').style.display = "block";
+            }}
+            function closeModal() {{ document.getElementById('modal').style.display = "none"; }}
+        </script>
+        </body>
+        </html>
+        """
+        st.iframe(html_code, height=750)
 
     # [탭 3] Map 공간 탐색 (VWorld 맵)
     with tab3:
