@@ -6,7 +6,6 @@ import base64
 import folium
 from streamlit_folium import st_folium
 import streamlit.components.v1 as components
-import altair as alt
 
 # 1. 페이지 설정 및 다크모드 대응 CSS 테마
 st.set_page_config(page_title="산림문화자원 아카이브 시범 구축", page_icon="🌲", layout="wide")
@@ -235,62 +234,165 @@ def main():
             filtered_df['주소'].astype(str).str.contains(search_query, case=False, na=False)
         ]
 
-    tab1, tab2, tab3, tab4 = st.tabs(["🖼️ 전체 자원 갤러리", "📊 유사 자원 검색 및 분석", "🗺️ 공간 지도 (V-World)", "📚 출처 정보"])
+    tab1, tab2, tab3 = st.tabs(["🖼️ 자원 갤러리", "🧊 연관 탐색 대시보드", "🗺️ 공간 탐색 (Map)"])
 
-# [탭 1] 전체 갤러리 (요약 대시보드 포함)
-with tab1:
-    st.subheader("🌲 전체 산림문화자원 요약")
-    c1, c2, c3 = st.columns(3)
-    c1.metric("총 자원 수", len(df))
-    c2.metric("권역 수", df['지역'].nunique())
-    c3.metric("유형 수", df['중분류'].nunique())
-    
-    st.markdown("### 전체 자원 갤러리")
-    # 캐러셀 형태로 4개씩 행 배치
-    cols = st.columns(4)
-    for i, row in df.head(8).iterrows():
-        with cols[i % 4]:
-            st.image("https://via.placeholder.com/300x200?text=Forest+Asset", use_column_width=True)
-            st.write(f"**{row['명칭']}**")
+    item_to_show = None
 
-# [탭 2] 유사 자원 검색 결과
-with tab2:
-    st.subheader("📊 필터 분석 및 유사 자원 탐색")
-    with st.sidebar:
-        query = st.text_input("유사 자원 검색")
-        cat = st.selectbox("권역 선택", ["전체"] + list(df['지역'].unique()))
-    
-    filtered = df.copy()
-    if cat != "전체": filtered = filtered[filtered['지역'] == cat]
-    if query: filtered = filtered[filtered['명칭'].str.contains(query, na=False)]
-    
-    c_chart1, c_chart2 = st.columns(2)
-    # 원 모양 차트 (Altair Arc)
-    chart_data = filtered['지역'].value_counts().reset_index()
-    c_chart1.altair_chart(alt.Chart(chart_data).mark_arc().encode(theta='count', color='index'), use_container_width=True)
-    c_chart2.bar_chart(filtered['중분류'].value_counts())
-    
-    for _, row in filtered.iterrows():
-        with st.container(border=True):
-            cols = st.columns([1, 4])
-            cols[0].image("https://via.placeholder.com/150x100", width=150)
-            cols[1].write(f"**{row['명칭']}** | {row['지역']} | {row['중분류']}")
+    # [탭 1] 자원 갤러리
+    with tab1:
+        st.write("")
+        ITEMS_PER_PAGE = 10
+        total_items = len(filtered_df)
+        total_pages = math.ceil(total_items / ITEMS_PER_PAGE)
 
-# [탭 3] 공간 지도 (V-World 스타일 설정)
-with tab3:
-    st.subheader("🗺️ 공간 탐색 (V-World Base Map)")
-    # V-World 타일 URL 적용
-    vworld_url = "http://xdworld.vworld.kr:8080/2d/Base/202002/{z}/{x}/{y}.png"
-    m = folium.Map(location=[36.5, 127.5], zoom_start=7, tiles=vworld_url, attr="V-World")
-    
-    for _, row in filtered.dropna(subset=['Lat', 'Lon']).iterrows():
-        folium.Marker([row['Lat'], row['Lon']], tooltip=row['명칭']).add_to(m)
-    st_folium(m, width=1200, height=600)
+        col_info, _, col_page = st.columns([2, 5, 1])
+        with col_info: st.markdown(f"<span style='color:var(--text-color); font-weight:bold;'>총 {total_items}건</span>의 자원 검색 완료", unsafe_allow_html=True)
+        with col_page: current_page = st.selectbox("페이지", range(1, total_pages + 1), label_visibility="collapsed") if total_pages > 1 else 1
+        st.divider()
 
-# [탭 4] 출처 정보
-with tab4:
-    st.subheader("📚 관련 자료 출처")
-    if '출처' in df.columns:
-        st.dataframe(df[['명칭', '출처', '관련링크']], use_container_width=True)
-    else:
-        st.write("출처 정보가 포함된 데이터 컬럼이 없습니다.")
+        start_idx = (current_page - 1) * ITEMS_PER_PAGE
+        paged_df = filtered_df.iloc[start_idx : start_idx + ITEMS_PER_PAGE]
+
+        num_columns = 4 
+        for i in range(0, len(paged_df), num_columns):
+            cols = st.columns(num_columns)
+            for j, col in enumerate(cols):
+                if i + j < len(paged_df):
+                    item = paged_df.iloc[i + j]
+                    with col:
+                        with st.container():
+                            img_paths_str = str(item.get('이미지경로', ''))
+                            first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
+                            
+                            # ★ 2D 카드 이미지/버튼도 width='stretch' 로 적용
+                            if first_img and os.path.exists(first_img): st.image(first_img, width='stretch')
+                            else: st.image('https://via.placeholder.com/400x300?text=No+Image', width='stretch')
+                            
+                            st.markdown(f"**{str(item.get('명칭', ''))}**")
+                            st.caption(f"📍 {item.get('지역', '')} | 🏷️ {item.get('중분류', '')}")
+                            
+                            if st.button("상세 정보 열람", key=f"btn_detail_{item.name}", width='stretch'):
+                                item_to_show = item
+                            st.write("")
+
+    # [탭 2] 자원 분석 및 연관 탐색 대시보드
+    with tab2:
+        st.subheader("📊 산림문화자원 분석 및 탐색 대시보드")
+        st.write("검색된 자원의 통계 현황과 개별 자원 조사를 위한 통합 인터페이스입니다.")
+        
+        if filtered_df.empty:
+            st.info("검색된 자원이 없습니다.")
+        else:
+            # 1. KPI 지표 및 차트 영역
+            col_k1, col_k2, col_k3 = st.columns(3)
+            col_k1.metric("총 검색 자원", len(filtered_df))
+            col_k2.metric("권역 분포", filtered_df['지역'].nunique())
+            col_k3.metric("자원 유형", filtered_df['중분류'].nunique())
+            
+            st.divider()
+            
+            col_chart1, col_chart2 = st.columns(2)
+            with col_chart1:
+                st.write("**권역별 자원 분포**")
+                st.bar_chart(filtered_df['지역'].value_counts())
+            with col_chart2:
+                st.write("**유형별 자원 분포**")
+                st.bar_chart(filtered_df['중분류'].value_counts())
+            
+            st.divider()
+
+            # 2. 연관 자원 카드 탐색 (캐러셀 방식)
+            st.write("### 🌲 연관 산림문화자원 탐색")
+            if 'carousel_pos' not in st.session_state: st.session_state.carousel_pos = 0
+            
+            # 슬라이드 위치 관리
+            display_df = filtered_df
+            start = st.session_state.carousel_pos
+            visible_items = display_df.iloc[start : start + 3]
+            
+            cols = st.columns(3)
+            for i, (idx, row) in enumerate(visible_items.iterrows()):
+                with cols[i]:
+                    # 대표 이미지
+                    img_path = str(row.get('이미지경로', '')).split(',')[0].strip()
+                    img_src = img_path if (img_path and os.path.exists(img_path)) else "https://via.placeholder.com/300x200?text=No+Image"
+                    st.image(img_src, width='stretch')
+                    
+                    # 명칭 및 조사 도구(구글링)
+                    st.markdown(f"**{row.get('명칭', '')}**")
+                    
+                    # 구글 검색 연결
+                    query = f"{row.get('명칭', '')} 산림문화자원"
+                    if st.link_button(f"🔍 구글링 검색", f"https://www.google.com/search?q={query}", use_container_width=True):
+                        pass
+                    
+                    # 상세 정보 열람
+                    if st.button("📋 상세 정보 열람", key=f"detail_{idx}", use_container_width=True):
+                        show_detail_modal(row)
+            
+            # 캐러셀 조작 버튼
+            c1, c2 = st.columns([1, 1])
+            if c1.button("◀ 이전"):
+                st.session_state.carousel_pos = max(0, start - 3)
+                st.rerun()
+            if c2.button("다음 ▶"):
+                st.session_state.carousel_pos = min(max(0, len(display_df) - 3), start + 3)
+                st.rerun()
+
+    # [탭 3] Map 공간 탐색 (VWorld 맵)
+    with tab3:
+        st.write("")
+        if 'Lat' in filtered_df.columns and 'Lon' in filtered_df.columns:
+            map_data = filtered_df[['명칭', 'Lat', 'Lon']].copy()
+            map_data['Lat'] = pd.to_numeric(map_data['Lat'], errors='coerce')
+            map_data['Lon'] = pd.to_numeric(map_data['Lon'], errors='coerce')
+            map_data = map_data.dropna()
+            
+            if not map_data.empty:
+                map_data = map_data.rename(columns={'Lat': 'lat', 'Lon': 'lon'})
+                
+                vworld_tiles = "https://xdworld.vworld.kr/2d/Base/service/{z}/{x}/{y}.png"
+                
+                m = folium.Map(
+                    location=[map_data['lat'].mean(), map_data['lon'].mean()],
+                    zoom_start=7,
+                    tiles=vworld_tiles,
+                    attr="VWorld"
+                )
+
+                for idx, row in map_data.iterrows():
+                    folium.Marker(
+                        location=[row['lat'], row['lon']],
+                        tooltip=row['명칭'],
+                        icon=folium.Icon(color='green', icon='leaf')
+                    ).add_to(m)
+
+                map_event = st_folium(m, width=1200, height=600, returned_objects=["last_object_clicked"])
+
+                if map_event and map_event.get("last_object_clicked"):
+                    clicked_lat = map_event["last_object_clicked"]["lat"]
+                    clicked_lon = map_event["last_object_clicked"]["lng"]
+
+                    tolerance = 1e-4
+                    matched = map_data[
+                        (abs(map_data['lat'] - clicked_lat) < tolerance) &
+                        (abs(map_data['lon'] - clicked_lon) < tolerance)
+                    ]
+
+                    if not matched.empty:
+                        original_idx = matched.index[0]
+                        if st.session_state.get('last_map_sel') != original_idx:
+                            st.session_state['last_map_sel'] = original_idx
+                            item_to_show = df.loc[original_idx]
+                    else:
+                        st.session_state['last_map_sel'] = None
+            else:
+                st.warning("현재 필터링된 결과에 유효한 좌표 데이터가 없습니다.")
+        else:
+            st.info("지도 표시를 위한 위경도 데이터가 없습니다.")
+
+    if item_to_show is not None:
+        show_detail_modal(item_to_show)
+
+if __name__ == "__main__":
+    main()
