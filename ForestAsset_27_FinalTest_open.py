@@ -241,12 +241,12 @@ def main():
     # [탭 1] 2D 갤러리 검색
     with tab1:
         st.write("")
-        ITEMS_PER_PAGE = 20
+        ITEMS_PER_PAGE = 10
         total_items = len(filtered_df)
         total_pages = math.ceil(total_items / ITEMS_PER_PAGE)
 
         col_info, _, col_page = st.columns([2, 5, 1])
-        with col_info: st.markdown(f"<span style='color:var(--text-color); font-weight:bold;'>총 {total_items}건</span>의 자원이 검색되었습니다.", unsafe_allow_html=True)
+        with col_info: st.markdown(f"<span style='color:var(--text-color); font-weight:bold;'>총 {total_items}건</span>의 자원 검색 완료", unsafe_allow_html=True)
         with col_page: current_page = st.selectbox("페이지", range(1, total_pages + 1), label_visibility="collapsed") if total_pages > 1 else 1
         st.divider()
 
