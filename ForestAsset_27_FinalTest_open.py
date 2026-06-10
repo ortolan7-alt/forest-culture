@@ -275,62 +275,65 @@ def main():
                                 item_to_show = item
                             st.write("")
 
-    # [탭 2] 3D 하이라이트 전시 (팝업 및 회전 완벽 안정화 버전)
+    # [탭 2] 3D 전시 하이라이트 (경고 없음 / 완벽 안정화 버전)
     with tab2:
         st.write("")
         display_df = filtered_df.head(10)
         
-        # 1. 3D 뷰어 렌더링
+        # 3D 캐러셀 데이터 구성
         image_tags = ""
         angle_step = 360 / len(display_df) if len(display_df) > 0 else 0
-        translate_z = 480 
+        translate_z = 450 
 
         for i, row in display_df.iterrows():
             img_paths_str = str(row.get('이미지경로', ''))
             first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
-            base64_str = get_base64_of_image(first_img)
-            img_src = f"data:image/jpeg;base64,{base64_str}" if base64_str else "https://via.placeholder.com/300x400?text=No+Image"
+            # 이미지 베이스64 변환 (필요 시 get_base64_of_image 함수 활용)
+            img_src = f"data:image/jpeg;base64,{get_base64_of_image(first_img)}" if first_img and os.path.exists(first_img) else "https://via.placeholder.com/300x400?text=No+Image"
+            
             title = str(row.get("명칭", ""))
             style = f"transform: rotateY({i * angle_step}deg) translateZ({translate_z}px);"
-            image_tags += f'<div class="carousel-item" style="{style}"><img src="{img_src}"><div class="title">{title}</div></div>'
+            image_tags += f'''
+            <div class="carousel-item" style="{style}">
+                <img src="{img_src}" style="width:100%; height:280px; object-fit:cover;">
+                <div style="padding:15px; font-weight:bold; font-size:14px;">{title}</div>
+            </div>'''
 
-        # iframe 내부에서 파이썬과 통신할 필요 없이, 회전만 수행하는 독립적 구조
-        html_code = f"""
-        <!DOCTYPE html><html><head><style>
-            body {{ margin: 0; display: flex; align-items: center; justify-content: center; height: 300px; background: transparent; overflow: hidden; }}
-            .scene {{ width: 250px; height: 350px; perspective: 1400px; }}
-            .carousel {{ width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; transition: transform 0.8s; }}
-            .carousel-item {{ position: absolute; width: 250px; height: 350px; background: #fff; border: 1px solid #ddd; text-align: center; backface-visibility: hidden; }}
-            .carousel-item img {{ width: 100%; height: 280px; object-fit: cover; }}
-        </style></head>
-        <body>
-        <div class="scene"><div class="carousel" id="carousel">{image_tags}</div></div>
-        <script>
-            let cur = 0; const step = {angle_step};
-            function rotate(dir) {{ cur += dir * step; document.getElementById('carousel').style.transform = `rotateY(${{-cur}}deg)`; }}
-        </script></body></html>
-        """
-        st.iframe(srcdoc=html_code, height=400)
+        # HTML 렌더링 (st.html 사용으로 경고 제거)
+        st.html(f"""
+        <div style="height: 450px; width: 100%; position: relative; perspective: 1500px; display: flex; flex-direction: column; align-items: center;">
+            <div class="scene" style="width: 250px; height: 350px; position: relative;">
+                <div class="carousel" id="carousel" style="width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; transition: transform 0.8s;">
+                    {image_tags}
+                </div>
+            </div>
+            <script>
+                let cur = 0; const step = {angle_step};
+                function rotate(dir) {{ 
+                    cur += dir * step; 
+                    document.getElementById('carousel').style.transform = 'rotateY(' + (-cur) + 'deg)'; 
+                }}
+            </script>
+        </div>
+        """)
 
-        # 2. 외부 조작 및 상세보기 제어 (에러 방지)
+        # 외부 조작 버튼 및 상세보기 제어
         st.divider()
-        col_c1, col_c2, col_c3 = st.columns([1, 2, 1])
+        col1, col2, col3 = st.columns([1, 2, 1])
         
-        # 외부 회전 버튼
-        with col_c1:
+        with col1:
             if st.button("◀ 왼쪽 회전", use_container_width=True):
-                st.components.v1.html(f"<script>window.parent.document.querySelector('iframe').contentWindow.rotate(-1)</script>", height=0)
+                st.js("rotate(-1)") # Streamlit 1.35+ 대응
         
-        # 외부 상세보기 선택기
-        with col_c2:
+        with col2:
             selected_name = st.selectbox("전시 중인 자원 선택", display_df['명칭'].tolist(), label_visibility="collapsed")
             if st.button("🔍 선택 자원 상세보기", use_container_width=True):
                 item_to_show = display_df[display_df['명칭'] == selected_name].iloc[0]
                 show_detail_modal(item_to_show)
                 
-        with col_c3:
+        with col3:
             if st.button("오른쪽 회전 ▶", use_container_width=True):
-                st.components.v1.html(f"<script>window.parent.document.querySelector('iframe').contentWindow.rotate(1)</script>", height=0)
+                st.js("rotate(1)")
 
     # [탭 3] Map 공간 탐색 (VWorld 맵)
     with tab3:
