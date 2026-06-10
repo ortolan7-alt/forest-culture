@@ -38,6 +38,14 @@ st.markdown("""
     
     [data-testid="stSidebar"] { border-right: 1px solid rgba(128, 128, 128, 0.2); }
     
+    /* 2D 갤러리 카드 이미지 크기 강제 통일 및 고정 */
+    .stImage img {
+        height: 200px !important;
+        object-fit: cover !important;
+        border-radius: 8px;
+        width: 100% !important;
+    }
+    
     .stButton > button {
         border-radius: 6px; border: 1px solid #2ea043; color: #2ea043;
         background-color: transparent; font-weight: 600; transition: all 0.2s ease-in-out;
@@ -58,7 +66,7 @@ def change_img_index(state_key, step, total_images):
     st.session_state[state_key] = (st.session_state[state_key] + step) % total_images
 
 # ==========================================
-# 2. 파이썬 전용 상세 팝업 모달창 (2D 화면 및 지도용)
+# 2. 파이썬 전용 상세 팝업 모달창
 # ==========================================
 @st.dialog("자원 상세 정보", width="large")
 def show_detail_modal(item):
@@ -108,7 +116,7 @@ def show_detail_modal(item):
         
         st.markdown("<div style='font-size:0.85rem; font-weight:bold; color:#2ea043; margin-bottom:10px;'>📊 상세 속성 정보</div>", unsafe_allow_html=True)
         col_meta1, col_meta2 = st.columns(2)
-        exclude_cols = ['명칭', '내용', '대상지 현황', '현장의견', '이미지경로', '동영상경로', '주소', 'ID', 'Lat', 'Lon']
+        exclude_cols = ['명칭', '내용', '대상지 현황', '현장의견', '이미지경로', '동영상경로', '주소', 'ID', 'Lat', 'Lon', '출처', '문헌자료', '관련링크']
         
         count = 0
         for col_name in item.index:
@@ -181,18 +189,25 @@ def main():
             filtered_df['주소'].astype(str).str.contains(search_query, case=False, na=False)
         ]
 
-    # ★ 탭 구성 적용
-    tab1, tab2, tab3, tab4 = st.tabs(["🧊 3D 하이라이트 갤러리", "📊 분석 및 유사 자원", "🗺️ 공간 탐색 (Map)", "📚 출처 정보"])
+    # 4개 탭 정의 (탭1 이름 업데이트)
+    tab1, tab2, tab3, tab4 = st.tabs(["🧊 하이라이트 전시관", "📊 분석 및 유사 자원", "🗺️ 공간 탐색 (Map)", "📚 출처 정보"])
 
     item_to_show = None
 
-    # [탭 1] 기존 3D 하이라이트 형태의 회전식 갤러리
+    # [탭 1] 하이라이트 전시관 (검색 적용 안 됨, 상단 전체 요약 표기)
     with tab1:
         st.write("")
-        st.markdown("### 🌲 3D 하이라이트 전시관")
-        st.info("카드를 좌우로 회전하며 주요 자원을 입체적으로 감상하세요. (클릭 시 팝업)")
+        st.markdown("### 🌲 하이라이트 전시관")
         
-        display_df = filtered_df.head(10)
+        # 상단 전체 요약 정보 표기 (필터링되지 않은 원본 df 기준)
+        col_k1, col_k2, col_k3 = st.columns(3)
+        col_k1.metric("총 자원 수", len(df))
+        col_k2.metric("권역 분포", df['지역'].nunique() if '지역' in df.columns else 0)
+        col_k3.metric("자원 유형", df['중분류'].nunique() if '중분류' in df.columns else 0)
+        st.divider()
+        
+        # 검색 필터링의 영향을 받지 않도록 원본 df의 상위 10개 고정 표출
+        display_df = df.head(10)
         image_tags = ""
         js_data = [] 
         num_items = len(display_df)
@@ -301,10 +316,9 @@ def main():
         </body>
         </html>
         """
-        # st.iframe 대신 최신 문법인 components.html 사용
         components.html(html_code, height=750)
 
-    # [탭 2] 깔끔한 통계 차트 + 기존 2D 형태의 하단 갤러리
+    # [탭 2] 분석 및 유사 자원 (컨트롤 상단 배치 및 2D 카드 이미지 균일화)
     with tab2:
         st.write("")
         st.subheader("📊 산림문화자원 분석 및 탐색 대시보드")
@@ -312,18 +326,17 @@ def main():
         if filtered_df.empty:
             st.info("검색 조건에 일치하는 자원이 없습니다.")
         else:
-            # 깔끔한 차트 (도넛 차트 및 막대 차트)
+            # 깔끔하게 다듬어진 디자인 차트 (도넛 & 바 차트)
             c1, c2 = st.columns(2)
             if '지역' in filtered_df.columns:
                 arc_data = filtered_df['지역'].value_counts().reset_index()
                 arc_data.columns = ['Category', 'Count']
                 
-                # 깔끔한 도넛 차트 (innerRadius 적용)
-                arc_chart = alt.Chart(arc_data).mark_arc(innerRadius=50).encode(
+                arc_chart = alt.Chart(arc_data).mark_arc(innerRadius=60).encode(
                     theta=alt.Theta('Count:Q'),
                     color=alt.Color('Category:N', legend=alt.Legend(title="권역")),
                     tooltip=['Category', 'Count']
-                ).properties(width=300, height=300, title="권역 분포")
+                ).properties(width=300, height=300, title="권역 분포 (원형)")
                 
                 c1.altair_chart(arc_chart, use_container_width=True)
                 
@@ -331,23 +344,34 @@ def main():
                 bar_data = filtered_df['중분류'].value_counts().reset_index()
                 bar_data.columns = ['Category', 'Count']
                 
-                # 깔끔한 바 차트 (코너 라운딩 적용)
-                bar_chart = alt.Chart(bar_data).mark_bar(cornerRadiusTopLeft=5, cornerRadiusTopRight=5, color='#2ea043').encode(
+                bar_chart = alt.Chart(bar_data).mark_bar(cornerRadiusTopLeft=6, cornerRadiusTopRight=6, color='#2ea043').encode(
                     x=alt.X('Category:N', title="", axis=alt.Axis(labelAngle=0)),
                     y=alt.Y('Count:Q', title="자원 수"),
                     tooltip=['Category', 'Count']
-                ).properties(width=300, height=300, title="유형 분포")
+                ).properties(width=300, height=300, title="유형 분포 (바형)")
                 
                 c2.altair_chart(bar_chart, use_container_width=True)
 
             st.divider()
             
-            # 하단: 유사 자원 2D 카드 갤러리 
-            st.markdown("### 🖼️ 유사 자원 탐색 갤러리")
-            if 'carousel_t2_pos' not in st.session_state: st.session_state.carousel_t2_pos = 0
+            # ★ 조작 컨트롤을 타이틀 우측 옆으로 정렬하기 위한 컬럼 스플릿
+            title_col, btn_prev_col, btn_next_col = st.columns([4, 1, 1])
+            with title_col:
+                st.markdown("### 🖼️ 유사 자원 탐색 갤러리")
             
+            if 'carousel_t2_pos' not in st.session_state: st.session_state.carousel_t2_pos = 0
             start = st.session_state.carousel_t2_pos
-            visible_items = filtered_df.iloc[start : start + 4] # 한 번에 4개씩 표출
+            
+            with btn_prev_col:
+                if st.button("◀ 이전 리스트", key="prev_t2_top", use_container_width=True):
+                    st.session_state.carousel_t2_pos = max(0, start - 4)
+                    st.rerun()
+            with btn_next_col:
+                if st.button("다음 리스트 ▶", key="next_t2_top", use_container_width=True):
+                    st.session_state.carousel_t2_pos = min(max(0, len(filtered_df) - 4), start + 4)
+                    st.rerun()
+            
+            visible_items = filtered_df.iloc[start : start + 4] # 2D 형태로 한 행에 4개 배치
             
             cols = st.columns(4)
             for i, (idx, row) in enumerate(visible_items.iterrows()):
@@ -356,6 +380,7 @@ def main():
                         img_paths_str = str(row.get('이미지경로', ''))
                         first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
                         
+                        # 스타일 시트 적용으로 높이(200px) 자동 균일화 적용됨
                         if first_img and os.path.exists(first_img): st.image(first_img, use_container_width=True)
                         else: st.image('https://via.placeholder.com/400x300?text=No+Image', use_container_width=True)
                         
@@ -365,15 +390,6 @@ def main():
                         if st.button("상세 정보 열람", key=f"btn_detail_t2_{row.name}", use_container_width=True):
                             item_to_show = row
                         st.write("")
-            
-            # 캐러셀 조작 버튼
-            c1, c2 = st.columns([1, 1])
-            if c1.button("◀ 이전 리스트"):
-                st.session_state.carousel_t2_pos = max(0, start - 4)
-                st.rerun()
-            if c2.button("다음 리스트 ▶"):
-                st.session_state.carousel_t2_pos = min(max(0, len(filtered_df) - 4), start + 4)
-                st.rerun()
 
     # [탭 3] Map 공간 탐색 (VWorld 맵)
     with tab3:
@@ -423,20 +439,19 @@ def main():
         else:
             st.info("지도 표시를 위한 위경도 데이터가 없습니다.")
 
-    # [탭 4] 출처 정보 (지정번호 삭제 -> 문헌자료 추가)
+    # [탭 4] 출처 정보 (출처, 문헌자료, 관련링크 표기)
     with tab4:
         st.write("")
         st.subheader("📚 연관 자료 출처 및 문헌 정보")
         
         display_cols = ['명칭']
-        # '지정번호' 제외하고 '문헌자료' 표기
         for col in ['출처', '문헌자료', '관련링크']:
             if col in filtered_df.columns:
                 display_cols.append(col)
                 
         st.dataframe(filtered_df[display_cols], use_container_width=True, hide_index=True)
 
-    # 2D 갤러리 및 지도에서 선택된 아이템 상세 모달 호출
+    # 2D 갤러리 및 지도 연동 상세 팝업 모달창 오픈
     if item_to_show is not None:
         show_detail_modal(item_to_show)
 
