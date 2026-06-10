@@ -5,7 +5,7 @@ import math
 import base64
 import folium
 from streamlit_folium import st_folium
-import streamlit.components.v1 as components
+import altair as alt
 
 # 1. 페이지 설정 및 다크모드 대응 CSS 테마
 st.set_page_config(page_title="산림문화자원 아카이브 시범 구축", page_icon="🌲", layout="wide")
@@ -102,13 +102,10 @@ def show_detail_modal(item):
         img_paths_str = str(item.get('이미지경로', ''))
         valid_img_paths = [p.strip() for p in img_paths_str.split(',') if p.strip() and os.path.exists(p.strip())]
         
-        # ★ 최신 버전 대응 (use_container_width -> width='stretch' 로 전면 교체)
         if not valid_img_paths:
-            st.image('https://via.placeholder.com/800x600?text=No+Image', width='stretch')
-            
+            st.image('https://via.placeholder.com/800x600?text=No+Image', use_container_width=True)
         elif len(valid_img_paths) == 1:
-            st.image(valid_img_paths[0], width='stretch')
-            
+            st.image(valid_img_paths[0], use_container_width=True)
         else:
             item_id = str(item.name) 
             state_key = f"img_idx_{item_id}"
@@ -118,15 +115,15 @@ def show_detail_modal(item):
                 
             current_idx = st.session_state[state_key]
             
-            st.image(valid_img_paths[current_idx], width='stretch')
+            st.image(valid_img_paths[current_idx], use_container_width=True)
             
             col_prev, col_lbl, col_next = st.columns([1, 1, 1])
             with col_prev:
-                st.button("◀ 이전", key=f"prev_{item_id}", on_click=change_img_index, args=(state_key, -1, len(valid_img_paths)), width='stretch')
+                st.button("◀ 이전", key=f"prev_{item_id}", on_click=change_img_index, args=(state_key, -1, len(valid_img_paths)), use_container_width=True)
             with col_lbl:
                 st.markdown(f"<div style='text-align:center; padding-top:10px; font-weight:bold; color:var(--text-color);'>{current_idx + 1} / {len(valid_img_paths)}</div>", unsafe_allow_html=True)
             with col_next:
-                st.button("다음 ▶", key=f"next_{item_id}", on_click=change_img_index, args=(state_key, 1, len(valid_img_paths)), width='stretch')
+                st.button("다음 ▶", key=f"next_{item_id}", on_click=change_img_index, args=(state_key, 1, len(valid_img_paths)), use_container_width=True)
                 
         vid_path = item.get('동영상경로', '') 
         if pd.notna(vid_path) and str(vid_path).strip() != '' and str(vid_path).strip() != 'nan':
@@ -188,7 +185,7 @@ def load_data(csv_path):
 # ==========================================
 def main():
     st.markdown("<h1>🌲 디지털 산림문화자원 아카이브 시범 구축</h1>", unsafe_allow_html=True)
-    st.markdown("<p>데이터 기반 2D/3D 시각화 및 공간 검색 플랫폼</p>", unsafe_allow_html=True)
+    st.markdown("<p>데이터 기반 산림문화 갤러리 및 공간 검색 플랫폼</p>", unsafe_allow_html=True)
     st.write("") 
 
     col_empty1, col_video, col_empty2 = st.columns([1, 6, 1])
@@ -234,186 +231,96 @@ def main():
             filtered_df['주소'].astype(str).str.contains(search_query, case=False, na=False)
         ]
 
-    tab1, tab2, tab3 = st.tabs(["🖼️ 2D 자원 갤러리", "🧊 3D 하이라이트 전시", "🗺️ 공간 탐색 (Map)"])
+    # ★ 4개 탭 구성 적용
+    tab1, tab2, tab3, tab4 = st.tabs(["🖼️ 전체 자원 갤러리", "📊 분석 및 유사 자원", "🗺️ 공간 탐색 (Map)", "📚 출처 정보"])
 
     item_to_show = None
 
-    # [탭 1] 2D 갤러리 검색
+    # [탭 1] 전체 자원 갤러리 (검색 필터 적용 안함, 요약 대시보드 + 캐러셀)
     with tab1:
         st.write("")
-        ITEMS_PER_PAGE = 10
-        total_items = len(filtered_df)
-        total_pages = math.ceil(total_items / ITEMS_PER_PAGE)
-
-        col_info, _, col_page = st.columns([2, 5, 1])
-        with col_info: st.markdown(f"<span style='color:var(--text-color); font-weight:bold;'>총 {total_items}건</span>의 자원 검색 완료", unsafe_allow_html=True)
-        with col_page: current_page = st.selectbox("페이지", range(1, total_pages + 1), label_visibility="collapsed") if total_pages > 1 else 1
+        # 전체 요약 대시보드 (df 기준)
+        st.markdown("### 🌲 전체 산림문화자원 요약")
+        col_k1, col_k2, col_k3 = st.columns(3)
+        col_k1.metric("총 자원 수", len(df))
+        col_k2.metric("권역 분포", df['지역'].nunique() if '지역' in df.columns else 0)
+        col_k3.metric("자원 유형", df['중분류'].nunique() if '중분류' in df.columns else 0)
         st.divider()
 
-        start_idx = (current_page - 1) * ITEMS_PER_PAGE
-        paged_df = filtered_df.iloc[start_idx : start_idx + ITEMS_PER_PAGE]
+        st.markdown("### 🖼️ 전체 자원 갤러리")
+        if 'carousel_t1_pos' not in st.session_state: st.session_state.carousel_t1_pos = 0
+        
+        start = st.session_state.carousel_t1_pos
+        visible_items = df.iloc[start : start + 4] # 한 번에 4개씩 표출
+        
+        cols = st.columns(4)
+        for i, (idx, row) in enumerate(visible_items.iterrows()):
+            with cols[i]:
+                img_paths_str = str(row.get('이미지경로', ''))
+                first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
+                
+                if first_img and os.path.exists(first_img): st.image(first_img, use_container_width=True)
+                else: st.image('https://via.placeholder.com/400x300?text=No+Image', use_container_width=True)
+                
+                st.markdown(f"**{str(row.get('명칭', ''))}**")
+                st.caption(f"📍 {row.get('지역', '')}")
+                
+                if st.button("상세 정보 열람", key=f"btn_detail_t1_{row.name}", use_container_width=True):
+                    item_to_show = row
+        
+        # 캐러셀 조작 버튼
+        c1, c2 = st.columns([1, 1])
+        if c1.button("◀ 이전 갤러리"):
+            st.session_state.carousel_t1_pos = max(0, start - 4)
+            st.rerun()
+        if c2.button("다음 갤러리 ▶"):
+            st.session_state.carousel_t1_pos = min(max(0, len(df) - 4), start + 4)
+            st.rerun()
 
-        num_columns = 4 
-        for i in range(0, len(paged_df), num_columns):
-            cols = st.columns(num_columns)
-            for j, col in enumerate(cols):
-                if i + j < len(paged_df):
-                    item = paged_df.iloc[i + j]
-                    with col:
-                        with st.container():
-                            img_paths_str = str(item.get('이미지경로', ''))
-                            first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
-                            
-                            # ★ 2D 카드 이미지/버튼도 width='stretch' 로 적용
-                            if first_img and os.path.exists(first_img): st.image(first_img, width='stretch')
-                            else: st.image('https://via.placeholder.com/400x300?text=No+Image', width='stretch')
-                            
-                            st.markdown(f"**{str(item.get('명칭', ''))}**")
-                            st.caption(f"📍 {item.get('지역', '')} | 🏷️ {item.get('중분류', '')}")
-                            
-                            if st.button("상세 정보 열람", key=f"btn_detail_{item.name}", width='stretch'):
-                                item_to_show = item
-                            st.write("")
-
-    # [탭 2] 3D 전시 하이라이트 
+    # [탭 2] 유사 자원 검색 결과 및 대시보드 (필터 적용됨)
     with tab2:
         st.write("")
-        display_df = filtered_df.head(10)
-        
-        image_tags = ""
-        js_data = [] 
-        num_items = len(display_df)
-        angle_step = 360 / num_items if num_items > 0 else 0
-        translate_z = 480 
+        st.subheader("📊 산림문화자원 분석 및 유사 검색 결과")
+        if filtered_df.empty:
+            st.info("검색 조건에 일치하는 자원이 없습니다.")
+        else:
+            # 대시보드: 고정 크기 차트 (원 모양, 바 모양)
+            c1, c2 = st.columns(2)
+            if '지역' in filtered_df.columns:
+                arc_data = filtered_df['지역'].value_counts().reset_index()
+                arc_data.columns = ['Category', 'Count']
+                arc_chart = alt.Chart(arc_data).mark_arc().encode(
+                    theta='Count', color='Category', tooltip=['Category', 'Count']
+                ).properties(width=350, height=250, title="권역 분포 (원형)")
+                c1.altair_chart(arc_chart)
+                
+            if '중분류' in filtered_df.columns:
+                bar_data = filtered_df['중분류'].value_counts().reset_index()
+                bar_data.columns = ['Category', 'Count']
+                bar_chart = alt.Chart(bar_data).mark_bar(color='#2ea043').encode(
+                    x='Category', y='Count', tooltip=['Category', 'Count']
+                ).properties(width=350, height=250, title="유형 분포 (바형)")
+                c2.altair_chart(bar_chart)
 
-        for i, row in display_df.iterrows():
-            img_paths_str = str(row.get('이미지경로', ''))
-            first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
-            base64_str = get_base64_of_image(first_img)
-            img_src = f"data:image/jpeg;base64,{base64_str}" if base64_str else "https://via.placeholder.com/300x400?text=No+Image"
-            
-            title = str(row.get("명칭", "")).replace("'", "\\'").replace('"', '&quot;')
-            addr = str(row.get("주소", "")).replace("'", "\\'").replace('"', '&quot;')
-            desc = str(row.get("내용", "")).replace("'", "\\'").replace('"', '&quot;').replace("\n", "<br>")
-            
-            js_data.append(f"{{ title: '{title}', addr: '{addr}', desc: '{desc}', img: '{img_src}' }}")
+            st.divider()
+            st.markdown("### 🔍 유사 자원 검색 결과")
+            # 이미지 크기 통일 리스트형 표출
+            for i, (idx, row) in enumerate(filtered_df.iterrows()):
+                with st.container():
+                    r_col1, r_col2 = st.columns([1, 4])
+                    with r_col1:
+                        img_paths_str = str(row.get('이미지경로', ''))
+                        first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
+                        if first_img and os.path.exists(first_img): st.image(first_img, width=150)
+                        else: st.image('https://via.placeholder.com/150x100?text=No+Image', width=150)
+                    with r_col2:
+                        st.markdown(f"**{row.get('명칭', '')}**")
+                        st.caption(f"📍 {row.get('주소', '주소 미상')} | 🏷️ {row.get('중분류', '')}")
+                        if st.button("상세 정보 열람", key=f"btn_detail_t2_{row.name}"):
+                            item_to_show = row
+                    st.write("")
 
-            style = f"transform: rotateY({i * angle_step}deg) translateZ({translate_z}px);"
-            image_tags += f'<div class="carousel-item" style="{style}" onclick="openModal({i})"><img src="{img_src}"><div class="title">{title}</div></div>'
-
-        js_array_str = "[\n" + ",\n".join(js_data) + "\n]"
-
-        html_code = f"""
-        <!DOCTYPE html>
-        <html>
-        <head>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
-            
-            :root {{
-                --bg-1: #ffffff;
-                --bg-2: #f0f2f5;
-                --card-bg: #ffffff;
-                --text-main: #222222;
-                --text-desc: #444444;
-                --text-muted: #888888;
-                --border-color: #eaeaea;
-                --primary-green: #2ea043;
-            }}
-            
-            @media (prefers-color-scheme: dark) {{
-                :root {{
-                    --bg-1: #0E1117;
-                    --bg-2: #1E1E1E;
-                    --card-bg: #262730;
-                    --text-main: #FAFAFA;
-                    --text-desc: #DDDDDD;
-                    --text-muted: #AAAAAA;
-                    --border-color: #444444;
-                    --primary-green: #2ea043;
-                }}
-            }}
-            
-            body {{ 
-                margin: 0; display: flex; flex-direction: column; align-items: center; 
-                justify-content: center; height: 100vh; 
-                background: radial-gradient(circle at center, var(--bg-1) 0%, var(--bg-2) 100%); 
-                overflow: hidden; font-family: 'Noto Sans KR', sans-serif; 
-                color: var(--text-main);
-            }}
-            .scene {{ width: 300px; height: 400px; perspective: 1400px; margin-bottom: 80px; }}
-            .carousel {{ width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }}
-            
-            .carousel-item {{ 
-                position: absolute; width: 280px; height: 380px; left: 10px; top: 10px; 
-                border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
-                background: var(--card-bg); text-align: center; backface-visibility: hidden; 
-                border: 1px solid var(--border-color); cursor: pointer; transition: all 0.2s ease; 
-            }}
-            .carousel-item:hover {{ border: 2px solid var(--primary-green); transform: scale(1.02); }}
-            .carousel-item img {{ width: 100%; height: 300px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px; }}
-            .carousel-item .title {{ padding: 18px 15px; font-weight: 700; color: var(--text-main); font-size: 16px; letter-spacing: -0.5px; pointer-events: none; }}
-            
-            .controls-wrapper {{ position: absolute; bottom: 40px; display: flex; gap: 20px; z-index: 100; }}
-            button {{ 
-                padding: 14px 30px; font-size: 15px; cursor: pointer; border: none; border-radius: 50px; 
-                background-color: var(--primary-green); color: white; font-weight: 700; 
-                box-shadow: 0 8px 20px rgba(46, 160, 67, 0.3); transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; 
-            }}
-            button:hover {{ background-color: #238636; transform: translateY(-3px); }}
-            
-            .modal {{ display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); }}
-            .modal-content {{ background-color: var(--card-bg); margin: 3% auto; padding: 25px 35px; width: 85%; max-width: 600px; border-radius: 12px; box-shadow: 0 5px 30px rgba(0,0,0,0.3); max-height: 85vh; overflow-y: auto; text-align: left; position: relative; }}
-            .close {{ color: var(--text-muted); position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }}
-            .close:hover {{ color: var(--text-main); }}
-            
-            .modal-img {{ width: 100%; height: 260px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; }}
-            .modal-title {{ font-size: 22px; color: var(--text-main); font-weight: bold; margin: 0 0 5px 0; }}
-            .modal-addr {{ font-size: 13px; color: var(--text-muted); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }}
-            .modal-desc-title {{ font-size: 13px; color: var(--primary-green); font-weight: bold; margin-bottom: 5px; }}
-            .modal-desc {{ font-size: 14px; color: var(--text-desc); line-height: 1.6; }}
-        </style>
-        </head>
-        <body>
-        
-        <div class="scene"><div class="carousel" id="carousel">{image_tags}</div></div>
-        
-        <div class="controls-wrapper">
-            <button onclick="rotate(-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg> PREV</button>
-            <button onclick="rotate(1)">NEXT <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg></button>
-        </div>
-
-        <div id="modal" class="modal" onclick="if(event.target==this) closeModal()">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <img id="modal-img" class="modal-img" src="">
-                <h2 id="modal-title" class="modal-title"></h2>
-                <div id="modal-addr" class="modal-addr"></div>
-                <div class="modal-desc-title">📖 자원 설명</div>
-                <div id="modal-desc" class="modal-desc"></div>
-            </div>
-        </div>
-        
-        <script>
-            let currentAngle = 0; const angleStep = {angle_step};
-            function rotate(dir) {{ currentAngle += dir * angleStep; document.getElementById('carousel').style.transform = `rotateY(${{-currentAngle}}deg)`; }}
-            const assetData = {js_array_str};
-            function openModal(index) {{
-                const data = assetData[index];
-                document.getElementById('modal-img').src = data.img;
-                document.getElementById('modal-title').innerText = data.title;
-                document.getElementById('modal-addr').innerText = "📍 " + data.addr;
-                document.getElementById('modal-desc').innerHTML = data.desc;
-                document.getElementById('modal').style.display = "block";
-            }}
-            function closeModal() {{ document.getElementById('modal').style.display = "none"; }}
-        </script>
-        </body>
-        </html>
-        """
-        st.iframe(html_code, height=750)
-
-    # [탭 3] Map 공간 탐색 (VWorld 맵)
+    # [탭 3] Map 공간 탐색 (VWorld 맵, 필터 적용됨)
     with tab3:
         st.write("")
         if 'Lat' in filtered_df.columns and 'Lon' in filtered_df.columns:
@@ -465,6 +372,20 @@ def main():
         else:
             st.info("지도 표시를 위한 위경도 데이터가 없습니다.")
 
+    # [탭 4] 출처 정보 (필터 적용됨)
+    with tab4:
+        st.write("")
+        st.subheader("📚 연관 자료 출처 및 링크 정보")
+        
+        # CSV에 있는 컬럼 중 화면에 보여줄 컬럼만 추출
+        display_cols = ['명칭']
+        for col in ['출처', '관련링크', '지정번호']:
+            if col in filtered_df.columns:
+                display_cols.append(col)
+                
+        st.dataframe(filtered_df[display_cols], use_container_width=True, hide_index=True)
+
+    # 선택된 아이템이 있을 때 상세 모달 호출 (최하단 배치)
     if item_to_show is not None:
         show_detail_modal(item_to_show)
 
