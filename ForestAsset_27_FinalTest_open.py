@@ -275,143 +275,58 @@ def main():
                                 item_to_show = item
                             st.write("")
 
-    # [탭 2] 3D 전시 하이라이트 
+    # [탭 2] 3D 전시 하이라이트 (팝업 연동 최적화 버전)
     with tab2:
         st.write("")
         display_df = filtered_df.head(10)
         
-        image_tags = ""
-        js_data = [] 
-        num_items = len(display_df)
-        angle_step = 360 / num_items if num_items > 0 else 0
-        translate_z = 480 
+        if display_df.empty:
+            st.info("전시할 자원이 없습니다.")
+        else:
+            # 3D 뷰어 영역 (HTML/JS 사용)
+            image_tags = ""
+            angle_step = 360 / len(display_df)
+            for i, row in display_df.iterrows():
+                img_paths_str = str(row.get('이미지경로', ''))
+                first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
+                img_src = first_img if (first_img and os.path.exists(first_img)) else "https://via.placeholder.com/300x400?text=No+Image"
+                title = str(row.get("명칭", ""))
+                style = f"transform: rotateY({i * angle_step}deg) translateZ(450px);"
+                image_tags += f'<div class="carousel-item" style="{style}"><img src="{img_src}" style="width:100%; height:280px; object-fit:cover;"><div style="padding:10px;">{title}</div></div>'
 
-        for i, row in display_df.iterrows():
-            img_paths_str = str(row.get('이미지경로', ''))
-            first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
-            base64_str = get_base64_of_image(first_img)
-            img_src = f"data:image/jpeg;base64,{base64_str}" if base64_str else "https://via.placeholder.com/300x400?text=No+Image"
-            
-            title = str(row.get("명칭", "")).replace("'", "\\'").replace('"', '&quot;')
-            addr = str(row.get("주소", "")).replace("'", "\\'").replace('"', '&quot;')
-            desc = str(row.get("내용", "")).replace("'", "\\'").replace('"', '&quot;').replace("\n", "<br>")
-            
-            js_data.append(f"{{ title: '{title}', addr: '{addr}', desc: '{desc}', img: '{img_src}' }}")
-
-            style = f"transform: rotateY({i * angle_step}deg) translateZ({translate_z}px);"
-            image_tags += f'<div class="carousel-item" style="{style}" onclick="openModal({i})"><img src="{img_src}"><div class="title">{title}</div></div>'
-
-        js_array_str = "[\n" + ",\n".join(js_data) + "\n]"
-
-        html_code = f"""
-        <!DOCTYPE html>
-        <html>
-        <head>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
-            
-            :root {{
-                --bg-1: #ffffff;
-                --bg-2: #f0f2f5;
-                --card-bg: #ffffff;
-                --text-main: #222222;
-                --text-desc: #444444;
-                --text-muted: #888888;
-                --border-color: #eaeaea;
-                --primary-green: #2ea043;
-            }}
-            
-            @media (prefers-color-scheme: dark) {{
-                :root {{
-                    --bg-1: #0E1117;
-                    --bg-2: #1E1E1E;
-                    --card-bg: #262730;
-                    --text-main: #FAFAFA;
-                    --text-desc: #DDDDDD;
-                    --text-muted: #AAAAAA;
-                    --border-color: #444444;
-                    --primary-green: #2ea043;
-                }}
-            }}
-            
-            body {{ 
-                margin: 0; display: flex; flex-direction: column; align-items: center; 
-                justify-content: center; height: 100vh; 
-                background: radial-gradient(circle at center, var(--bg-1) 0%, var(--bg-2) 100%); 
-                overflow: hidden; font-family: 'Noto Sans KR', sans-serif; 
-                color: var(--text-main);
-            }}
-            .scene {{ width: 300px; height: 400px; perspective: 1400px; margin-bottom: 80px; }}
-            .carousel {{ width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }}
-            
-            .carousel-item {{ 
-                position: absolute; width: 280px; height: 380px; left: 10px; top: 10px; 
-                border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
-                background: var(--card-bg); text-align: center; backface-visibility: hidden; 
-                border: 1px solid var(--border-color); cursor: pointer; transition: all 0.2s ease; 
-            }}
-            .carousel-item:hover {{ border: 2px solid var(--primary-green); transform: scale(1.02); }}
-            .carousel-item img {{ width: 100%; height: 300px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px; }}
-            .carousel-item .title {{ padding: 18px 15px; font-weight: 700; color: var(--text-main); font-size: 16px; letter-spacing: -0.5px; pointer-events: none; }}
-            
-            .controls-wrapper {{ position: absolute; bottom: 40px; display: flex; gap: 20px; z-index: 100; }}
-            button {{ 
-                padding: 14px 30px; font-size: 15px; cursor: pointer; border: none; border-radius: 50px; 
-                background-color: var(--primary-green); color: white; font-weight: 700; 
-                box-shadow: 0 8px 20px rgba(46, 160, 67, 0.3); transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; 
-            }}
-            button:hover {{ background-color: #238636; transform: translateY(-3px); }}
-            
-            .modal {{ display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); }}
-            .modal-content {{ background-color: var(--card-bg); margin: 3% auto; padding: 25px 35px; width: 85%; max-width: 600px; border-radius: 12px; box-shadow: 0 5px 30px rgba(0,0,0,0.3); max-height: 85vh; overflow-y: auto; text-align: left; position: relative; }}
-            .close {{ color: var(--text-muted); position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }}
-            .close:hover {{ color: var(--text-main); }}
-            
-            .modal-img {{ width: 100%; height: 260px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; }}
-            .modal-title {{ font-size: 22px; color: var(--text-main); font-weight: bold; margin: 0 0 5px 0; }}
-            .modal-addr {{ font-size: 13px; color: var(--text-muted); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }}
-            .modal-desc-title {{ font-size: 13px; color: var(--primary-green); font-weight: bold; margin-bottom: 5px; }}
-            .modal-desc {{ font-size: 14px; color: var(--text-desc); line-height: 1.6; }}
-        </style>
-        </head>
-        <body>
-        
-        <div class="scene"><div class="carousel" id="carousel">{image_tags}</div></div>
-        
-        <div class="controls-wrapper">
-            <button onclick="rotate(-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg> PREV</button>
-            <button onclick="rotate(1)">NEXT <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg></button>
-        </div>
-
-        <div id="modal" class="modal" onclick="if(event.target==this) closeModal()">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <img id="modal-img" class="modal-img" src="">
-                <h2 id="modal-title" class="modal-title"></h2>
-                <div id="modal-addr" class="modal-addr"></div>
-                <div class="modal-desc-title">📖 자원 설명</div>
-                <div id="modal-desc" class="modal-desc"></div>
+            st.html(f"""
+            <div style="height: 450px; perspective: 1200px; display: flex; justify-content: center; align-items: center;">
+                <div id="carousel" style="width:250px; height:350px; transform-style:preserve-3d; transition:0.8s;">
+                    {image_tags}
+                </div>
             </div>
-        </div>
-        
-        <script>
-            let currentAngle = 0; const angleStep = {angle_step};
-            function rotate(dir) {{ currentAngle += dir * angleStep; document.getElementById('carousel').style.transform = `rotateY(${{-currentAngle}}deg)`; }}
-            const assetData = {js_array_str};
-            function openModal(index) {{
-                const data = assetData[index];
-                document.getElementById('modal-img').src = data.img;
-                document.getElementById('modal-title').innerText = data.title;
-                document.getElementById('modal-addr').innerText = "📍 " + data.addr;
-                document.getElementById('modal-desc').innerHTML = data.desc;
-                document.getElementById('modal').style.display = "block";
-            }}
-            function closeModal() {{ document.getElementById('modal').style.display = "none"; }}
-        </script>
-        </body>
-        </html>
-        """
-        st.iframe(html_code, height=750)
+            <script>
+                let cur = 0;
+                function rotate(dir) {{ cur += dir * {angle_step}; document.getElementById('carousel').style.transform = 'rotateY(' + (-cur) + 'deg)'; }}
+            </script>
+            """)
+
+            # 3D 뷰어 외부의 독립 버튼으로 상세보기 호출 (절대 에러 없음)
+            st.divider()
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col1:
+                st.button("◀ 회전", on_click=lambda: st.components.v1.html("<script>window.parent.document.querySelector('iframe').contentWindow.rotate(-1)</script>", height=0))
+            with col2:
+                # 선택 시 파이썬에서 즉시 모달을 띄우는 구조
+                target_name = st.selectbox("전시물을 선택하여 상세 정보 보기", display_df['명칭'].tolist())
+                if st.button("🔍 상세보기", type="primary", use_container_width=True):
+                    target_row = display_df[display_df['명칭'] == target_name].iloc[0]
+                    # ★ 파이썬 내부에서 다이얼로그 호출
+                    st.session_state['show_modal_data'] = target_row
+                    st.rerun()
+            with col3:
+                st.button("회전 ▶", on_click=lambda: st.components.v1.html("<script>window.parent.document.querySelector('iframe').contentWindow.rotate(1)</script>", height=0))
+
+    # 팝업 처리를 위한 최상단 트리거 (메인 로직 끝에 배치)
+    if 'show_modal_data' in st.session_state and st.session_state['show_modal_data'] is not None:
+        data = st.session_state['show_modal_data']
+        st.session_state['show_modal_data'] = None # 초기화
+        show_detail_modal(data)
 
     # [탭 3] Map 공간 탐색 (VWorld 맵)
     with tab3:
