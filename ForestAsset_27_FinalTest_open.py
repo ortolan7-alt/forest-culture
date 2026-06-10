@@ -275,7 +275,7 @@ def main():
                                 item_to_show = item
                             st.write("")
 
-    # [탭 2] 3D 전시 하이라이트 (공백 제거 및 유동적 배치 최적화)
+    # [탭 2] 3D 전시 하이라이트 (팝업 오류 완벽 해결 - 순수 파이썬 구현)
     with tab2:
         st.write("")
         display_df = filtered_df.head(10)
@@ -283,56 +283,50 @@ def main():
         if display_df.empty:
             st.info("검색된 자원이 없습니다.")
         else:
-            # ★ 1. 자원 개수에 맞춰 각도를 자동 계산 (공백 방지)
-            num_items = len(display_df)
-            angle_step = 360 / num_items 
+            # 상태 관리
+            if 'idx' not in st.session_state: st.session_state.idx = 0
             
-            image_tags = ""
-            js_data = [] 
+            # 이전/다음 로직
+            col_left, col_mid, col_right = st.columns([1, 4, 1])
             
-            for i, (_, row) in enumerate(display_df.iterrows()):
-                asset_id = str(row.get('ID', i))
-                img_paths_str = str(row.get('이미지경로', ''))
-                first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
-                img_src = f"data:image/jpeg;base64,{get_base64_of_image(first_img)}" if (first_img and os.path.exists(first_img)) else "https://via.placeholder.com/300x400?text=No+Image"
+            with col_mid:
+                # 3D 형태를 흉내 내는 카드 박스
+                current_row = display_df.iloc[st.session_state.idx % len(display_df)]
                 
-                title = str(row.get("명칭", "")).replace("'", "\\'").replace('"', '&quot;')
-                addr = str(row.get("주소", "")).replace("'", "\\'").replace('"', '&quot;')
-                desc = str(row.get("내용", "")).replace("'", "\\'").replace('"', '&quot;').replace("\n", "<br>")
-                
-                js_data.append(f"{{ id: '{asset_id}', title: '{title}', addr: '{addr}', desc: '{desc}', img: '{img_src}' }}")
-                
-                # ★ 2. translateZ를 개수별로 조정하여 원형 유지
-                radius = 120 + (num_items * 15) # 아이템이 많아지면 원을 키움
-                style = f"transform: rotateY({i * angle_step}deg) translateZ({radius}px);"
-                image_tags += f'<div class="carousel-item" style="{style}" onclick="openModal(\'{asset_id}\')"><img src="{img_src}"><div class="title">{title}</div></div>'
-
-            # 3. HTML 렌더링
-            st.html(f"""
-            <div style="height: 500px; width: 100%; position: relative; display: flex; flex-direction: column; align-items: center; perspective: 1500px; overflow: hidden;">
-                <style>
-                    .carousel {{ width: 250px; height: 350px; position: relative; transform-style: preserve-3d; transition: transform 0.8s; margin-top: 50px; }}
-                    .carousel-item {{ position: absolute; width: 250px; height: 350px; background: #fff; border: 1px solid #ccc; cursor: pointer; text-align: center; border-radius: 10px; backface-visibility: hidden; }}
-                    .carousel-item img {{ width: 100%; height: 280px; object-fit: cover; border-radius: 10px 10px 0 0; }}
-                    .modal {{ display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }}
-                    .modal-content {{ background: #fff; margin: 5% auto; padding: 20px; width: 500px; border-radius: 15px; color: #333; }}
-                </style>
-                <div class="carousel" id="carousel">{image_tags}</div>
-                <div style="margin-top: 150px;">
-                    <button onclick="rotate(-1)">◀ 이전</button>
-                    <button onclick="rotate(1)">다음 ▶</button>
+                st.markdown(f"""
+                <div style="background-color: var(--card-bg); border: 2px solid #2ea043; padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                    <h2 style="margin:0;">{current_row.get('명칭', '')}</h2>
+                    <p style="color:var(--text-muted);">{current_row.get('지역', '')}</p>
                 </div>
-            </div>
-            <script>
-                let cur = 0; const step = {angle_step};
-                const assetData = {", ".join(js_data)};
-                function rotate(dir) {{ cur += dir * step; document.getElementById('carousel').style.transform = 'rotateY(' + (-cur) + 'deg)'; }}
+                """, unsafe_allow_html=True)
                 
-                function openModal(id) {{ 
-                    window.location.search = '?selected_id=' + id;
-                }}
-            </script>
-            """)
+                img_path = str(current_row.get('이미지경로', '')).split(',')[0].strip()
+                if img_path and os.path.exists(img_path):
+                    st.image(img_path, width='stretch')
+                else:
+                    st.image('https://via.placeholder.com/300x200?text=No+Image', width='stretch')
+                
+                # 상세 보기 버튼 (이 방식은 에러가 날 수 없음)
+                if st.button("🔍 상세 정보 열람하기", key="final_detail_btn", type="primary", width='stretch'):
+                    st.session_state['show_modal_data'] = current_row
+                    st.rerun()
+
+            # 조작 버튼
+            col_btn1, col_btn2 = st.columns(2)
+            with col_btn1:
+                if st.button("◀ 이전 전시", use_container_width=True):
+                    st.session_state.idx -= 1
+                    st.rerun()
+            with col_btn2:
+                if st.button("다음 전시 ▶", use_container_width=True):
+                    st.session_state.idx += 1
+                    st.rerun()
+
+    # 팝업 호출 (스크립트 하단에서 안전하게 처리)
+    if 'show_modal_data' in st.session_state and st.session_state['show_modal_data'] is not None:
+        data = st.session_state['show_modal_data']
+        st.session_state['show_modal_data'] = None
+        show_detail_modal(data)
             
     # [탭 3] Map 공간 탐색 (VWorld 맵)
     with tab3:
