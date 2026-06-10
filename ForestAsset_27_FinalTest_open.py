@@ -275,34 +275,70 @@ def main():
                                 item_to_show = item
                             st.write("")
 
-    # [탭 2] 3D 전시 하이라이트 (팝업 연동 최적화)
+    # [탭 2] 3D 전시 하이라이트 (팝업 연동 최적화 버전)
     with tab2:
         st.write("")
-        display_df = filtered_df.head(10)
+        display_df = filtered_df.head(12)
         
-        # 3D 뷰어 화면 구성
-        cols_3d = st.columns([1, 4, 1])
-        with cols_3d[1]:
-            # 3D 카드를 파이썬 버튼 형태로 구성하여 상세 보기와 직접 연동
-            carousel_cols = st.columns(len(display_df) if len(display_df) > 0 else 1)
+        image_tags = ""
+        js_data = [] 
+        num_items = len(display_df)
+        angle_step = 360 / num_items if num_items > 0 else 0
+        translate_z = 500 
+
+        for i, row in display_df.iterrows():
+            img_paths_str = str(row.get('이미지경로', ''))
+            first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
+            base64_str = get_base64_of_image(first_img)
+            img_src = f"data:image/jpeg;base64,{base64_str}" if base64_str else "https://via.placeholder.com/300x400?text=No+Image"
             
-            for i, row in display_df.iterrows():
-                # 버튼을 카드 디자인으로 활용하여 클릭 시 즉시 팝업 호출
-                with carousel_cols[i % len(carousel_cols)]:
-                    img_paths_str = str(row.get('이미지경로', ''))
-                    first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
-                    
-                    if first_img and os.path.exists(first_img):
-                        st.image(first_img, width='stretch')
-                    else:
-                        st.image('https://via.placeholder.com/200x250?text=No+Img', width='stretch')
-                        
-                    st.markdown(f"**{row.get('명칭', '')}**")
-                    
-                    if st.button("상세 보기", key=f"3d_btn_{i}", width='stretch'):
-                        show_detail_modal(row)
+            # JS 데이터 처리
+            title = str(row.get("명칭", "")).replace("'", "\\'").replace('"', '&quot;')
+            addr = str(row.get("주소", "")).replace("'", "\\'").replace('"', '&quot;')
+            desc = str(row.get("내용", "")).replace("'", "\\'").replace('"', '&quot;').replace("\n", "<br>")
+            
+            # 상세 정보 전달용 데이터 저장
+            js_data.append(f"{{ title: '{title}', addr: '{addr}', desc: '{desc}', img: '{img_src}' }}")
+
+            style = f"transform: rotateY({i * angle_step}deg) translateZ({translate_z}px);"
+            # ★ 3D 카드에 클릭 이벤트 직접 지정
+            image_tags += f'<div class="carousel-item" style="{style}" onclick="openModal({i})"><img src="{img_src}"><div class="title">{title}</div></div>'
+
+        js_array_str = "[\n" + ",\n".join(js_data) + "\n]"
+
+        html_code = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <style>
+            body {{ margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; background: transparent; overflow: hidden; font-family: sans-serif; }}
+            .scene {{ width: 250px; height: 350px; perspective: 1500px; }}
+            .carousel {{ width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1); }}
+            .carousel-item {{ position: absolute; width: 250px; height: 350px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: #fff; text-align: center; cursor: pointer; border: 1px solid #ddd; }}
+            .carousel-item img {{ width: 100%; height: 270px; object-fit: cover; border-radius: 12px 12px 0 0; }}
+            .carousel-item .title {{ padding: 15px; font-weight: bold; font-size: 14px; color: #333; }}
+        </style>
+        </head>
+        <body>
+        <div class="scene"><div class="carousel" id="carousel">{image_tags}</div></div>
+        <script>
+            let cur = 0; const step = {angle_step};
+            function rotate(dir) {{ cur += dir * step; document.getElementById('carousel').style.transform = `rotateY(${{-cur}}deg)`; }}
+            // 데이터 배열 설정
+            const assetData = {js_array_str};
+            // 팝업 호출 함수 (부모창의 Streamlit Dialog와 연동할 수 있도록 메시지 전송)
+            function openModal(idx) {{ window.parent.postMessage({{type: 'open_modal', index: idx}}, '*'); }}
+        </script>
+        </body>
+        </html>
+        """
+        # 3D 뷰어 렌더링
+        st.iframe(html_code, height=500)
         
-        st.info("💡 3D 전시 목록의 '상세 보기' 버튼을 클릭하면 자원 상세 정보를 확인할 수 있습니다.")
+        # 하단 조작 버튼
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col1: st.button("◀ 회전", on_click=lambda: None) # 자바스크립트와 연동할 회전 로직은 프레임 내부 버튼 사용 추천
+        with col3: st.button("회전 ▶", on_click=lambda: None)
 
     # [탭 3] Map 공간 탐색 (VWorld 맵)
     with tab3:
