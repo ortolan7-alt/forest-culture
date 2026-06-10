@@ -275,59 +275,75 @@ def main():
                                 item_to_show = item
                             st.write("")
 
-    # [탭 2] 3D 전시 하이라이트 (팝업 연동 최적화 버전)
+    # [탭 2] 3D 전시 하이라이트 (검색 결과 반영 및 팝업 연동 버전)
     with tab2:
         st.write("")
+        # 필터링된 데이터 중 상위 10개만 사용
         display_df = filtered_df.head(10)
         
         if display_df.empty:
-            st.info("전시할 자원이 없습니다.")
+            st.info("검색된 자원이 없습니다.")
         else:
-            # 3D 뷰어 영역 (HTML/JS 사용)
             image_tags = ""
-            angle_step = 360 / len(display_df)
-            for i, row in display_df.iterrows():
+            js_data = [] 
+            num_items = len(display_df)
+            angle_step = 360 / num_items if num_items > 0 else 0
+            
+            for i, (_, row) in enumerate(display_df.iterrows()):
                 img_paths_str = str(row.get('이미지경로', ''))
                 first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
-                img_src = first_img if (first_img and os.path.exists(first_img)) else "https://via.placeholder.com/300x400?text=No+Image"
-                title = str(row.get("명칭", ""))
-                style = f"transform: rotateY({i * angle_step}deg) translateZ(450px);"
-                image_tags += f'<div class="carousel-item" style="{style}"><img src="{img_src}" style="width:100%; height:280px; object-fit:cover;"><div style="padding:10px;">{title}</div></div>'
+                base64_str = get_base64_of_image(first_img)
+                img_src = f"data:image/jpeg;base64,{base64_str}" if base64_str else "https://via.placeholder.com/300x400?text=No+Image"
+                
+                title = str(row.get("명칭", "")).replace("'", "\\'").replace('"', '&quot;')
+                addr = str(row.get("주소", "")).replace("'", "\\'").replace('"', '&quot;')
+                desc = str(row.get("내용", "")).replace("'", "\\'").replace('"', '&quot;').replace("\n", "<br>")
+                
+                js_data.append(f"{{ title: '{title}', addr: '{addr}', desc: '{desc}', img: '{img_src}' }}")
+                
+                # 회전 스타일 적용
+                style = f"transform: rotateY({i * angle_step}deg) translateZ(480px);"
+                image_tags += f'<div class="carousel-item" style="{style}" onclick="openModal({i})"><img src="{img_src}"><div class="title">{title}</div></div>'
 
+            # 3D 렌더링 (각 검색 결과마다 고유 key를 부여하여 새로고침 강제)
             st.html(f"""
-            <div style="height: 450px; perspective: 1200px; display: flex; justify-content: center; align-items: center;">
-                <div id="carousel" style="width:250px; height:350px; transform-style:preserve-3d; transition:0.8s;">
-                    {image_tags}
+            <div style="height: 500px; width: 100%; position: relative; display: flex; flex-direction: column; align-items: center; perspective: 1200px;">
+                <style>
+                    .carousel {{ width: 250px; height: 350px; position: relative; transform-style: preserve-3d; transition: transform 0.8s; }}
+                    .carousel-item {{ position: absolute; width: 250px; height: 350px; background: #fff; border: 1px solid #ccc; cursor: pointer; text-align: center; border-radius: 10px; }}
+                    .carousel-item img {{ width: 100%; height: 280px; object-fit: cover; border-radius: 10px 10px 0 0; }}
+                    .modal {{ display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }}
+                    .modal-content {{ background: #fff; margin: 5% auto; padding: 20px; width: 500px; border-radius: 15px; color: #333; }}
+                </style>
+                <div class="carousel" id="carousel">{image_tags}</div>
+                <div style="margin-top: 100px;">
+                    <button onclick="rotate(-1)">◀ 이전</button>
+                    <button onclick="rotate(1)">다음 ▶</button>
                 </div>
+                <div id="modal" class="modal" onclick="document.getElementById('modal').style.display='none'">
+                    <div class="modal-content" onclick="event.stopPropagation()">
+                        <img id="modal-img" style="width:100%; height:200px; object-fit:cover; border-radius:10px;">
+                        <h2 id="modal-title"></h2>
+                        <p id="modal-addr"></p>
+                        <div id="modal-desc"></div>
+                    </div>
+                </div>
+                <script>
+                    let cur = 0; const step = {angle_step};
+                    const assetData = {js_array_str};
+                    function rotate(dir) {{ cur += dir * step; document.getElementById('carousel').style.transform = 'rotateY(' + (-cur) + 'deg)'; }}
+                    function openModal(idx) {{
+                        const data = assetData[idx];
+                        document.getElementById('modal-img').src = data.img;
+                        document.getElementById('modal-title').innerText = data.title;
+                        document.getElementById('modal-addr').innerText = data.addr;
+                        document.getElementById('modal-desc').innerHTML = data.desc;
+                        document.getElementById('modal').style.display = 'block';
+                    }}
+                </script>
             </div>
-            <script>
-                let cur = 0;
-                function rotate(dir) {{ cur += dir * {angle_step}; document.getElementById('carousel').style.transform = 'rotateY(' + (-cur) + 'deg)'; }}
-            </script>
             """)
-
-            # 3D 뷰어 외부의 독립 버튼으로 상세보기 호출 (절대 에러 없음)
-            st.divider()
-            col1, col2, col3 = st.columns([1, 2, 1])
-            with col1:
-                st.button("◀ 회전", on_click=lambda: st.components.v1.html("<script>window.parent.document.querySelector('iframe').contentWindow.rotate(-1)</script>", height=0))
-            with col2:
-                # 선택 시 파이썬에서 즉시 모달을 띄우는 구조
-                target_name = st.selectbox("전시물을 선택하여 상세 정보 보기", display_df['명칭'].tolist())
-                if st.button("🔍 상세보기", type="primary", use_container_width=True):
-                    target_row = display_df[display_df['명칭'] == target_name].iloc[0]
-                    # ★ 파이썬 내부에서 다이얼로그 호출
-                    st.session_state['show_modal_data'] = target_row
-                    st.rerun()
-            with col3:
-                st.button("회전 ▶", on_click=lambda: st.components.v1.html("<script>window.parent.document.querySelector('iframe').contentWindow.rotate(1)</script>", height=0))
-
-    # 팝업 처리를 위한 최상단 트리거 (메인 로직 끝에 배치)
-    if 'show_modal_data' in st.session_state and st.session_state['show_modal_data'] is not None:
-        data = st.session_state['show_modal_data']
-        st.session_state['show_modal_data'] = None # 초기화
-        show_detail_modal(data)
-
+            
     # [탭 3] Map 공간 탐색 (VWorld 맵)
     with tab3:
         st.write("")
