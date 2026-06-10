@@ -38,12 +38,21 @@ st.markdown("""
     
     [data-testid="stSidebar"] { border-right: 1px solid rgba(128, 128, 128, 0.2); }
     
-    /* 2D 갤러리 카드 이미지 크기 강제 통일 및 고정 */
+    /* 2D 갤러리 카드 이미지 크기 강제 통일 및 고정 (썸네일용) */
     .stImage img {
         height: 200px !important;
         object-fit: cover !important;
         border-radius: 8px;
         width: 100% !important;
+    }
+    
+    /* ★ 팝업(모달창) 내부 이미지 원본 비율 유지 (자르지 않음) */
+    div[role="dialog"] .stImage img, 
+    div[data-testid="stDialog"] .stImage img {
+        height: auto !important;
+        max-height: 60vh !important; /* 화면 높이의 60%까지만 커지도록 제한 */
+        object-fit: contain !important; /* 원본 비율 유지 */
+        background-color: rgba(0,0,0,0.03); /* 여백 영역 색상 처리 */
     }
     
     .stButton > button {
@@ -276,7 +285,17 @@ def main():
             .modal-content {{ background-color: var(--card-bg); margin: 3% auto; padding: 25px 35px; width: 85%; max-width: 600px; border-radius: 12px; box-shadow: 0 5px 30px rgba(0,0,0,0.3); max-height: 85vh; overflow-y: auto; position: relative; }}
             .close {{ color: var(--text-muted); position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }}
             .close:hover {{ color: var(--text-main); }}
-            .modal-img {{ width: 100%; height: 260px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; }}
+            
+            /* ★ HTML 모달창 내부 이미지 원본 비율 유지 */
+            .modal-img {{ 
+                width: 100%; 
+                height: auto; 
+                max-height: 400px; 
+                object-fit: contain; /* 크롭 방지 */
+                border-radius: 8px; 
+                margin-bottom: 20px; 
+                background-color: var(--bg-2); /* 여백 색상 처리 */
+            }}
             .modal-title {{ font-size: 22px; font-weight: bold; margin: 0 0 5px 0; }}
             .modal-addr {{ font-size: 13px; color: var(--text-muted); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }}
             .modal-desc-title {{ font-size: 13px; color: var(--primary-green); font-weight: bold; margin-bottom: 5px; }}
