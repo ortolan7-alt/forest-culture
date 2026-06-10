@@ -202,7 +202,7 @@ def main():
         </div>
         """
         st.markdown(video_html, unsafe_allow_html=True)
-        st.caption("▲ 담양 메타세쿼이아 가로수길 (국가산림문화자원)")
+        st.caption("▲ 담양 메타세쿼이아 가로수길 (국가산림문화자산 지정번호 : 2015-0001)")
     
     st.write("")
     st.write("")
@@ -213,8 +213,8 @@ def main():
     if df.empty: return
 
     with st.sidebar:
-        st.markdown("### 🔍 심층 검색 필터")
-        st.write("다중 조건을 조합하여 원하는 자원을 도출합니다.")
+        st.markdown("### 🔍 산림문화자원 키워드 검색 필터")
+        st.write("다중 조건 검색(분류별 단어 검색 지원)")
         st.divider()
         search_query = st.text_input("통합 검색", placeholder="명칭, 주소, 설명 등...")
         
