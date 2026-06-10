@@ -189,7 +189,7 @@ def main():
             filtered_df['주소'].astype(str).str.contains(search_query, case=False, na=False)
         ]
 
-    # 4개 탭 정의 (탭1 이름 업데이트)
+    # 4개 탭 정의
     tab1, tab2, tab3, tab4 = st.tabs(["🧊 하이라이트 전시관", "📊 분석 및 유사 자원", "🗺️ 공간 탐색 (Map)", "📚 출처 정보"])
 
     item_to_show = None
@@ -318,7 +318,7 @@ def main():
         """
         components.html(html_code, height=750)
 
-    # [탭 2] 분석 및 유사 자원 (컨트롤 상단 배치 및 2D 카드 이미지 균일화)
+    # [탭 2] 분석 및 유사 자원
     with tab2:
         st.write("")
         st.subheader("📊 산림문화자원 분석 및 탐색 대시보드")
@@ -354,7 +354,7 @@ def main():
 
             st.divider()
             
-            # ★ 조작 컨트롤을 타이틀 우측 옆으로 정렬하기 위한 컬럼 스플릿
+            # 조작 컨트롤을 타이틀 우측 옆으로 정렬
             title_col, btn_prev_col, btn_next_col = st.columns([4, 1, 1])
             with title_col:
                 st.markdown("### 🖼️ 유사 자원 탐색 갤러리")
@@ -380,7 +380,6 @@ def main():
                         img_paths_str = str(row.get('이미지경로', ''))
                         first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
                         
-                        # 스타일 시트 적용으로 높이(200px) 자동 균일화 적용됨
                         if first_img and os.path.exists(first_img): st.image(first_img, use_container_width=True)
                         else: st.image('https://via.placeholder.com/400x300?text=No+Image', use_container_width=True)
                         
@@ -439,15 +438,16 @@ def main():
         else:
             st.info("지도 표시를 위한 위경도 데이터가 없습니다.")
 
-    # [탭 4] 출처 정보 (출처, 문헌자료, 관련링크 표기)
+    # [탭 4] 출처 정보 (ID, 명칭, 주소, 출처, 문헌자료 순서로 표기)
     with tab4:
         st.write("")
         st.subheader("📚 연관 자료 출처 및 문헌 정보")
         
-        display_cols = ['명칭']
-        for col in ['출처', '문헌자료', '관련링크']:
-            if col in filtered_df.columns:
-                display_cols.append(col)
+        # 원하는 순서대로 컬럼 지정
+        target_cols = ['ID', '명칭', '주소', '출처', '문헌자료']
+        
+        # 실제 데이터프레임(filtered_df)에 존재하는 컬럼만 필터링하여 순서 유지
+        display_cols = [col for col in target_cols if col in filtered_df.columns]
                 
         st.dataframe(filtered_df[display_cols], use_container_width=True, hide_index=True)
 
