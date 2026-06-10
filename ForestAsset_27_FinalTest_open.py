@@ -46,13 +46,13 @@ st.markdown("""
         width: 100% !important;
     }
     
-    /* ★ 팝업(모달창) 내부 이미지 원본 비율 유지 (자르지 않음) */
+    /* 팝업(모달창) 내부 이미지 원본 비율 유지 (자르지 않음) */
     div[role="dialog"] .stImage img, 
     div[data-testid="stDialog"] .stImage img {
         height: auto !important;
-        max-height: 60vh !important; /* 화면 높이의 60%까지만 커지도록 제한 */
-        object-fit: contain !important; /* 원본 비율 유지 */
-        background-color: rgba(0,0,0,0.03); /* 여백 영역 색상 처리 */
+        max-height: 60vh !important;
+        object-fit: contain !important;
+        background-color: rgba(0,0,0,0.03);
     }
     
     .stButton > button {
@@ -62,6 +62,9 @@ st.markdown("""
     .stButton > button:hover {
         background-color: #2ea043; color: #FFFFFF; border-color: #2ea043; transform: translateY(-2px);
     }
+    
+    /* 초기화 버튼 정렬용 CSS */
+    .reset-btn-container { margin-top: 28px; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -176,17 +179,31 @@ def main():
 
     if df.empty: return
 
+    # 필터 초기화 콜백 함수
+    def clear_filters():
+        st.session_state["search_query"] = ""
+        st.session_state["selected_category"] = "전체"
+        st.session_state["selected_sub"] = "전체"
+
+    # 사이드바 구성
     with st.sidebar:
-        st.markdown("### 🔍 산림문화자원 키워드 검색 필터")
+        st.markdown("### 🔍 산림문화자원 검색 필터")
         st.write("▼ 현지조사 보완자료 일부 제공")
         st.divider()
-        search_query = st.text_input("통합 검색", placeholder="명칭, 주소, 설명 등...")
+        
+        # 검색창과 초기화 버튼을 나란히 배치 (비율 4:1)
+        col_search, col_reset = st.columns([4, 1])
+        with col_search:
+            search_query = st.text_input("통합 검색", placeholder="명칭, 주소 등...", key="search_query")
+        with col_reset:
+            st.markdown("<div class='reset-btn-container'></div>", unsafe_allow_html=True)
+            st.button("🔄", key="btn_reset", on_click=clear_filters, help="검색 및 필터 초기화", use_container_width=True)
         
         categories = ["전체"] + list(df['지역'].dropna().unique()) if '지역' in df.columns else ["전체"]
-        selected_category = st.selectbox("권역 필터", categories)
+        selected_category = st.selectbox("권역 필터", categories, key="selected_category")
             
         sub_categories = ["전체"] + list(df['중분류'].dropna().unique()) if '중분류' in df.columns else ["전체"]
-        selected_sub = st.selectbox("유형 필터", sub_categories)
+        selected_sub = st.selectbox("유형 필터", sub_categories, key="selected_sub")
 
     filtered_df = df.copy()
     if selected_category != "전체": filtered_df = filtered_df[filtered_df['지역'] == selected_category]
@@ -203,19 +220,17 @@ def main():
 
     item_to_show = None
 
-    # [탭 1] 하이라이트 전시관 (검색 적용 안 됨, 상단 전체 요약 표기)
+    # [탭 1] 하이라이트 전시관
     with tab1:
         st.write("")
         st.markdown("### 🌲 하이라이트 전시관")
         
-        # 상단 전체 요약 정보 표기 (필터링되지 않은 원본 df 기준)
         col_k1, col_k2, col_k3 = st.columns(3)
         col_k1.metric("총 자원 수", len(df))
         col_k2.metric("권역 분포", df['지역'].nunique() if '지역' in df.columns else 0)
         col_k3.metric("자원 유형", df['중분류'].nunique() if '중분류' in df.columns else 0)
         st.divider()
         
-        # 검색 필터링의 영향을 받지 않도록 원본 df의 상위 10개 고정 표출
         display_df = df.head(10)
         image_tags = ""
         js_data = [] 
@@ -288,13 +303,8 @@ def main():
             
             /* ★ HTML 모달창 내부 이미지 원본 비율 유지 */
             .modal-img {{ 
-                width: 100%; 
-                height: auto; 
-                max-height: 400px; 
-                object-fit: contain; /* 크롭 방지 */
-                border-radius: 8px; 
-                margin-bottom: 20px; 
-                background-color: var(--bg-2); /* 여백 색상 처리 */
+                width: 100%; height: auto; max-height: 400px; object-fit: contain; 
+                border-radius: 8px; margin-bottom: 20px; background-color: var(--bg-2); 
             }}
             .modal-title {{ font-size: 22px; font-weight: bold; margin: 0 0 5px 0; }}
             .modal-addr {{ font-size: 13px; color: var(--text-muted); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }}
@@ -345,35 +355,29 @@ def main():
         if filtered_df.empty:
             st.info("검색 조건에 일치하는 자원이 없습니다.")
         else:
-            # 깔끔하게 다듬어진 디자인 차트 (도넛 & 바 차트)
             c1, c2 = st.columns(2)
             if '지역' in filtered_df.columns:
                 arc_data = filtered_df['지역'].value_counts().reset_index()
                 arc_data.columns = ['Category', 'Count']
-                
                 arc_chart = alt.Chart(arc_data).mark_arc(innerRadius=60).encode(
                     theta=alt.Theta('Count:Q'),
                     color=alt.Color('Category:N', legend=alt.Legend(title="권역")),
                     tooltip=['Category', 'Count']
                 ).properties(width=300, height=300, title="권역 분포 (원형)")
-                
                 c1.altair_chart(arc_chart, use_container_width=True)
                 
             if '중분류' in filtered_df.columns:
                 bar_data = filtered_df['중분류'].value_counts().reset_index()
                 bar_data.columns = ['Category', 'Count']
-                
                 bar_chart = alt.Chart(bar_data).mark_bar(cornerRadiusTopLeft=6, cornerRadiusTopRight=6, color='#2ea043').encode(
                     x=alt.X('Category:N', title="", axis=alt.Axis(labelAngle=0)),
                     y=alt.Y('Count:Q', title="자원 수"),
                     tooltip=['Category', 'Count']
                 ).properties(width=300, height=300, title="유형 분포 (바형)")
-                
                 c2.altair_chart(bar_chart, use_container_width=True)
 
             st.divider()
             
-            # 조작 컨트롤을 타이틀 우측 옆으로 정렬
             title_col, btn_prev_col, btn_next_col = st.columns([4, 1, 1])
             with title_col:
                 st.markdown("### 🖼️ 유사 자원 탐색 갤러리")
@@ -390,7 +394,7 @@ def main():
                     st.session_state.carousel_t2_pos = min(max(0, len(filtered_df) - 4), start + 4)
                     st.rerun()
             
-            visible_items = filtered_df.iloc[start : start + 4] # 2D 형태로 한 행에 4개 배치
+            visible_items = filtered_df.iloc[start : start + 4] 
             
             cols = st.columns(4)
             for i, (idx, row) in enumerate(visible_items.iterrows()):
@@ -457,15 +461,12 @@ def main():
         else:
             st.info("지도 표시를 위한 위경도 데이터가 없습니다.")
 
-    # [탭 4] 출처 정보 (ID, 명칭, 주소, 출처, 문헌자료 순서로 표기)
+    # [탭 4] 출처 정보 
     with tab4:
         st.write("")
         st.subheader("📚 연관 자료 출처 및 문헌 정보")
         
-        # 원하는 순서대로 컬럼 지정
         target_cols = ['ID', '명칭', '주소', '출처', '문헌자료']
-        
-        # 실제 데이터프레임(filtered_df)에 존재하는 컬럼만 필터링하여 순서 유지
         display_cols = [col for col in target_cols if col in filtered_df.columns]
                 
         st.dataframe(filtered_df[display_cols], use_container_width=True, hide_index=True)
