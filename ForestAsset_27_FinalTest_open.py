@@ -5,7 +5,6 @@ import math
 import base64
 import folium
 from streamlit_folium import st_folium
-import streamlit.components.v1 as components
 import altair as alt
 
 # 1. 페이지 설정 및 다크모드 대응 CSS 테마
@@ -191,7 +190,7 @@ def main():
         st.write("▼ 현지조사 보완자료 일부 제공")
         st.divider()
         
-        # 검색창과 초기화 버튼을 나란히 배치 (비율 4:1)
+        # 검색창과 초기화 버튼을 나란히 배치
         col_search, col_reset = st.columns([4, 1])
         with col_search:
             search_query = st.text_input("통합 검색", placeholder="명칭, 주소 등...", key="search_query")
@@ -220,7 +219,7 @@ def main():
 
     item_to_show = None
 
-    # [탭 1] 하이라이트 전시관
+    # [탭 1] 하이라이트 전시관 (원근감 극대화 버전)
     with tab1:
         st.write("")
         st.markdown("### 🌲 하이라이트 전시관")
@@ -236,7 +235,7 @@ def main():
         js_data = [] 
         num_items = len(display_df)
         angle_step = 360 / num_items if num_items > 0 else 0
-        translate_z = 480 
+        translate_z = 450 
 
         for i, row in display_df.iterrows():
             img_paths_str = str(row.get('이미지경로', ''))
@@ -255,6 +254,7 @@ def main():
 
         js_array_str = "[\n" + ",\n".join(js_data) + "\n]"
 
+        # HTML 블록: 원근감 및 바닥 반사 효과가 극대화된 CSS 적용
         html_code = f"""
         <!DOCTYPE html>
         <html>
@@ -262,12 +262,12 @@ def main():
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
             :root {{
-                --bg-1: #ffffff; --bg-2: #f0f2f5; --card-bg: #ffffff; --text-main: #222222;
+                --bg-1: #ffffff; --bg-2: #f4f6f9; --card-bg: #ffffff; --text-main: #222222;
                 --text-desc: #444444; --text-muted: #888888; --border-color: #eaeaea; --primary-green: #2ea043;
             }}
             @media (prefers-color-scheme: dark) {{
                 :root {{
-                    --bg-1: #0E1117; --bg-2: #1E1E1E; --card-bg: #262730; --text-main: #FAFAFA;
+                    --bg-1: #0E1117; --bg-2: #161920; --card-bg: #262730; --text-main: #FAFAFA;
                     --text-desc: #DDDDDD; --text-muted: #AAAAAA; --border-color: #444444;
                 }}
             }}
@@ -277,15 +277,40 @@ def main():
                 background: radial-gradient(circle at center, var(--bg-1) 0%, var(--bg-2) 100%); 
                 overflow: hidden; font-family: 'Noto Sans KR', sans-serif; color: var(--text-main);
             }}
-            .scene {{ width: 300px; height: 400px; perspective: 1400px; margin-bottom: 80px; }}
-            .carousel {{ width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }}
+            
+            /* 원근감 극대화 설정 */
+            .scene {{ 
+                width: 300px; height: 400px; 
+                perspective: 900px; 
+                perspective-origin: 50% 30%; 
+                margin-bottom: 80px; 
+            }}
+            
+            /* 갤러리를 위에서 내려다보는 듯한 기울기 적용 */
+            .carousel-wrapper {{
+                width: 100%; height: 100%; 
+                transform-style: preserve-3d; 
+                transform: rotateX(-8deg) translateY(-10px); 
+            }}
+            
+            .carousel {{ 
+                width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; 
+                transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1.2); 
+            }}
+            
             .carousel-item {{ 
                 position: absolute; width: 280px; height: 380px; left: 10px; top: 10px; 
-                border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+                border-radius: 12px; 
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
                 background: var(--card-bg); text-align: center; backface-visibility: hidden; 
-                border: 1px solid var(--border-color); cursor: pointer; transition: all 0.2s ease; 
+                border: 1px solid var(--border-color); cursor: pointer; transition: all 0.3s ease; 
+                -webkit-box-reflect: below 5px linear-gradient(transparent, transparent, rgba(0,0,0,0.15));
             }}
-            .carousel-item:hover {{ border: 2px solid var(--primary-green); transform: scale(1.02); }}
+            
+            .carousel-item:hover {{ 
+                border: 2px solid var(--primary-green); 
+                transform: scale(1.05) translateY(-10px); 
+            }}
             .carousel-item img {{ width: 100%; height: 300px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px; }}
             .carousel-item .title {{ padding: 18px 15px; font-weight: 700; font-size: 16px; pointer-events: none; }}
             .controls-wrapper {{ position: absolute; bottom: 40px; display: flex; gap: 20px; z-index: 100; }}
@@ -296,16 +321,12 @@ def main():
             }}
             button:hover {{ background-color: #238636; transform: translateY(-3px); }}
             
+            /* HTML 내부 모달창 CSS */
             .modal {{ display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); }}
             .modal-content {{ background-color: var(--card-bg); margin: 3% auto; padding: 25px 35px; width: 85%; max-width: 600px; border-radius: 12px; box-shadow: 0 5px 30px rgba(0,0,0,0.3); max-height: 85vh; overflow-y: auto; position: relative; }}
             .close {{ color: var(--text-muted); position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }}
             .close:hover {{ color: var(--text-main); }}
-            
-            /* ★ HTML 모달창 내부 이미지 원본 비율 유지 */
-            .modal-img {{ 
-                width: 100%; height: auto; max-height: 400px; object-fit: contain; 
-                border-radius: 8px; margin-bottom: 20px; background-color: var(--bg-2); 
-            }}
+            .modal-img {{ width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 8px; margin-bottom: 20px; background-color: var(--bg-2); }}
             .modal-title {{ font-size: 22px; font-weight: bold; margin: 0 0 5px 0; }}
             .modal-addr {{ font-size: 13px; color: var(--text-muted); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }}
             .modal-desc-title {{ font-size: 13px; color: var(--primary-green); font-weight: bold; margin-bottom: 5px; }}
@@ -313,7 +334,11 @@ def main():
         </style>
         </head>
         <body>
-        <div class="scene"><div class="carousel" id="carousel">{image_tags}</div></div>
+        <div class="scene">
+            <div class="carousel-wrapper">
+                <div class="carousel" id="carousel">{image_tags}</div>
+            </div>
+        </div>
         <div class="controls-wrapper">
             <button onclick="rotate(-1)">◀ PREV</button>
             <button onclick="rotate(1)">NEXT ▶</button>
@@ -345,7 +370,8 @@ def main():
         </body>
         </html>
         """
-        components.html(html_code, height=750)
+        # st.iframe 으로 교체 
+        st.iframe(html_code, height=750)
 
     # [탭 2] 분석 및 유사 자원
     with tab2:
