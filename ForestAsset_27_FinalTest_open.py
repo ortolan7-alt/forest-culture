@@ -5,6 +5,7 @@ import math
 import base64
 import folium
 from streamlit_folium import st_folium
+import streamlit.components.v1 as components
 import altair as alt
 
 # 1. 페이지 설정 및 다크모드 대응 CSS 테마
@@ -219,23 +220,27 @@ def main():
 
     item_to_show = None
 
-    # [탭 1] 하이라이트 전시관 (원근감 극대화 버전)
+    # [탭 1] 하이라이트 전시관 (거대한 원형태 및 잘림 방지 반영)
     with tab1:
         st.write("")
         st.markdown("### 🌲 하이라이트 전시관")
         
+        # 상단 전체 요약 정보 표기 (필터링되지 않은 원본 df 기준)
         col_k1, col_k2, col_k3 = st.columns(3)
         col_k1.metric("총 자원 수", len(df))
         col_k2.metric("권역 분포", df['지역'].nunique() if '지역' in df.columns else 0)
         col_k3.metric("자원 유형", df['중분류'].nunique() if '중분류' in df.columns else 0)
         st.divider()
         
+        # 검색 필터링의 영향을 받지 않도록 원본 df의 상위 10개 고정 표출
         display_df = df.head(10)
         image_tags = ""
         js_data = [] 
         num_items = len(display_df)
         angle_step = 360 / num_items if num_items > 0 else 0
-        translate_z = 450 
+        
+        # ★ 수정포인트: 회전 반경(원의 크기) 대폭 확장 (450 -> 600)
+        translate_z = 600 
 
         for i, row in display_df.iterrows():
             img_paths_str = str(row.get('이미지경로', ''))
@@ -254,7 +259,7 @@ def main():
 
         js_array_str = "[\n" + ",\n".join(js_data) + "\n]"
 
-        # HTML 블록: 원근감 및 바닥 반사 효과가 극대화된 CSS 적용
+        # HTML 블록: 카메라를 뒤로 빼고, 위에서 내려다보는 구도로 세팅 (하단 잘림 완벽 방지)
         html_code = f"""
         <!DOCTYPE html>
         <html>
@@ -278,19 +283,19 @@ def main():
                 overflow: hidden; font-family: 'Noto Sans KR', sans-serif; color: var(--text-main);
             }}
             
-            /* 원근감 극대화 설정 */
+            /* ★ 원근감 극대화 및 하단 잘림 방지 (시점을 더 위로 설정) */
             .scene {{ 
                 width: 300px; height: 400px; 
-                perspective: 900px; 
-                perspective-origin: 50% 30%; 
-                margin-bottom: 80px; 
+                perspective: 1100px; 
+                perspective-origin: 50% -10%; /* 카메라 시점을 카드의 상단보다 높게 배치 */
+                margin: 0px auto 80px auto; 
             }}
             
-            /* 갤러리를 위에서 내려다보는 듯한 기울기 적용 */
+            /* ★ 갤러리를 살짝 위에서 내려다보는 형태 */
             .carousel-wrapper {{
                 width: 100%; height: 100%; 
                 transform-style: preserve-3d; 
-                transform: rotateX(-8deg) translateY(-10px); 
+                transform: rotateX(-8deg) translateY(-20px); 
             }}
             
             .carousel {{ 
@@ -300,20 +305,21 @@ def main():
             
             .carousel-item {{ 
                 position: absolute; width: 280px; height: 380px; left: 10px; top: 10px; 
-                border-radius: 12px; 
-                box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
+                border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.25); 
                 background: var(--card-bg); text-align: center; backface-visibility: hidden; 
                 border: 1px solid var(--border-color); cursor: pointer; transition: all 0.3s ease; 
+                /* 거울 반사 효과로 입체감 부여 */
                 -webkit-box-reflect: below 5px linear-gradient(transparent, transparent, rgba(0,0,0,0.15));
             }}
             
             .carousel-item:hover {{ 
                 border: 2px solid var(--primary-green); 
-                transform: scale(1.05) translateY(-10px); 
+                transform: scale(1.05) translateY(-15px); /* 클릭 유도 애니메이션 */
             }}
             .carousel-item img {{ width: 100%; height: 300px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px; }}
             .carousel-item .title {{ padding: 18px 15px; font-weight: 700; font-size: 16px; pointer-events: none; }}
-            .controls-wrapper {{ position: absolute; bottom: 40px; display: flex; gap: 20px; z-index: 100; }}
+            
+            .controls-wrapper {{ position: absolute; bottom: 30px; display: flex; gap: 20px; z-index: 100; }}
             button {{ 
                 padding: 14px 30px; font-size: 15px; cursor: pointer; border: none; border-radius: 50px; 
                 background-color: var(--primary-green); color: white; font-weight: 700; 
@@ -321,7 +327,7 @@ def main():
             }}
             button:hover {{ background-color: #238636; transform: translateY(-3px); }}
             
-            /* HTML 내부 모달창 CSS */
+            /* HTML 내부 팝업창 CSS */
             .modal {{ display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); }}
             .modal-content {{ background-color: var(--card-bg); margin: 3% auto; padding: 25px 35px; width: 85%; max-width: 600px; border-radius: 12px; box-shadow: 0 5px 30px rgba(0,0,0,0.3); max-height: 85vh; overflow-y: auto; position: relative; }}
             .close {{ color: var(--text-muted); position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }}
@@ -343,6 +349,7 @@ def main():
             <button onclick="rotate(-1)">◀ PREV</button>
             <button onclick="rotate(1)">NEXT ▶</button>
         </div>
+        
         <div id="modal" class="modal" onclick="if(event.target==this) closeModal()">
             <div class="modal-content">
                 <span class="close" onclick="closeModal()">&times;</span>
@@ -353,9 +360,18 @@ def main():
                 <div id="modal-desc" class="modal-desc"></div>
             </div>
         </div>
+        
         <script>
-            let currentAngle = 0; const angleStep = {angle_step};
-            function rotate(dir) {{ currentAngle += dir * angleStep; document.getElementById('carousel').style.transform = `rotateY(${{-currentAngle}}deg)`; }}
+            let currentAngle = 0; const angleStep = {angle_step}; const tz = {translate_z};
+            
+            // ★ 하단 잘림 방지 핵심: 전체 회전축 중심을 뒤로(tz만큼) 밀어 넣습니다.
+            document.getElementById('carousel').style.transform = `translateZ(-${{tz}}px) rotateY(0deg)`;
+            
+            function rotate(dir) {{ 
+                currentAngle += dir * angleStep; 
+                document.getElementById('carousel').style.transform = `translateZ(-${{tz}}px) rotateY(${{-currentAngle}}deg)`; 
+            }}
+            
             const assetData = {js_array_str};
             function openModal(index) {{
                 const data = assetData[index];
@@ -370,8 +386,8 @@ def main():
         </body>
         </html>
         """
-        # st.iframe 으로 교체 
-        st.iframe(html_code, height=750)
+        # Iframe 높이를 늘려 하단 반사영역까지 넉넉히 표출
+        components.html(html_code, height=850)
 
     # [탭 2] 분석 및 유사 자원
     with tab2:
