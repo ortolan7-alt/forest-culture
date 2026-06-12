@@ -219,7 +219,7 @@ def main():
 
     item_to_show = None
 
-    # [탭 1] 하이라이트 전시관 (데스크탑 와이드 뷰 최적화)
+    # [탭 1] 하이라이트 전시관 (양방향 투명 화살표 버튼 최적화)
     with tab1:
         st.write("")
         st.markdown("### 🌲 하이라이트 전시관")
@@ -236,7 +236,6 @@ def main():
         num_items = len(display_df)
         angle_step = 360 / num_items if num_items > 0 else 0
         
-        # ★ 수정: 데스크탑 환경에 맞춰 원의 반지름을 크게 확장 (700px)
         translate_z = 700 
 
         for i, row in display_df.iterrows():
@@ -256,7 +255,7 @@ def main():
 
         js_array_str = "[\n" + ",\n".join(js_data) + "\n]"
 
-        # HTML 블록: 카드 크기와 시점을 데스크탑 모니터에 최적화
+        # HTML 블록: 좌우 양측 투명 버튼(nav-btn) CSS 추가 및 교체
         html_code = f"""
         <!DOCTYPE html>
         <html>
@@ -280,16 +279,15 @@ def main():
                 overflow: hidden; font-family: 'Noto Sans KR', sans-serif; color: var(--text-main);
             }}
             
-            /* ★ 카메라 깊이와 시점 설정 (데스크탑 스케일) */
             .scene {{ 
                 width: 100vw; height: 600px; 
                 perspective: 1600px; 
                 perspective-origin: 50% -10%; 
                 margin: 0px auto 40px auto; 
                 display: flex; justify-content: center;
+                position: relative; /* 버튼 기준점을 위해 추가 */
             }}
             
-            /* ★ 갤러리 전체 각도 */
             .carousel-wrapper {{
                 width: 340px; height: 480px; 
                 transform-style: preserve-3d; 
@@ -301,7 +299,6 @@ def main():
                 transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2); 
             }}
             
-            /* ★ 카드 크기 대폭 상향 (340x480) */
             .carousel-item {{ 
                 position: absolute; width: 340px; height: 480px; left: 0; top: 0; 
                 border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.25); 
@@ -315,19 +312,38 @@ def main():
                 transform: scale(1.05) translateY(-15px); 
             }}
             
-            /* 이미지 높이 증가 */
             .carousel-item img {{ width: 100%; height: 380px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px; }}
-            
-            /* 폰트 크기 및 패딩 증가 */
             .carousel-item .title {{ padding: 22px 15px; font-weight: 700; font-size: 18px; pointer-events: none; }}
             
-            .controls-wrapper {{ position: absolute; bottom: 30px; display: flex; gap: 20px; z-index: 100; }}
-            button {{ 
-                padding: 14px 32px; font-size: 16px; cursor: pointer; border: none; border-radius: 50px; 
-                background-color: var(--primary-green); color: white; font-weight: 700; 
-                box-shadow: 0 8px 20px rgba(46, 160, 67, 0.3); transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; 
+            /* ★ 양측 투명 회전 버튼 스타일 */
+            .nav-btn {{
+                position: absolute;
+                top: 45%;
+                transform: translateY(-50%);
+                width: 65px;
+                height: 65px;
+                border-radius: 50%;
+                background-color: rgba(128, 128, 128, 0.08); /* 평소엔 아주 옅은 반투명 */
+                color: var(--text-main);
+                border: 1px solid rgba(128, 128, 128, 0.2);
+                font-size: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                z-index: 1000;
+                backdrop-filter: blur(4px);
+                transition: all 0.3s ease;
             }}
-            button:hover {{ background-color: #238636; transform: translateY(-3px); }}
+            .nav-btn:hover {{
+                background-color: rgba(46, 160, 67, 0.85); /* 마우스 올리면 녹색으로 빛남 */
+                color: #ffffff;
+                border-color: var(--primary-green);
+                transform: translateY(-50%) scale(1.1);
+                box-shadow: 0 0 20px rgba(46, 160, 67, 0.4);
+            }}
+            .btn-prev {{ left: 5%; }}  /* 화면 왼쪽 5% 위치 */
+            .btn-next {{ right: 5%; }} /* 화면 오른쪽 5% 위치 */
             
             /* 모달창 유지 */
             .modal {{ display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); }}
@@ -342,14 +358,14 @@ def main():
         </style>
         </head>
         <body>
+        
+        <button class="nav-btn btn-prev" onclick="rotate(-1)">&#10094;</button>
+        <button class="nav-btn btn-next" onclick="rotate(1)">&#10095;</button>
+        
         <div class="scene">
             <div class="carousel-wrapper">
                 <div class="carousel" id="carousel">{image_tags}</div>
             </div>
-        </div>
-        <div class="controls-wrapper">
-            <button onclick="rotate(-1)">◀ PREV</button>
-            <button onclick="rotate(1)">NEXT ▶</button>
         </div>
         
         <div id="modal" class="modal" onclick="if(event.target==this) closeModal()">
@@ -387,7 +403,6 @@ def main():
         </body>
         </html>
         """
-        # ★ 잘림 방지를 위해 st.iframe 영역을 데스크탑 화면에 맞게 900px로 대폭 확장
         st.iframe(html_code, height=900)
 
     # [탭 2] 분석 및 유사 자원
