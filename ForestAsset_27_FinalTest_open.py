@@ -5,13 +5,9 @@ import math
 import base64
 import folium
 from streamlit_folium import st_folium
-import streamlit.components.v1 as components
 import altair as alt
 
-# ≈==========================================
 # 1. 페이지 설정 및 다크모드 대응 CSS 테마
-# ===========================================
-
 st.set_page_config(page_title="산림문화자원 아카이브 시범 구축", page_icon="🌲", layout="wide")
 
 st.markdown("""
@@ -155,7 +151,7 @@ def load_data(csv_path):
         return pd.DataFrame()
 
 # ==========================================
-# 3. 메인 화면 구성
+# 4. 메인 화면 구성
 # ==========================================
 def main():
     st.markdown("<h1>🌲 디지털 산림문화자원 아카이브 시범 구축</h1>", unsafe_allow_html=True)
@@ -223,7 +219,7 @@ def main():
 
     item_to_show = None
 
-    # [탭 1] 하이라이트 전시관 (한눈에 들어오는 와이드 뷰 최적화)
+    # [탭 1] 하이라이트 전시관 (데스크탑 와이드 뷰 최적화)
     with tab1:
         st.write("")
         st.markdown("### 🌲 하이라이트 전시관")
@@ -240,14 +236,14 @@ def main():
         num_items = len(display_df)
         angle_step = 360 / num_items if num_items > 0 else 0
         
-        # 원의 반지름 설정 (카드가 겹치지 않으면서 한눈에 들어오는 최적의 크기)
-        translate_z = 450 
+        # ★ 수정: 데스크탑 환경에 맞춰 원의 반지름을 크게 확장 (700px)
+        translate_z = 700 
 
         for i, row in display_df.iterrows():
             img_paths_str = str(row.get('이미지경로', ''))
             first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
             base64_str = get_base64_of_image(first_img)
-            img_src = f"data:image/jpeg;base64,{base64_str}" if base64_str else "https://via.placeholder.com/300x400?text=No+Image"
+            img_src = f"data:image/jpeg;base64,{base64_str}" if base64_str else "https://via.placeholder.com/400x500?text=No+Image"
             
             title = str(row.get("명칭", "")).replace("'", "\\'").replace('"', '&quot;')
             addr = str(row.get("주소", "")).replace("'", "\\'").replace('"', '&quot;')
@@ -260,6 +256,7 @@ def main():
 
         js_array_str = "[\n" + ",\n".join(js_data) + "\n]"
 
+        # HTML 블록: 카드 크기와 시점을 데스크탑 모니터에 최적화
         html_code = f"""
         <!DOCTYPE html>
         <html>
@@ -283,20 +280,20 @@ def main():
                 overflow: hidden; font-family: 'Noto Sans KR', sans-serif; color: var(--text-main);
             }}
             
-            /* ★ 카메라 시점(Origin)을 위로 더 올리고, 시야각(perspective) 조절 */
+            /* ★ 카메라 깊이와 시점 설정 (데스크탑 스케일) */
             .scene {{ 
-                width: 100vw; height: 500px; 
-                perspective: 1000px; 
-                perspective-origin: 50% -25%; 
+                width: 100vw; height: 600px; 
+                perspective: 1600px; 
+                perspective-origin: 50% -10%; 
                 margin: 0px auto 40px auto; 
                 display: flex; justify-content: center;
             }}
             
-            /* ★ 갤러리 전체를 아래로 깊게 기울여 원형 궤도가 한눈에 보이게 함 */
+            /* ★ 갤러리 전체 각도 */
             .carousel-wrapper {{
-                width: 240px; height: 340px; 
+                width: 340px; height: 480px; 
                 transform-style: preserve-3d; 
-                transform: rotateX(-12deg) translateY(-10px); 
+                transform: rotateX(-6deg) translateY(-20px); 
             }}
             
             .carousel {{ 
@@ -304,9 +301,9 @@ def main():
                 transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2); 
             }}
             
-            /* ★ 카드 크기를 살짝 줄여서 한 화면에 여러 장이 시원하게 보이도록 조정 */
+            /* ★ 카드 크기 대폭 상향 (340x480) */
             .carousel-item {{ 
-                position: absolute; width: 240px; height: 340px; left: 0; top: 0; 
+                position: absolute; width: 340px; height: 480px; left: 0; top: 0; 
                 border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.25); 
                 background: var(--card-bg); text-align: center; backface-visibility: hidden; 
                 border: 1px solid var(--border-color); cursor: pointer; transition: all 0.3s ease; 
@@ -315,14 +312,18 @@ def main():
             
             .carousel-item:hover {{ 
                 border: 2px solid var(--primary-green); 
-                transform: scale(1.08) translateY(-15px); 
+                transform: scale(1.05) translateY(-15px); 
             }}
-            .carousel-item img {{ width: 100%; height: 260px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px; }}
-            .carousel-item .title {{ padding: 15px 10px; font-weight: 700; font-size: 15px; pointer-events: none; }}
+            
+            /* 이미지 높이 증가 */
+            .carousel-item img {{ width: 100%; height: 380px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px; }}
+            
+            /* 폰트 크기 및 패딩 증가 */
+            .carousel-item .title {{ padding: 22px 15px; font-weight: 700; font-size: 18px; pointer-events: none; }}
             
             .controls-wrapper {{ position: absolute; bottom: 30px; display: flex; gap: 20px; z-index: 100; }}
             button {{ 
-                padding: 12px 28px; font-size: 15px; cursor: pointer; border: none; border-radius: 50px; 
+                padding: 14px 32px; font-size: 16px; cursor: pointer; border: none; border-radius: 50px; 
                 background-color: var(--primary-green); color: white; font-weight: 700; 
                 box-shadow: 0 8px 20px rgba(46, 160, 67, 0.3); transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; 
             }}
@@ -386,7 +387,8 @@ def main():
         </body>
         </html>
         """
-        st.iframe(html_code, height=750)
+        # ★ 잘림 방지를 위해 st.iframe 영역을 데스크탑 화면에 맞게 900px로 대폭 확장
+        st.iframe(html_code, height=900)
 
     # [탭 2] 분석 및 유사 자원
     with tab2:
