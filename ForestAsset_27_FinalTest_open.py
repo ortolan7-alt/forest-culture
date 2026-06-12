@@ -215,7 +215,7 @@ def main():
 
     item_to_show = None
 
-    # [탭 1] 하이라이트 전시관 (드래그 스와이프 기능 포함)
+    # [탭 1] 하이라이트 전시관 (하단 여백 및 거울 반사 최적화)
     with tab1:
         st.write("")
         st.markdown("### 🌲 하이라이트 전시관")
@@ -272,22 +272,19 @@ def main():
                 justify-content: center; height: 100vh; width: 100%; 
                 overflow: hidden; background: radial-gradient(circle at center, var(--bg-1) 0%, var(--bg-2) 100%); 
                 font-family: 'Noto Sans KR', sans-serif; color: var(--text-main);
-                /* 모바일에서 스와이프시 화면이 당겨지는 현상 방지 */
                 overscroll-behavior-y: contain; 
             }}
             
-            /* ★ 드래그를 위해 cursor를 grab으로 변경 */
+            /* ★ 하단 여백 축소를 위해 scene의 높이와 마진을 줄임 */
             .scene {{ 
-                width: 100%; height: 600px; perspective: 1600px; 
-                perspective-origin: 50% -10%; margin: 0px auto 40px auto; 
+                width: 100%; height: 500px; perspective: 1600px; 
+                perspective-origin: 50% -10%; margin: 0px auto 0px auto; 
                 display: flex; justify-content: center; position: relative;
                 cursor: grab;
             }}
             .scene:active {{ cursor: grabbing; }}
             
             .carousel-wrapper {{ width: 340px; height: 480px; transform-style: preserve-3d; transform: rotateX(-6deg) translateY(-20px); pointer-events: none; }}
-            
-            /* 애니메이션 속도를 JS에서 제어할 수 있도록 설정 */
             .carousel {{ width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; }}
             
             .carousel-item {{ 
@@ -295,13 +292,13 @@ def main():
                 border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.25); 
                 background: var(--card-bg); text-align: center; backface-visibility: hidden; 
                 border: 1px solid var(--border-color); cursor: pointer; transition: all 0.3s ease; 
+                /* 거울 반사 효과 (iframe 높이를 줄여서 자연스럽게 잘리도록 유도) */
                 -webkit-box-reflect: below 5px linear-gradient(transparent, transparent, rgba(0,0,0,0.1));
-                pointer-events: auto; /* 아이템 클릭 가능하게 복구 */
+                pointer-events: auto; 
             }}
             
             .carousel-item:hover {{ border: 2px solid var(--primary-green); transform: scale(1.05) translateY(-15px); }}
             
-            /* 브라우저 기본 이미지 드래그 기능 차단 (스와이프 엉킴 방지) */
             .carousel-item img {{ 
                 width: 100%; height: 380px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px;
                 -webkit-user-drag: none; user-select: none; -moz-user-select: none;
@@ -365,29 +362,25 @@ def main():
             const carousel = document.getElementById('carousel');
             const scene = document.getElementById('scene');
             
-            // 초기 설정
             carousel.style.transition = 'transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2)';
             carousel.style.transform = `translateZ(-${{tz}}px) rotateY(0deg)`;
             
-            // 버튼 클릭 시 회전 (트랜지션 켜기)
             function rotateByButton(dir) {{ 
                 carousel.style.transition = 'transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2)';
                 currentAngle -= dir * angleStep; 
                 carousel.style.transform = `translateZ(-${{tz}}px) rotateY(${{currentAngle}}deg)`; 
             }}
             
-            // ★ 드래그 & 스와이프 기능 로직
             let isDragging = false;
             let startX = 0;
             let draggedDistance = 0;
-            const dragSensitivity = 0.4; // 수치가 클수록 드래그시 많이 돌아감
+            const dragSensitivity = 0.4; 
             
-            // 마우스 이벤트
             scene.addEventListener('mousedown', (e) => {{
                 isDragging = true;
                 startX = e.pageX;
                 draggedDistance = 0;
-                carousel.style.transition = 'none'; // 드래그 중에는 애니메이션 끄기 (반응성 향상)
+                carousel.style.transition = 'none'; 
             }});
             
             window.addEventListener('mousemove', (e) => {{
@@ -395,8 +388,6 @@ def main():
                 const x = e.pageX;
                 const deltaX = x - startX;
                 draggedDistance += Math.abs(deltaX);
-                
-                // 마우스 이동 방향에 따라 회전 (자연스럽게 마우스 따라가도록 설정)
                 currentAngle += deltaX * dragSensitivity; 
                 carousel.style.transform = `translateZ(-${{tz}}px) rotateY(${{currentAngle}}deg)`; 
                 startX = x;
@@ -405,12 +396,10 @@ def main():
             window.addEventListener('mouseup', () => {{
                 if (isDragging) {{
                     isDragging = false;
-                    // 마우스 떼면 다시 부드러운 애니메이션 켜기
                     carousel.style.transition = 'transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2)';
                 }}
             }});
             
-            // 터치 이벤트 (모바일)
             scene.addEventListener('touchstart', (e) => {{
                 isDragging = true;
                 startX = e.touches[0].pageX;
@@ -423,7 +412,6 @@ def main():
                 const x = e.touches[0].pageX;
                 const deltaX = x - startX;
                 draggedDistance += Math.abs(deltaX);
-                
                 currentAngle += deltaX * dragSensitivity;
                 carousel.style.transform = `translateZ(-${{tz}}px) rotateY(${{currentAngle}}deg)`;
                 startX = x;
@@ -439,9 +427,7 @@ def main():
             const assetData = {js_array_str};
             
             function openModal(index) {{
-                // ★ 드래그를 많이 했을 경우 (스와이프 목적) 팝업을 열지 않음
                 if (draggedDistance > 10) return;
-                
                 const data = assetData[index];
                 document.getElementById('modal-img').src = data.img;
                 document.getElementById('modal-title').innerText = data.title;
@@ -455,7 +441,8 @@ def main():
         </body>
         </html>
         """
-        st.iframe(html_code, height=900)
+        # ★ st.iframe 높이를 750px로 확 줄여서, 거울 반사영역 하단을 깔끔하게 잘라내고 빈 공간을 없앰
+        st.iframe(html_code, height=750)
 
     # [탭 2] 분석 및 유사 자원
     with tab2:
