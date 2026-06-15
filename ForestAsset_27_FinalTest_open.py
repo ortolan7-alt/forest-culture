@@ -38,24 +38,27 @@ st.markdown("""
     
     [data-testid="stSidebar"] { border-right: 1px solid rgba(128, 128, 128, 0.2); }
     
-    /* ★ 탭2: 2D 갤러리 카드 이미지 크기 확대 및 가운데 정렬 */
-    .stImage {
+    /* ★ 탭2: 2D 갤러리 카드 이미지 중앙 정렬 (Streamlit 내부 태그 강제 타겟팅) */
+    div[data-testid="stImage"] {
         display: flex !important;
         justify-content: center !important;
-    }
-    .stImage img {
-        height: 250px !important; /* 200px에서 250px로 확대 */
-        width: 95% !important; /* 100% 대신 살짝 여백을 주어 중앙 정렬 극대화 */
-        max-width: 350px !important;
-        object-fit: cover !important;
-        border-radius: 12px;
-        margin: 0 auto !important;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* 카드 입체감 추가 */
+        align-items: center !important;
+        width: 100% !important;
     }
     
-    /* ★ 팝업(모달창) 내부 이미지 원본 비율 유지 (탭2 설정이 덮어씌워지지 않게 방어) */
-    div[role="dialog"] .stImage img, 
-    div[data-testid="stDialog"] .stImage img {
+    div[data-testid="stImage"] img {
+        height: 250px !important;
+        width: 100% !important;
+        max-width: 280px !important; /* 크기 상한을 두어 양옆 여백을 만들고 중앙으로 모음 */
+        object-fit: cover !important;
+        border-radius: 12px !important;
+        margin: 0 auto !important; /* 완벽한 가운데 정렬 핵심 */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    
+    /* ★ 팝업(모달창) 내부 이미지 원본 비율 유지 (탭2 설정 덮어씌움 방지) */
+    div[role="dialog"] div[data-testid="stImage"] img, 
+    div[data-testid="stDialog"] div[data-testid="stImage"] img {
         height: auto !important;
         width: 100% !important;
         max-height: 60vh !important;
@@ -63,6 +66,7 @@ st.markdown("""
         object-fit: contain !important;
         background-color: rgba(0,0,0,0.03);
         box-shadow: none !important;
+        margin-bottom: 15px !important;
     }
     
     .stButton > button {
@@ -330,7 +334,6 @@ def main():
             .btn-prev {{ left: 30px; }}  
             .btn-next {{ right: 30px; }} 
             
-            /* 팝업창 모달 유지 */
             .modal {{ display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); }}
             .modal-content {{ background-color: var(--card-bg); margin: 3% auto; padding: 25px 35px; width: 85%; max-width: 600px; border-radius: 12px; box-shadow: 0 5px 30px rgba(0,0,0,0.3); max-height: 85vh; overflow-y: auto; position: relative; }}
             .close {{ color: var(--text-muted); position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }}
@@ -452,7 +455,7 @@ def main():
         """
         st.iframe(html_code, height=750)
 
-    # [탭 2] 분석 및 유사 자원 (UI 가운데 정렬 및 크기 개선 반영)
+    # [탭 2] 분석 및 유사 자원
     with tab2:
         st.write("")
         st.subheader("📊 산림문화자원 분석 및 탐색 대시보드")
@@ -511,7 +514,6 @@ def main():
                         if first_img and os.path.exists(first_img): st.image(first_img, use_container_width=True)
                         else: st.image('https://via.placeholder.com/400x300?text=No+Image', use_container_width=True)
                         
-                        # ★ 텍스트를 카드 형태로 가운데 정렬
                         st.markdown(f"<div style='text-align:center; margin-top:8px;'><b>{str(row.get('명칭', ''))}</b></div>", unsafe_allow_html=True)
                         st.markdown(f"<div style='text-align:center; font-size:0.85rem; opacity:0.7; margin-bottom:10px;'>📍 {row.get('지역', '')} | 🏷️ {row.get('중분류', '')}</div>", unsafe_allow_html=True)
                         
