@@ -5,6 +5,7 @@ import math
 import base64
 import folium
 from streamlit_folium import st_folium
+import streamlit.components.v1 as components
 import altair as alt
 
 # 1. 페이지 설정 및 다크모드 대응 CSS 테마
@@ -37,21 +38,31 @@ st.markdown("""
     
     [data-testid="stSidebar"] { border-right: 1px solid rgba(128, 128, 128, 0.2); }
     
-    /* 2D 갤러리 카드 이미지 크기 강제 통일 및 고정 */
+    /* ★ 탭2: 2D 갤러리 카드 이미지 크기 확대 및 가운데 정렬 */
+    .stImage {
+        display: flex !important;
+        justify-content: center !important;
+    }
     .stImage img {
-        height: 200px !important;
+        height: 250px !important; /* 200px에서 250px로 확대 */
+        width: 95% !important; /* 100% 대신 살짝 여백을 주어 중앙 정렬 극대화 */
+        max-width: 350px !important;
         object-fit: cover !important;
-        border-radius: 8px;
-        width: 100% !important;
+        border-radius: 12px;
+        margin: 0 auto !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* 카드 입체감 추가 */
     }
     
-    /* 팝업(모달창) 내부 이미지 원본 비율 유지 */
+    /* ★ 팝업(모달창) 내부 이미지 원본 비율 유지 (탭2 설정이 덮어씌워지지 않게 방어) */
     div[role="dialog"] .stImage img, 
     div[data-testid="stDialog"] .stImage img {
         height: auto !important;
+        width: 100% !important;
         max-height: 60vh !important;
+        max-width: none !important;
         object-fit: contain !important;
         background-color: rgba(0,0,0,0.03);
+        box-shadow: none !important;
     }
     
     .stButton > button {
@@ -215,7 +226,7 @@ def main():
 
     item_to_show = None
 
-    # [탭 1] 하이라이트 전시관 (하단 여백 및 거울 반사 최적화)
+    # [탭 1] 하이라이트 전시관
     with tab1:
         st.write("")
         st.markdown("### 🌲 하이라이트 전시관")
@@ -275,7 +286,6 @@ def main():
                 overscroll-behavior-y: contain; 
             }}
             
-            /* ★ 하단 여백 축소를 위해 scene의 높이와 마진을 줄임 */
             .scene {{ 
                 width: 100%; height: 500px; perspective: 1600px; 
                 perspective-origin: 50% -10%; margin: 0px auto 0px auto; 
@@ -292,7 +302,6 @@ def main():
                 border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.25); 
                 background: var(--card-bg); text-align: center; backface-visibility: hidden; 
                 border: 1px solid var(--border-color); cursor: pointer; transition: all 0.3s ease; 
-                /* 거울 반사 효과 (iframe 높이를 줄여서 자연스럽게 잘리도록 유도) */
                 -webkit-box-reflect: below 5px linear-gradient(transparent, transparent, rgba(0,0,0,0.1));
                 pointer-events: auto; 
             }}
@@ -441,10 +450,9 @@ def main():
         </body>
         </html>
         """
-        # ★ st.iframe 높이를 750px로 확 줄여서, 거울 반사영역 하단을 깔끔하게 잘라내고 빈 공간을 없앰
         st.iframe(html_code, height=750)
 
-    # [탭 2] 분석 및 유사 자원
+    # [탭 2] 분석 및 유사 자원 (UI 가운데 정렬 및 크기 개선 반영)
     with tab2:
         st.write("")
         st.subheader("📊 산림문화자원 분석 및 탐색 대시보드")
@@ -503,8 +511,9 @@ def main():
                         if first_img and os.path.exists(first_img): st.image(first_img, use_container_width=True)
                         else: st.image('https://via.placeholder.com/400x300?text=No+Image', use_container_width=True)
                         
-                        st.markdown(f"**{str(row.get('명칭', ''))}**")
-                        st.caption(f"📍 {row.get('지역', '')} | 🏷️ {row.get('중분류', '')}")
+                        # ★ 텍스트를 카드 형태로 가운데 정렬
+                        st.markdown(f"<div style='text-align:center; margin-top:8px;'><b>{str(row.get('명칭', ''))}</b></div>", unsafe_allow_html=True)
+                        st.markdown(f"<div style='text-align:center; font-size:0.85rem; opacity:0.7; margin-bottom:10px;'>📍 {row.get('지역', '')} | 🏷️ {row.get('중분류', '')}</div>", unsafe_allow_html=True)
                         
                         if st.button("상세 정보 열람", key=f"btn_detail_t2_{row.name}", use_container_width=True):
                             item_to_show = row
