@@ -5,7 +5,6 @@ import math
 import base64
 import folium
 from streamlit_folium import st_folium
-import streamlit.components.v1 as components
 import altair as alt
 
 # 1. 페이지 설정 및 다크모드 대응 CSS 테마
@@ -38,35 +37,13 @@ st.markdown("""
     
     [data-testid="stSidebar"] { border-right: 1px solid rgba(128, 128, 128, 0.2); }
     
-    /* ★ 탭2: 2D 갤러리 카드 이미지 중앙 정렬 (Streamlit 내부 태그 강제 타겟팅) */
-    div[data-testid="stImage"] {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        width: 100% !important;
-    }
-    
-    div[data-testid="stImage"] img {
-        height: 250px !important;
-        width: 100% !important;
-        max-width: 280px !important; /* 크기 상한을 두어 양옆 여백을 만들고 중앙으로 모음 */
-        object-fit: cover !important;
-        border-radius: 12px !important;
-        margin: 0 auto !important; /* 완벽한 가운데 정렬 핵심 */
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-    
-    /* ★ 팝업(모달창) 내부 이미지 원본 비율 유지 (탭2 설정 덮어씌움 방지) */
-    div[role="dialog"] div[data-testid="stImage"] img, 
-    div[data-testid="stDialog"] div[data-testid="stImage"] img {
+    /* 팝업(모달창) 내부 이미지 원본 비율 유지 (자르지 않음) */
+    div[role="dialog"] .stImage img, 
+    div[data-testid="stDialog"] .stImage img {
         height: auto !important;
-        width: 100% !important;
         max-height: 60vh !important;
-        max-width: none !important;
         object-fit: contain !important;
         background-color: rgba(0,0,0,0.03);
-        box-shadow: none !important;
-        margin-bottom: 15px !important;
     }
     
     .stButton > button {
@@ -192,7 +169,6 @@ def main():
 
     if df.empty: return
 
-    # 필터 초기화 콜백 함수
     def clear_filters():
         st.session_state["search_query"] = ""
         st.session_state["selected_category"] = "전체"
@@ -230,7 +206,7 @@ def main():
 
     item_to_show = None
 
-    # [탭 1] 하이라이트 전시관
+    # [탭 1] 하이라이트 전시관 (유지)
     with tab1:
         st.write("")
         st.markdown("### 🌲 하이라이트 전시관")
@@ -272,68 +248,21 @@ def main():
         <head>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
-            :root {{
-                --bg-1: #ffffff; --bg-2: #f4f6f9; --card-bg: #ffffff; --text-main: #222222;
-                --text-desc: #444444; --text-muted: #888888; --border-color: #eaeaea; --primary-green: #2ea043;
-            }}
-            @media (prefers-color-scheme: dark) {{
-                :root {{
-                    --bg-1: #0E1117; --bg-2: #161920; --card-bg: #262730; --text-main: #FAFAFA;
-                    --text-desc: #DDDDDD; --text-muted: #AAAAAA; --border-color: #444444;
-                }}
-            }}
-            body {{ 
-                margin: 0; display: flex; flex-direction: column; align-items: center; 
-                justify-content: center; height: 100vh; width: 100%; 
-                overflow: hidden; background: radial-gradient(circle at center, var(--bg-1) 0%, var(--bg-2) 100%); 
-                font-family: 'Noto Sans KR', sans-serif; color: var(--text-main);
-                overscroll-behavior-y: contain; 
-            }}
-            
-            .scene {{ 
-                width: 100%; height: 500px; perspective: 1600px; 
-                perspective-origin: 50% -10%; margin: 0px auto 0px auto; 
-                display: flex; justify-content: center; position: relative;
-                cursor: grab;
-            }}
+            :root {{ --bg-1: #ffffff; --bg-2: #f4f6f9; --card-bg: #ffffff; --text-main: #222222; --text-desc: #444444; --text-muted: #888888; --border-color: #eaeaea; --primary-green: #2ea043; }}
+            @media (prefers-color-scheme: dark) {{ :root {{ --bg-1: #0E1117; --bg-2: #161920; --card-bg: #262730; --text-main: #FAFAFA; --text-desc: #DDDDDD; --text-muted: #AAAAAA; --border-color: #444444; }} }}
+            body {{ margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; width: 100%; overflow: hidden; background: radial-gradient(circle at center, var(--bg-1) 0%, var(--bg-2) 100%); font-family: 'Noto Sans KR', sans-serif; color: var(--text-main); overscroll-behavior-y: contain; }}
+            .scene {{ width: 100%; height: 500px; perspective: 1600px; perspective-origin: 50% -10%; margin: 0px auto 0px auto; display: flex; justify-content: center; position: relative; cursor: grab; }}
             .scene:active {{ cursor: grabbing; }}
-            
             .carousel-wrapper {{ width: 340px; height: 480px; transform-style: preserve-3d; transform: rotateX(-6deg) translateY(-20px); pointer-events: none; }}
             .carousel {{ width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; }}
-            
-            .carousel-item {{ 
-                position: absolute; width: 340px; height: 480px; left: 0; top: 0; 
-                border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.25); 
-                background: var(--card-bg); text-align: center; backface-visibility: hidden; 
-                border: 1px solid var(--border-color); cursor: pointer; transition: all 0.3s ease; 
-                -webkit-box-reflect: below 5px linear-gradient(transparent, transparent, rgba(0,0,0,0.1));
-                pointer-events: auto; 
-            }}
-            
+            .carousel-item {{ position: absolute; width: 340px; height: 480px; left: 0; top: 0; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.25); background: var(--card-bg); text-align: center; backface-visibility: hidden; border: 1px solid var(--border-color); cursor: pointer; transition: all 0.3s ease; -webkit-box-reflect: below 5px linear-gradient(transparent, transparent, rgba(0,0,0,0.1)); pointer-events: auto; }}
             .carousel-item:hover {{ border: 2px solid var(--primary-green); transform: scale(1.05) translateY(-15px); }}
-            
-            .carousel-item img {{ 
-                width: 100%; height: 380px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px;
-                -webkit-user-drag: none; user-select: none; -moz-user-select: none;
-            }}
+            .carousel-item img {{ width: 100%; height: 380px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px; -webkit-user-drag: none; user-select: none; -moz-user-select: none; }}
             .carousel-item .title {{ padding: 22px 15px; font-weight: 700; font-size: 18px; pointer-events: none; user-select: none; }}
-            
-            .nav-btn {{
-                position: absolute; top: 45%; transform: translateY(-50%);
-                width: 60px; height: 60px; border-radius: 50%;
-                background-color: rgba(128, 128, 128, 0.08); color: var(--text-main);
-                border: 1px solid rgba(128, 128, 128, 0.2); font-size: 28px;
-                display: flex; align-items: center; justify-content: center;
-                cursor: pointer; z-index: 1000; backdrop-filter: blur(4px); transition: all 0.3s ease;
-            }}
-            .nav-btn:hover {{
-                background-color: rgba(46, 160, 67, 0.85); color: #ffffff;
-                border-color: var(--primary-green); transform: translateY(-50%) scale(1.1);
-                box-shadow: 0 0 20px rgba(46, 160, 67, 0.4);
-            }}
+            .nav-btn {{ position: absolute; top: 45%; transform: translateY(-50%); width: 60px; height: 60px; border-radius: 50%; background-color: rgba(128, 128, 128, 0.08); color: var(--text-main); border: 1px solid rgba(128, 128, 128, 0.2); font-size: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; backdrop-filter: blur(4px); transition: all 0.3s ease; }}
+            .nav-btn:hover {{ background-color: rgba(46, 160, 67, 0.85); color: #ffffff; border-color: var(--primary-green); transform: translateY(-50%) scale(1.1); box-shadow: 0 0 20px rgba(46, 160, 67, 0.4); }}
             .btn-prev {{ left: 30px; }}  
             .btn-next {{ right: 30px; }} 
-            
             .modal {{ display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); }}
             .modal-content {{ background-color: var(--card-bg); margin: 3% auto; padding: 25px 35px; width: 85%; max-width: 600px; border-radius: 12px; box-shadow: 0 5px 30px rgba(0,0,0,0.3); max-height: 85vh; overflow-y: auto; position: relative; }}
             .close {{ color: var(--text-muted); position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }}
@@ -346,116 +275,33 @@ def main():
         </style>
         </head>
         <body>
-        
         <button class="nav-btn btn-prev" onclick="rotateByButton(-1)">&#10094;</button>
         <button class="nav-btn btn-next" onclick="rotateByButton(1)">&#10095;</button>
-        
-        <div class="scene" id="scene">
-            <div class="carousel-wrapper">
-                <div class="carousel" id="carousel">{image_tags}</div>
-            </div>
-        </div>
-        
-        <div id="modal" class="modal" onclick="if(event.target==this) closeModal()">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <img id="modal-img" class="modal-img" src="">
-                <h2 id="modal-title" class="modal-title"></h2>
-                <div id="modal-addr" class="modal-addr"></div>
-                <div class="modal-desc-title">📖 자원 설명</div>
-                <div id="modal-desc" class="modal-desc"></div>
-            </div>
-        </div>
-        
+        <div class="scene" id="scene"><div class="carousel-wrapper"><div class="carousel" id="carousel">{image_tags}</div></div></div>
+        <div id="modal" class="modal" onclick="if(event.target==this) closeModal()"><div class="modal-content"><span class="close" onclick="closeModal()">&times;</span><img id="modal-img" class="modal-img" src=""><h2 id="modal-title" class="modal-title"></h2><div id="modal-addr" class="modal-addr"></div><div class="modal-desc-title">📖 자원 설명</div><div id="modal-desc" class="modal-desc"></div></div></div>
         <script>
-            let currentAngle = 0; 
-            const angleStep = {angle_step}; 
-            const tz = {translate_z};
-            const carousel = document.getElementById('carousel');
-            const scene = document.getElementById('scene');
-            
+            let currentAngle = 0; const angleStep = {angle_step}; const tz = {translate_z};
+            const carousel = document.getElementById('carousel'); const scene = document.getElementById('scene');
             carousel.style.transition = 'transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2)';
             carousel.style.transform = `translateZ(-${{tz}}px) rotateY(0deg)`;
-            
-            function rotateByButton(dir) {{ 
-                carousel.style.transition = 'transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2)';
-                currentAngle -= dir * angleStep; 
-                carousel.style.transform = `translateZ(-${{tz}}px) rotateY(${{currentAngle}}deg)`; 
-            }}
-            
-            let isDragging = false;
-            let startX = 0;
-            let draggedDistance = 0;
-            const dragSensitivity = 0.4; 
-            
-            scene.addEventListener('mousedown', (e) => {{
-                isDragging = true;
-                startX = e.pageX;
-                draggedDistance = 0;
-                carousel.style.transition = 'none'; 
-            }});
-            
-            window.addEventListener('mousemove', (e) => {{
-                if (!isDragging) return;
-                const x = e.pageX;
-                const deltaX = x - startX;
-                draggedDistance += Math.abs(deltaX);
-                currentAngle += deltaX * dragSensitivity; 
-                carousel.style.transform = `translateZ(-${{tz}}px) rotateY(${{currentAngle}}deg)`; 
-                startX = x;
-            }});
-            
-            window.addEventListener('mouseup', () => {{
-                if (isDragging) {{
-                    isDragging = false;
-                    carousel.style.transition = 'transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2)';
-                }}
-            }});
-            
-            scene.addEventListener('touchstart', (e) => {{
-                isDragging = true;
-                startX = e.touches[0].pageX;
-                draggedDistance = 0;
-                carousel.style.transition = 'none';
-            }}, {{passive: true}});
-            
-            window.addEventListener('touchmove', (e) => {{
-                if (!isDragging) return;
-                const x = e.touches[0].pageX;
-                const deltaX = x - startX;
-                draggedDistance += Math.abs(deltaX);
-                currentAngle += deltaX * dragSensitivity;
-                carousel.style.transform = `translateZ(-${{tz}}px) rotateY(${{currentAngle}}deg)`;
-                startX = x;
-            }}, {{passive: true}});
-            
-            window.addEventListener('touchend', () => {{
-                if (isDragging) {{
-                    isDragging = false;
-                    carousel.style.transition = 'transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2)';
-                }}
-            }});
-
+            function rotateByButton(dir) {{ carousel.style.transition = 'transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2)'; currentAngle -= dir * angleStep; carousel.style.transform = `translateZ(-${{tz}}px) rotateY(${{currentAngle}}deg)`; }}
+            let isDragging = false; let startX = 0; let draggedDistance = 0; const dragSensitivity = 0.4; 
+            scene.addEventListener('mousedown', (e) => {{ isDragging = true; startX = e.pageX; draggedDistance = 0; carousel.style.transition = 'none'; }});
+            window.addEventListener('mousemove', (e) => {{ if (!isDragging) return; const x = e.pageX; const deltaX = x - startX; draggedDistance += Math.abs(deltaX); currentAngle += deltaX * dragSensitivity; carousel.style.transform = `translateZ(-${{tz}}px) rotateY(${{currentAngle}}deg)`; startX = x; }});
+            window.addEventListener('mouseup', () => {{ if (isDragging) {{ isDragging = false; carousel.style.transition = 'transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2)'; }} }});
+            scene.addEventListener('touchstart', (e) => {{ isDragging = true; startX = e.touches[0].pageX; draggedDistance = 0; carousel.style.transition = 'none'; }}, {{passive: true}});
+            window.addEventListener('touchmove', (e) => {{ if (!isDragging) return; const x = e.touches[0].pageX; const deltaX = x - startX; draggedDistance += Math.abs(deltaX); currentAngle += deltaX * dragSensitivity; carousel.style.transform = `translateZ(-${{tz}}px) rotateY(${{currentAngle}}deg)`; startX = x; }}, {{passive: true}});
+            window.addEventListener('touchend', () => {{ if (isDragging) {{ isDragging = false; carousel.style.transition = 'transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2)'; }} }});
             const assetData = {js_array_str};
-            
-            function openModal(index) {{
-                if (draggedDistance > 10) return;
-                const data = assetData[index];
-                document.getElementById('modal-img').src = data.img;
-                document.getElementById('modal-title').innerText = data.title;
-                document.getElementById('modal-addr').innerText = "📍 " + data.addr;
-                document.getElementById('modal-desc').innerHTML = data.desc;
-                document.getElementById('modal').style.display = "block";
-            }}
-            
+            function openModal(index) {{ if (draggedDistance > 10) return; const data = assetData[index]; document.getElementById('modal-img').src = data.img; document.getElementById('modal-title').innerText = data.title; document.getElementById('modal-addr').innerText = "📍 " + data.addr; document.getElementById('modal-desc').innerHTML = data.desc; document.getElementById('modal').style.display = "block"; }}
             function closeModal() {{ document.getElementById('modal').style.display = "none"; }}
         </script>
         </body>
         </html>
         """
-        st.iframe(html_code, height=750)
+        st.components.v1.html(html_code, height=750) # iframe 교체
 
-    # [탭 2] 분석 및 유사 자원
+    # [탭 2] 분석 및 유사 자원 (★ 완벽한 강제 중앙 정렬 적용 ★)
     with tab2:
         st.write("")
         st.subheader("📊 산림문화자원 분석 및 탐색 대시보드")
@@ -511,14 +357,25 @@ def main():
                         img_paths_str = str(row.get('이미지경로', ''))
                         first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
                         
-                        if first_img and os.path.exists(first_img): st.image(first_img, use_container_width=True)
-                        else: st.image('https://via.placeholder.com/400x300?text=No+Image', use_container_width=True)
+                        # ★ Streamlit st.image() 대신 HTML/CSS 강제 렌더링으로 100% 중앙 정렬 보장
+                        base64_str = get_base64_of_image(first_img)
+                        img_src = f"data:image/jpeg;base64,{base64_str}" if base64_str else "https://via.placeholder.com/400x300?text=No+Image"
                         
+                        st.markdown(f"""
+                        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                            <img src="{img_src}" style="width: 100%; max-width: 280px; height: 250px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.08);">
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        # 텍스트 가운데 정렬
                         st.markdown(f"<div style='text-align:center; margin-top:8px;'><b>{str(row.get('명칭', ''))}</b></div>", unsafe_allow_html=True)
                         st.markdown(f"<div style='text-align:center; font-size:0.85rem; opacity:0.7; margin-bottom:10px;'>📍 {row.get('지역', '')} | 🏷️ {row.get('중분류', '')}</div>", unsafe_allow_html=True)
                         
-                        if st.button("상세 정보 열람", key=f"btn_detail_t2_{row.name}", use_container_width=True):
-                            item_to_show = row
+                        # 버튼 가운데 정렬 배치
+                        btn_col1, btn_col2, btn_col3 = st.columns([0.5, 4, 0.5])
+                        with btn_col2:
+                            if st.button("상세 정보 열람", key=f"btn_detail_t2_{row.name}", use_container_width=True):
+                                item_to_show = row
                         st.write("")
 
     # [탭 3] Map 공간 탐색 (VWorld 맵)
