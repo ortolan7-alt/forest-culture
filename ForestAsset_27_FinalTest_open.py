@@ -503,7 +503,7 @@ def main():
             
             for i, (subj, pred, obj) in enumerate(g):
                 if i >= MAX_TRIPLES:
-                    st.warning(f"그래프가 너무 커서 {MAX_TRIPLES}개의 관계만 렌더링했습니다.")
+                    st.warning(f"{MAX_TRIPLES}개의 관계만 렌더링했습니다.")
                     break
                 
                 # URI에서 지저분한 URL 부분을 잘라내고 핵심 텍스트만 추출하는 함수
