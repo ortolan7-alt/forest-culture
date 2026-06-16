@@ -459,89 +459,108 @@ def main():
     if item_to_show is not None:
         show_detail_modal(item_to_show)
 
-    # ==========================================
-    # ★ [NEW] 탭 5: GraphDB (.ttl) 시각화 
-    # ==========================================
+    # [탭 5] 지식 그래프 시각화 (자동 라벨 인식 적용)
     with tab5:
         st.write("")
         st.subheader("🕸️ 산림문화자원 지식 그래프 (Knowledge Graph)")
         st.write("자원, 지역, 유형 간의 의미론적 관계를 탐색합니다. (마우스 휠로 확대/축소 및 드래그 가능)")
         
-        # 1. TTL 파일 로드 및 파싱
-        ttl_file_path = "forest_culture_graphdb_ready.ttl" # 실제 보유하신 .ttl 파일 경로로 변경하세요.
-        
+        ttl_file_path = "sample_graph.ttl" 
         g = rdflib.Graph()
         
         try:
-            # 파일이 존재하면 파싱, 없으면 테스트용 가상 그래프 생성
             if os.path.exists(ttl_file_path):
                 g.parse(ttl_file_path, format="turtle")
             else:
                 st.info(f"'{ttl_file_path}' 파일이 없어 임시 테스트 그래프를 생성합니다.")
-                # 테스트용 트리플(Triple: 주어-동사-목적어) 데이터 임의 생성
+                
+                # 테스트 데이터 (label, 명칭 등의 속성 사용)
                 g.parse(data="""
                     @prefix ex: <http://example.org/> .
-                    ex:담양_메타세쿼이아_가로수길 ex:위치 ex:전라남도_담양군 ;
-                                                ex:유형 ex:가로수 ;
-                                                ex:지정연도 "2015" .
-                    ex:전라남도_담양군 ex:상위행정구역 ex:전라남도 .
-                    ex:나주_관방제림 ex:위치 ex:전라남도_나주시 ;
-                                      ex:유형 ex:가로수 .
+                    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+                    
+                    ex:Asset_1 rdfs:label "테스트 자산 1호" ;
+                               ex:유형 ex:천연기념물 ;
+                               ex:위치 ex:서울특별시_종로구 .
+                               
+                    ex:Asset_2 ex:명칭 "담양 메타세쿼이아 가로수길" ;
+                               ex:유형 ex:가로수 ;
+                               ex:위치 ex:전라남도_담양군 .
+                               
+                    ex:전라남도_담양군 rdfs:label "전라남도 담양군" ;
+                                       ex:상위행정구역 ex:전라남도 .
                 """, format="turtle")
 
-            # 2. PyVis 네트워크 그래프 초기화
-            # 화면 크기에 맞게 100%로 설정
+            # 1. PyVis 네트워크 그래프 초기화
             net = Network(height="600px", width="100%", bgcolor="transparent", font_color="var(--text-color)")
-            
-            # 물리 엔진 최적화 (노드들이 예쁘게 흩어지도록)
             net.force_atlas_2based(gravity=-50, central_gravity=0.01, spring_length=100, spring_strength=0.08)
 
-            # 3. RDF 트리플(주어, 서술어, 목적어)을 네트워크 노드와 엣지로 변환
-            # 너무 많은 노드는 브라우저를 느리게 하므로 제한(Limit) 설정 권장
+            # ==========================================
+            # ★ 사용자 아이디어 반영: Asset 다음의 label 자동 탐색 로직
+            # ==========================================
+            label_dict = {}
+            
+            # 그래프의 모든 데이터를 순회하며 라벨 역할을 하는 서술어를 찾습니다.
+            for s, p, o in g:
+                p_str = str(p).lower()
+                # 서술어에 label, name, 명칭, 한글명 등이 포함되어 있으면 라벨 사전에 등록
+                if "label" in p_str or "name" in p_str or "명칭" in p_str or "한글명" in p_str:
+                    label_dict[str(s)] = str(o)
+
+            # 화면에 표시할 텍스트를 결정하는 함수
+            def get_display_label(uri):
+                uri_str = str(uri)
+                # 1순위: 사전에 등록된 라벨(한글명)이 있으면 즉시 반환
+                if uri_str in label_dict:
+                    return label_dict[uri_str]
+                
+                # 2순위: 라벨이 따로 없으면 URI의 맨 끝 단어를 추출하여 사용
+                if "#" in uri_str: return uri_str.split("#")[-1]
+                if "/" in uri_str: return uri_str.split("/")[-1]
+                return uri_str
+            # ==========================================
+
             MAX_TRIPLES = 500 
             
+            # 2. 노드 및 엣지 생성
             for i, (subj, pred, obj) in enumerate(g):
-                if i >= MAX_TRIPLES:
-                    st.warning(f"그래프가 너무 커서 {MAX_TRIPLES}개의 관계만 렌더링했습니다.")
-                    break
+                if i >= MAX_TRIPLES: break
                 
-                # URI에서 지저분한 URL 부분을 잘라내고 핵심 텍스트만 추출하는 함수
-                def get_short_name(uri):
-                    text = str(uri)
-                    if "#" in text: return text.split("#")[-1]
-                    if "/" in text: return text.split("/")[-1]
-                    return text
+                p_str = str(pred).lower()
+                # 라벨(이름)을 지정하는 엣지는 화면에 선으로 그리지 않고 숨김
+                if "label" in p_str or "name" in p_str or "명칭" in p_str or "한글명" in p_str:
+                    continue
                 
-                s_name = get_short_name(subj)
-                p_name = get_short_name(pred)
-                o_name = get_short_name(obj)
-
-                # 주어(Subject) 노드 추가
-                net.add_node(s_name, label=s_name, title=str(subj), color="#2ea043", size=20)
-                # 목적어(Object) 노드 추가 (리터럴 값은 다른 색상으로)
+                # 고유 ID와 화면 표시 라벨 분리
+                s_id = str(subj)
+                o_id = str(obj)
+                
+                s_label = get_display_label(subj)
+                p_label = get_display_label(pred)
+                
                 is_literal = isinstance(obj, rdflib.Literal)
+                o_label = str(obj) if is_literal else get_display_label(obj)
+
+                # 노드 렌더링 (ID는 유지하되, 화면에는 찾은 라벨 출력)
+                net.add_node(s_id, label=s_label, title=s_id, color="#2ea043", size=20)
+                
                 o_color = "#e3a008" if is_literal else "#1f6feb"
                 o_size = 15 if is_literal else 20
-                net.add_node(o_name, label=o_name, title=str(obj), color=o_color, size=o_size)
+                net.add_node(o_id, label=o_label, title=o_id, color=o_color, size=o_size)
                 
-                # 엣지(Edge - 서술어) 추가
-                net.add_edge(s_name, o_name, title=p_name, label=p_name, color="gray")
+                net.add_edge(s_id, o_id, title=p_label, label=p_label, color="gray")
 
-            # 4. 임시 HTML 파일로 저장 후 Streamlit에 렌더링
-            # PyVis는 HTML 파일로 결과를 내보냅니다.
+            # 3. HTML 렌더링
             with tempfile.NamedTemporaryFile(delete=False, suffix=".html") as tmp_file:
-                # pyvis 버전에 따라 save_graph 혹은 write_html 사용
                 try:
                     net.save_graph(tmp_file.name)
                 except AttributeError:
                     net.write_html(tmp_file.name)
-                
                 html_file_path = tmp_file.name
 
             with open(html_file_path, "r", encoding="utf-8") as f:
                 graph_html = f.read()
             
-            # CSS가 충돌하지 않도록 iframe으로 렌더링
             components.html(graph_html, height=650)
             
         except Exception as e:
