@@ -465,7 +465,7 @@ def main():
         st.subheader("🕸️ 산림문화자원 지식 그래프 (Knowledge Graph)")
         st.write("자원, 지역, 유형 간의 의미론적 관계를 탐색합니다. (마우스 휠로 확대/축소 및 드래그 가능)")
         
-        ttl_file_path = "sample_graph.ttl" 
+        ttl_file_path = "forest_culture_graphdb_ready.ttl" 
         g = rdflib.Graph()
         
         try:
