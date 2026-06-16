@@ -459,64 +459,90 @@ def main():
     if item_to_show is not None:
         show_detail_modal(item_to_show)
 
-    # [탭 5] 지식 그래프 (전체 213개 데이터 동적 시각화)
+    # ==========================================
+    # ★ [NEW] 탭 5: GraphDB (.ttl) 시각화 
+    # ==========================================
     with tab5:
         st.write("")
         st.subheader("🕸️ 산림문화자원 지식 그래프 (Knowledge Graph)")
-        st.write("213개 전체 자원의 권역 및 유형 간 연결성을 탐색합니다. (마우스 휠로 확대/축소, 드래그 가능)")
+        st.write("자원, 지역, 유형 간의 의미론적 관계를 탐색합니다. (마우스 휠로 확대/축소 및 드래그 가능)")
+        
+        # 1. TTL 파일 로드 및 파싱
+        ttl_file_path = "forest_culture_graphdb_ready.ttl" # 실제 보유하신 .ttl 파일 경로로 변경하세요.
+        
+        g = rdflib.Graph()
         
         try:
-            # 1. PyVis 네트워크 초기화
-            net = Network(height="650px", width="100%", bgcolor="transparent", font_color="var(--text-color)")
-            
-            # 2. 물리 엔진 설정 (200개 이상의 노드가 예쁘게 퍼지도록 인력/척력 조정)
-            net.force_atlas_2based(gravity=-60, central_gravity=0.01, spring_length=150, spring_strength=0.05)
-
-            # 3. 중심이 될 허브 노드 먼저 생성 (중복 방지를 위해 unique 값 추출)
-            # CSV 데이터에 '지역'과 '중분류' 컬럼이 존재한다고 가정
-            if '지역' in df.columns and '중분류' in df.columns:
-                regions = df['지역'].dropna().unique()
-                categories = df['중분류'].dropna().unique()
-
-                # 권역 노드 추가 (파란색, 크게)
-                for region in regions:
-                    net.add_node(region, label=str(region), color="#1f6feb", size=30, shape="dot")
-                    
-                # 유형 노드 추가 (노란색, 크게)
-                for cat in categories:
-                    net.add_node(cat, label=str(cat), color="#e3a008", size=30, shape="square")
-
-                # 4. 213개 전체 자원을 순회하며 노드 및 엣지(관계) 추가
-                for idx, row in df.iterrows():
-                    asset_name = str(row.get('명칭', f'Asset_{idx}'))
-                    region = str(row.get('지역', ''))
-                    category = str(row.get('중분류', ''))
-                    
-                    # 개별 자원 노드 추가 (초록색, 작게)
-                    net.add_node(asset_name, label=asset_name, color="#2ea043", size=15)
-                    
-                    # 엣지 연결 (자원 -> 지역)
-                    if region and region != 'nan':
-                        net.add_edge(asset_name, region, title="위치", color="rgba(128,128,128,0.4)")
-                        
-                    # 엣지 연결 (자원 -> 유형)
-                    if category and category != 'nan':
-                        net.add_edge(asset_name, category, title="유형", color="rgba(128,128,128,0.4)")
+            # 파일이 존재하면 파싱, 없으면 테스트용 가상 그래프 생성
+            if os.path.exists(ttl_file_path):
+                g.parse(ttl_file_path, format="turtle")
             else:
-                st.warning("데이터에 '지역' 또는 '중분류' 컬럼이 없어 지식 그래프를 구성할 수 없습니다.")
+                st.info(f"'{ttl_file_path}' 파일이 없어 임시 테스트 그래프를 생성합니다.")
+                # 테스트용 트리플(Triple: 주어-동사-목적어) 데이터 임의 생성
+                g.parse(data="""
+                    @prefix ex: <http://example.org/> .
+                    ex:담양_메타세쿼이아_가로수길 ex:위치 ex:전라남도_담양군 ;
+                                                ex:유형 ex:가로수 ;
+                                                ex:지정연도 "2015" .
+                    ex:전라남도_담양군 ex:상위행정구역 ex:전라남도 .
+                    ex:나주_관방제림 ex:위치 ex:전라남도_나주시 ;
+                                      ex:유형 ex:가로수 .
+                """, format="turtle")
 
-            # 5. HTML 렌더링
+            # 2. PyVis 네트워크 그래프 초기화
+            # 화면 크기에 맞게 100%로 설정
+            net = Network(height="600px", width="100%", bgcolor="transparent", font_color="var(--text-color)")
+            
+            # 물리 엔진 최적화 (노드들이 예쁘게 흩어지도록)
+            net.force_atlas_2based(gravity=-50, central_gravity=0.01, spring_length=100, spring_strength=0.08)
+
+            # 3. RDF 트리플(주어, 서술어, 목적어)을 네트워크 노드와 엣지로 변환
+            # 너무 많은 노드는 브라우저를 느리게 하므로 제한(Limit) 설정 권장
+            MAX_TRIPLES = 500 
+            
+            for i, (subj, pred, obj) in enumerate(g):
+                if i >= MAX_TRIPLES:
+                    st.warning(f"그래프가 너무 커서 {MAX_TRIPLES}개의 관계만 렌더링했습니다.")
+                    break
+                
+                # URI에서 지저분한 URL 부분을 잘라내고 핵심 텍스트만 추출하는 함수
+                def get_short_name(uri):
+                    text = str(uri)
+                    if "#" in text: return text.split("#")[-1]
+                    if "/" in text: return text.split("/")[-1]
+                    return text
+                
+                s_name = get_short_name(subj)
+                p_name = get_short_name(pred)
+                o_name = get_short_name(obj)
+
+                # 주어(Subject) 노드 추가
+                net.add_node(s_name, label=s_name, title=str(subj), color="#2ea043", size=20)
+                # 목적어(Object) 노드 추가 (리터럴 값은 다른 색상으로)
+                is_literal = isinstance(obj, rdflib.Literal)
+                o_color = "#e3a008" if is_literal else "#1f6feb"
+                o_size = 15 if is_literal else 20
+                net.add_node(o_name, label=o_name, title=str(obj), color=o_color, size=o_size)
+                
+                # 엣지(Edge - 서술어) 추가
+                net.add_edge(s_name, o_name, title=p_name, label=p_name, color="gray")
+
+            # 4. 임시 HTML 파일로 저장 후 Streamlit에 렌더링
+            # PyVis는 HTML 파일로 결과를 내보냅니다.
             with tempfile.NamedTemporaryFile(delete=False, suffix=".html") as tmp_file:
+                # pyvis 버전에 따라 save_graph 혹은 write_html 사용
                 try:
                     net.save_graph(tmp_file.name)
                 except AttributeError:
                     net.write_html(tmp_file.name)
+                
                 html_file_path = tmp_file.name
 
             with open(html_file_path, "r", encoding="utf-8") as f:
                 graph_html = f.read()
             
-            components.html(graph_html, height=700)
+            # CSS가 충돌하지 않도록 iframe으로 렌더링
+            components.html(graph_html, height=650)
             
         except Exception as e:
             st.error(f"지식 그래프 생성 중 오류가 발생했습니다: {e}")
