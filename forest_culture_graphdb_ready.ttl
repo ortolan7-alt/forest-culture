@@ -14,7 +14,7 @@ uf:Asset_1 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 1700년에 식재된 소나무가 보호수로 지정됨
+    crm:P3_has_note """o 1700년에 식재된 소나무가 보호수로 지정됨
 o 보호수 뒤로 어비산 서오항당이 위치하고 있음
 o 주변으로 정자와 체육시설이 있음 o 경치 및 관리 상태가 매우 양호함 o 주변으로 계곡이 흐르고 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3758_12751,
@@ -30,7 +30,7 @@ uf:Asset_10 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ o 휴식년 실시됨
+    crm:P3_has_note """o 휴식년 실시됨
 o 옆에 저수지 있음
 o 운동기구, 정자가 있어 마을 휴식처로 활용
 o 산수유 둘레길"""^^xsd:string ;
@@ -50,7 +50,7 @@ uf:Asset_100 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 아산 맹씨행단(지정 사적지) 내 맹씨고택 뒤편에 위치하여 관광객 산책로 옆 구성되어 있음
+    crm:P3_has_note """o 아산 맹씨행단(지정 사적지) 내 맹씨고택 뒤편에 위치하여 관광객 산책로 옆 구성되어 있음
 o 돌담으로 둘러져있음
 o 소나무 20수 정도로 숲을 이룸
 o (행단 해설사의 집 입구)근처에 보호수 (회화나무)있음
@@ -65,7 +65,7 @@ uf:Asset_101 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 맹씨행단 들에는 작은 다리 오른쪽에 위치함"^^xsd:string ;
+    crm:P3_has_note "o 맹씨행단 들에는 작은 다리 오른쪽에 위치함"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3674_12704 .
 
 uf:Asset_102 a crm:E26_Physical_Feature ;
@@ -75,7 +75,7 @@ uf:Asset_102 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 맹사성이 1380여 년경에 심음
+    crm:P3_has_note """o 맹사성이 1380여 년경에 심음
 o 2-300년 전 싹이 원목 사방으로 자라 거목으로 자리함
 o 1987년 원목 안이 부패하여 외과수술 받음
 o 고택으로 들어가는 솟을 대문으로 들어가 오른쪽에 위치함"""^^xsd:string ;
@@ -93,7 +93,7 @@ uf:Asset_103 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%B0%B0%EB%A6%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o “천년의 숲길”로 지정되어 관리가 잘 되고 있음
+    crm:P3_has_note """o “천년의 숲길”로 지정되어 관리가 잘 되고 있음
 o 소나무 재선충 나무조사 표시가 있음
 o 봉곡사 주차장부터 봉곡사까지 소나무 숲이 이루어져있음
 o 숲 옆으로 정자 , 벤치, 계곡이 있음
@@ -220,7 +220,7 @@ uf:Asset_110 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 전라북도립공원 선운사에 위치하여 주변 계곡과 산책로가 잘 형성되어 있음. 
+    crm:P3_has_note """o 전라북도립공원 선운사에 위치하여 주변 계곡과 산책로가 잘 형성되어 있음. 
 o 선운사 뒤편으로 천연기념물 동백나무 숲이 위치함
 o 선운사에서 보리수나무라는 수종과 불교문화를 연관지어 ‘깨달음나무’라는 표지판을 세워 안내하고 있음
 o 보호수 표지판 없으며 보호수로 확인 안 됨"""^^xsd:string ;
@@ -238,7 +238,7 @@ uf:Asset_111 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ o 주변 인근에 국가산림문화자산인 ‘행정마을숲 서어나무’가 위치하고 있음
+    crm:P3_has_note """o 주변 인근에 국가산림문화자산인 ‘행정마을숲 서어나무’가 위치하고 있음
 o 풀밭이 무성하여 제초작업 등 유지관리가 필요함. o '운봉체육소공원’으로 명칭 변경."""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3542_12752,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -257,7 +257,7 @@ uf:Asset_112 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%8B%9C%EC%84%A4%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 서림공원 내 위치하여 마을주민 휴식장소 및 주변 조깅코스로 활용되고 있음 o 사망자 모두 이고장 출신으로 후손 또는 가족이 거주하였으나 현재는 북천리 이이남외 50여명이 거주하고 계심
+    crm:P3_has_note """o 서림공원 내 위치하여 마을주민 휴식장소 및 주변 조깅코스로 활용되고 있음 o 사망자 모두 이고장 출신으로 후손 또는 가족이 거주하였으나 현재는 북천리 이이남외 50여명이 거주하고 계심
 o 부지면적 : 10,000㎡ (운봉읍 서천리 350의 1번지외 9필지)o
 o 시설규모 : 탑높이3.7m가로1m세로1m"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3544_12752,
@@ -282,7 +282,7 @@ uf:Asset_113 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%8B%9C%EC%84%A4%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 서림공원 입구에 위치하여 마을주민 휴식장소 및 주변 조깅코스로 활용되고 있음. *현장조사 o 서림공원 입구에 서림정이 있어 주민쉼터로 이용되고 있음 *현장조사
+    crm:P3_has_note """o 서림공원 입구에 위치하여 마을주민 휴식장소 및 주변 조깅코스로 활용되고 있음. *현장조사 o 서림공원 입구에 서림정이 있어 주민쉼터로 이용되고 있음 *현장조사
 o ‘남원 서천리 당산(국가민속문화재 제20호)’ 이 위치하고 있고, 지리산 둘레길 2코스(운봉-인월 10km)에 서림공원이 포함되어 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3544_12752,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -296,7 +296,7 @@ uf:Asset_114 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B1%B4%EC%B6%95%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 주변으로 람천이 흐르고 있으며, 황산대첩비지(사적 제104호)가 위치하고 있음"^^xsd:string ;
+    crm:P3_has_note "o 주변으로 람천이 흐르고 있으며, 황산대첩비지(사적 제104호)가 위치하고 있음"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3545_12756,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
 
@@ -308,7 +308,7 @@ uf:Asset_115 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%B0%94%EC%9C%84>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note "○ o 람천 피바위 경관을 감상할 수 있는 데크와 의자가 배치되어 있음 o 주차 공간 따로 없음"^^xsd:string ;
+    crm:P3_has_note "o 람천 피바위 경관을 감상할 수 있는 데크와 의자가 배치되어 있음 o 주차 공간 따로 없음"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3545_12758,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%B5%EA%B0%84> .
 
@@ -323,7 +323,7 @@ uf:Asset_116 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ ○ o 상황마을 입구에 보호수가 위치하고 있으며, 보호수 아래 평상이 있어 마을 휴식장소로 활용되고 있음 *현장조사"^^xsd:string ;
+    crm:P3_has_note "o 상황마을 입구에 보호수가 위치하고 있으며, 보호수 아래 평상이 있어 마을 휴식장소로 활용되고 있음 *현장조사"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3542_12764,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%ED%9C%B4%EC%8B%9D> .
@@ -360,7 +360,7 @@ uf:Asset_118 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 우덕새마을회관 뒤편으로 쉼터가 조성되어 있으며, 고인돌이 존재하며 정자와 벤치가 있음
+    crm:P3_has_note """o 우덕새마을회관 뒤편으로 쉼터가 조성되어 있으며, 고인돌이 존재하며 정자와 벤치가 있음
 o 쉼터 옆 우덕기록문화관 옆으로 아카시나무가 마을수호신 역할을 하고 있음 o 현재 벤치가 파손되어 수리가 필요함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3568_12667,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84> .
@@ -378,7 +378,7 @@ uf:Asset_119 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 도로 주변 마을입구에 위치하며 보호수 아래 평상이 있어 주민들의 쉼터로 이용
+    crm:P3_has_note """o 도로 주변 마을입구에 위치하며 보호수 아래 평상이 있어 주민들의 쉼터로 이용
 o 보호수 주변 주택 및 정자가 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3561_12663,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -391,7 +391,7 @@ uf:Asset_12 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ ○ ○ ○ o 주변에 밭과 계곡이 흐르고 있음"^^xsd:string ;
+    crm:P3_has_note "o 주변에 밭과 계곡이 흐르고 있음"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3784_12862,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%84%EA%B3%A1>,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -409,7 +409,7 @@ uf:Asset_120 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%8B%9C%EC%84%A4%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 강천사 뒤편 산 중턱에 위치한 바위
+    crm:P3_has_note """o 강천사 뒤편 산 중턱에 위치한 바위
 o 2012년까지 강천사에 망배단 안내 표지판이 있었으나 현재는 제거된 상태임.
 o 강천사군립공원 내 위치하며, 주변 계곡과 폭포, 산책로가 관광지로 잘 구성되어 있음 o 망배단 바위의 명칭은 부처바위이며 스님이 배낭을 메고 가는 형상으로 망배단에 대한 표지판은 강천사에서 철거한 상태라고 함 - 순창문화원 관계자 인터뷰 -"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3539_12705,
@@ -429,7 +429,7 @@ uf:Asset_121 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 도로와 하천 주변으로 평지 마을숲이 있으며, 이용 시 유료로 사용됨
+    crm:P3_has_note """o 도로와 하천 주변으로 평지 마을숲이 있으며, 이용 시 유료로 사용됨
 o 정자와 화장실, 족구장, 음수대 등 편의시설이 있음
 o 마을숲 내 느티나무가 있음 o 공원 내 비석이 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3560_12763,
@@ -450,7 +450,7 @@ uf:Asset_122 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ o 소나무 숲으로 산림청과 장수군이 산림문화공간으로 제공하기 위해 복원한 숲임
+    crm:P3_has_note """o 소나무 숲으로 산림청과 장수군이 산림문화공간으로 제공하기 위해 복원한 숲임
 o 정자와 산책로 벤치가 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3570_12757,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%B5%EA%B0%84> .
@@ -467,7 +467,7 @@ uf:Asset_123 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 마을 입구에 보호수가 위치하며, 벤치가 있어 휴식공간 제공
+    crm:P3_has_note """o 마을 입구에 보호수가 위치하며, 벤치가 있어 휴식공간 제공
 o 매년 정월초에 마을의 재앙과 병자를 막아달라 제사를 지낸다고 함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3570_12757,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -482,7 +482,7 @@ uf:Asset_124 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 보호수 주변 돌을 둘러놓아 경계로 삼음
+    crm:P3_has_note """o 보호수 주변 돌을 둘러놓아 경계로 삼음
 o 길가 주변에 위치함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3570_12757,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -500,7 +500,7 @@ uf:Asset_125 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 양신마을 입구 주변으로 1.5ha 마을숲을 조성함
+    crm:P3_has_note """o 양신마을 입구 주변으로 1.5ha 마을숲을 조성함
 o 2010년 전통마을숲 복원을 했으며 상수지, 느티나무, 은행나무, 왕벚나무 등 약 330주 가 식재 됨 o 현재 안내판이 낙후되어 나무에 기대어 있음
 o 안내판보수 필요"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3569_12756,
@@ -514,7 +514,7 @@ uf:Asset_126 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B3%84%EA%B3%A1%C2%B7%ED%8F%AD%ED%8F%AC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ ○ o 743 지방도로를 따라 계곡이 흐르고 있으며, 수심이 깊지 않고 잔잔한 흐름을 트임
+    crm:P3_has_note """o 743 지방도로를 따라 계곡이 흐르고 있으며, 수심이 깊지 않고 잔잔한 흐름을 트임
 o 별도의 편의시설은 없음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3560_12760,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%84%EA%B3%A1>,
@@ -545,7 +545,7 @@ uf:Asset_128 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 영대산 등산로 주변으로 초장마을숲이 있음
+    crm:P3_has_note """o 영대산 등산로 주변으로 초장마을숲이 있음
 o 혼효림이며, 소나무가 많음. 초입에 안내판과 이정표가 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3560_12737,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -560,7 +560,7 @@ uf:Asset_129 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ ○ o 주변에 비석과 경기전이 위치하고 있음 o 전주 한옥마을에 위치하여 관광객들의 포토존으로 활용되고 있음
+    crm:P3_has_note """o 주변에 비석과 경기전이 위치하고 있음 o 전주 한옥마을에 위치하여 관광객들의 포토존으로 활용되고 있음
 o 특별한 행사 및 활용은 없음(전주문화원 관계자)"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3581_12715,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -578,7 +578,7 @@ uf:Asset_13 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B3%84%EA%B3%A1%C2%B7%ED%8F%AD%ED%8F%AC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ o 산에서 내려오는 물줄기가 합류되어 계곡을 이룸. 도로 주변 고부소 카페가 위치하고 있으며, 카페 앞쪽으로 산·바위·계곡이 어우러져 경관이 좋음 
+    crm:P3_has_note """o 산에서 내려오는 물줄기가 합류되어 계곡을 이룸. 도로 주변 고부소 카페가 위치하고 있으며, 카페 앞쪽으로 산·바위·계곡이 어우러져 경관이 좋음 
 o 강원도 강릉시 연곡면 삼산리 긴내(장천)로 흐르는 연곡천에 있는 소(沼)임."""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3784_12871,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%84%EA%B3%A1>,
@@ -595,7 +595,7 @@ uf:Asset_130 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ o 아파트 단지 내 체육시설과 인접하여 주민들의 편의시설로 같이 활용됨
+    crm:P3_has_note """o 아파트 단지 내 체육시설과 인접하여 주민들의 편의시설로 같이 활용됨
 o 보호수 옆 정자와 함께 아파트 단지와 인접하여 주민들의 휴식공간으로 활용됨"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3578_12713,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%B5%EA%B0%84>,
@@ -608,7 +608,7 @@ uf:Asset_131 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B3%84%EA%B3%A1%C2%B7%ED%8F%AD%ED%8F%AC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ ○ ○ o 백운동 계곡을 따라 산림욕장, 산림복지단지가 있음
+    crm:P3_has_note """o 백운동 계곡을 따라 산림욕장, 산림복지단지가 있음
 o 안내판 및 백운동 계곡 주변 등산로가 정비되어 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3568_12743,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%84%EA%B3%A1>,
@@ -625,7 +625,7 @@ uf:Asset_132 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 도로주변 마을입구에 위치하며, 보호수 주변으로 벤치를 설치하여 마을 쉼터로 활용, 옆 정자 및 운동시설 있음"^^xsd:string ;
+    crm:P3_has_note "o 도로주변 마을입구에 위치하며, 보호수 주변으로 벤치를 설치하여 마을 쉼터로 활용, 옆 정자 및 운동시설 있음"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3577_12747,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EB%8F%84%EB%A1%9C>,
@@ -645,7 +645,7 @@ uf:Asset_133 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%ED%8A%B9%EC%9D%B4%EB%82%98%EB%AC%B4> ;
-    crm:P3_has_note """○ o 당산목으로 주민쉼터로 활용. 길가 논밭이 있는 마을 입구에 위치  o 나무에 지지대 있음. 
+    crm:P3_has_note """o 당산목으로 주민쉼터로 활용. 길가 논밭이 있는 마을 입구에 위치  o 나무에 지지대 있음. 
 o 예전 수목이 위치한 하남마을을 달리 부르던 지명으로 토마리 토동의 작은마을이라 해서 작은 토골이라고 불렀으나 현재 행정구역 개편으로 이남리에 속하게 됨-마을지명유래조사표(강진구청 자료)"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3469_12681,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84> .
@@ -681,7 +681,7 @@ uf:Asset_135 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 영류재(전남 문화재자료 167호) 앞 소나무 보호수와 나란히 마을 입구에 위치"^^xsd:string ;
+    crm:P3_has_note "o 영류재(전남 문화재자료 167호) 앞 소나무 보호수와 나란히 마을 입구에 위치"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3518_12730,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84> .
 
@@ -698,7 +698,7 @@ uf:Asset_136 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 영류재(전남 문화재자료 167호) 앞 소나무 보호수와 나란히 마을 입구에 위치"^^xsd:string ;
+    crm:P3_has_note "o 영류재(전남 문화재자료 167호) 앞 소나무 보호수와 나란히 마을 입구에 위치"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3518_12730,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84> .
 
@@ -712,7 +712,7 @@ uf:Asset_137 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 마을입구 가로수로 식재도니 수목 중 하나로 하천이 옆으로 흐르고 도로 옆에 위치
+    crm:P3_has_note """o 마을입구 가로수로 식재도니 수목 중 하나로 하천이 옆으로 흐르고 도로 옆에 위치
 o 보호수 간판과 주변에 정자가 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3518_12730,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -729,7 +729,7 @@ uf:Asset_138 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%B0%94%EC%9C%84>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note "○ o 27번 국도 옆 계곡 내 바위로 안내판 및 시설이 전혀 설치되어 있지 않으며, 마을 구전이 내려옴 o 안내판 등 관리가 필요함"^^xsd:string ;
+    crm:P3_has_note "o 27번 국도 옆 계곡 내 바위로 안내판 및 시설이 전혀 설치되어 있지 않으며, 마을 구전이 내려옴 o 안내판 등 관리가 필요함"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3518_12723,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%84%EA%B3%A1> .
@@ -743,7 +743,7 @@ uf:Asset_139 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%EC%A0%81%EC%A7%80>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 도로 주변 계마석이 위치하며 펜스줄과 안내판이 설치되어 있음.
+    crm:P3_has_note """o 도로 주변 계마석이 위치하며 펜스줄과 안내판이 설치되어 있음.
 o 주변 관목 등 관리생태 양호"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3513_12728,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EB%8F%84%EB%A1%9C>,
@@ -756,7 +756,7 @@ uf:Asset_14 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%B0%94%EC%9C%84>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note "○ ○ o 송라사 본당 위쪽 계단으로 통해 접근이 가능하며, 맷돌이 위치하고 있고 그 위로 3개의 바위가 있음. 맷돌 주변으로 소원을 비는 작은 돌들이 올려져 있음"^^xsd:string ;
+    crm:P3_has_note "o 송라사 본당 위쪽 계단으로 통해 접근이 가능하며, 맷돌이 위치하고 있고 그 위로 3개의 바위가 있음. 맷돌 주변으로 소원을 비는 작은 돌들이 올려져 있음"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3786_12882,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
 
@@ -768,7 +768,7 @@ uf:Asset_140 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 공원으로 구성되어 주민쉼터로 활용
+    crm:P3_has_note """o 공원으로 구성되어 주민쉼터로 활용
 o 화장실, 수도시설 존재. 나무마다 수목실태조사표 있음
 o 나무마다 수목실태조사표 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3497_12758,
@@ -782,7 +782,7 @@ uf:Asset_141 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B8%88%EC%84%9D%EA%B0%81%EB%A5%98>,
         <http://data.urbanforest.kr/vocab/type/%EA%B8%B0%EB%A1%9D%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 계곡변 암벽에 음각으로 글씨가 새겨짐
+    crm:P3_has_note """o 계곡변 암벽에 음각으로 글씨가 새겨짐
 o 지리산 연곡사, 피아골 근처 계곡변에 위치 o 표지판이 없어 바위를 찾기 어려움"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3526_12758,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%84%EA%B3%A1> .
@@ -800,7 +800,7 @@ uf:Asset_142 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 수내마을 입구 보호수 4그루가 있으며 주변으로 벤치, 운동시설, 정자가 있어 마을주민의 쉼터로 이용 됨"^^xsd:string ;
+    crm:P3_has_note "o 수내마을 입구 보호수 4그루가 있으며 주변으로 벤치, 운동시설, 정자가 있어 마을주민의 쉼터로 이용 됨"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3515_12754,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -818,7 +818,7 @@ uf:Asset_143 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 수내마을 입구 보호수 4그루가 있으며 주변으로 벤치, 운동시설, 정자가 있어 마을주민의 쉼터로 이용 됨"^^xsd:string ;
+    crm:P3_has_note "o 수내마을 입구 보호수 4그루가 있으며 주변으로 벤치, 운동시설, 정자가 있어 마을주민의 쉼터로 이용 됨"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3515_12754,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -836,7 +836,7 @@ uf:Asset_144 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 수내마을 입구 보호수 4그루가 있으며 주변으로 벤치, 운동시설, 정자가 있어 마을주민의 쉼터로 이용 됨"^^xsd:string ;
+    crm:P3_has_note "o 수내마을 입구 보호수 4그루가 있으며 주변으로 벤치, 운동시설, 정자가 있어 마을주민의 쉼터로 이용 됨"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3515_12754,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -854,7 +854,7 @@ uf:Asset_145 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 수내마을 입구 보호수 4그루가 있으며 주변으로 벤치, 운동시설, 정자가 있어 마을주민의 쉼터로 이용 됨"^^xsd:string ;
+    crm:P3_has_note "o 수내마을 입구 보호수 4그루가 있으며 주변으로 벤치, 운동시설, 정자가 있어 마을주민의 쉼터로 이용 됨"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3515_12754,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -866,7 +866,7 @@ uf:Asset_146 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B3%84%EA%B3%A1%C2%B7%ED%8F%AD%ED%8F%AC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ ○ o 계곡앞에 안내판과 팔각정이 있음.
+    crm:P3_has_note """o 계곡앞에 안내판과 팔각정이 있음.
 o 일림산 등산로를 주변으로 벤치가 설치되어 있음 o 용추계곡 이정표가 추가로 필요함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3469_12701,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%84%EA%B3%A1>,
@@ -906,7 +906,7 @@ uf:Asset_149 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%EC%A0%81%EC%A7%80>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 현재 수풀이 우거진 상태로 방치되고 있음
+    crm:P3_has_note """o 현재 수풀이 우거진 상태로 방치되고 있음
 o 사유지 밭 형태로 수풀이 우거져 관리가 필요한 상황임"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3485_12727 .
 
@@ -922,7 +922,7 @@ uf:Asset_15 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%A0%9C%EB%8B%A8> ;
-    crm:P3_has_note """○ o 서낭당 주변으로 돌담이 둘러져 있고, 소나무 군락이 있음. 구정리 전통마을숲 복원사업(2006년 04월 ~ 2007년 04월 생명의숲국민운동 강릉생명의숲)으로 소나무숲 복토제거 후 후계림조성 및 초화류를 식재함.
+    crm:P3_has_note """o 서낭당 주변으로 돌담이 둘러져 있고, 소나무 군락이 있음. 구정리 전통마을숲 복원사업(2006년 04월 ~ 2007년 04월 생명의숲국민운동 강릉생명의숲)으로 소나무숲 복토제거 후 후계림조성 및 초화류를 식재함.
 o 주변으로 섬석천이 흐르고 있으며, 밭과 주택이 위치함
 o 강릉솔향수목원, 청학사, 법륜사가 2km 이내에 위치함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3771_12887,
@@ -953,7 +953,7 @@ uf:Asset_151 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%83%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ o 쌀바위 아래 샘이 있어 물을 마실 수 있도록 바가지가 비치 됨
+    crm:P3_has_note """o 쌀바위 아래 샘이 있어 물을 마실 수 있도록 바가지가 비치 됨
 o 등산로 초입에 안내판과 중턱 구능수 안내판이 설치되어 있음 o 약사암이 주변에 위치함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3491_12736,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -979,7 +979,7 @@ uf:Asset_153 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%B0%94%EC%9C%84>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ ○ o 각문마을 입구 부근 단차가 3m위 바위가 있음.
+    crm:P3_has_note """o 각문마을 입구 부근 단차가 3m위 바위가 있음.
 o 안내판 및 펜스가 없이 바위만 위치함."""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3510_12748,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84> .
@@ -1035,7 +1035,7 @@ uf:Asset_157 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%ED%8A%B9%EC%9D%B4%EB%82%98%EB%AC%B4> ;
-    crm:P3_has_note """○ ○ o 650년된 느티나무 4그루로 펜스가 둘러져있으며, 불갑사 입구 앞쪽에 위치함. 당산나무이며 원래는 3그루였으나 한그루가 번개에 몸통이 부러져 파내고 2그루를 새로 심어 4그루가 되었다고 함
+    crm:P3_has_note """o 650년된 느티나무 4그루로 펜스가 둘러져있으며, 불갑사 입구 앞쪽에 위치함. 당산나무이며 원래는 3그루였으나 한그루가 번개에 몸통이 부러져 파내고 2그루를 새로 심어 4그루가 되었다고 함
 o 영광군 관광안내소 및 불갑사 주차장이 있으며, 주변으로 벤치와 정자, 휴식공간, 화장실이 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3520_12653,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%B5%EA%B0%84>,
@@ -1067,7 +1067,7 @@ uf:Asset_159 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ ○ o 밭한가운데 테두리 경계를 만들어 위치함. 현황판에 따르면 정자목으로 과거에는 정자가 위치해 있었으나 현재는 없음"^^xsd:string ;
+    crm:P3_has_note "o 밭한가운데 테두리 경계를 만들어 위치함. 현황판에 따르면 정자목으로 과거에는 정자가 위치해 있었으나 현재는 없음"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3453_12695 .
 
 uf:Asset_16 a crm:E26_Physical_Feature ;
@@ -1098,7 +1098,7 @@ uf:Asset_160 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%ED%8A%B9%EC%9D%B4%EB%82%98%EB%AC%B4> ;
-    crm:P3_has_note "○ o '보호수 아래 평상이 있어 쉼터로 활용. 주변에 논, 축사가 있으며 당산목으로 활용되고 있음 o 느티나무 1그루 팽나무 1그루가 위치해있으며, 팽나무만 2016년 보호수로 지정됨"^^xsd:string ;
+    crm:P3_has_note "o '보호수 아래 평상이 있어 쉼터로 활용. 주변에 논, 축사가 있으며 당산목으로 활용되고 있음 o 느티나무 1그루 팽나무 1그루가 위치해있으며, 팽나무만 2016년 보호수로 지정됨"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3464_12696,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
 
@@ -1111,7 +1111,7 @@ uf:Asset_161 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 마을 입구에 하천을 따라 길게 형성된 마을숲임.
+    crm:P3_has_note """o 마을 입구에 하천을 따라 길게 형성된 마을숲임.
 o 제 3회 아름다운숲 전국대회에서 우수상 수상 o 화순 동복 연둔지 숲정이(전남 기념물 제 237호)가 위치함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3504_12712,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -1128,7 +1128,7 @@ uf:Asset_162 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ o 산림유전자원보호구역 내 마을 숲이 잇으며, 데크길과 정자, 산책로가 갖춰짐
+    crm:P3_has_note """o 산림유전자원보호구역 내 마을 숲이 잇으며, 데크길과 정자, 산책로가 갖춰짐
 o 하천변을 따라 이팝나무, 푸조나무, 느티나무 등 약 350m 집단생육함 o 생명의숲 운동본부, 유산킴벌리, 산림청이 공동주관하는 제 4회 아름다운 마을숲 전국대회에 응모하여 “아름다운 마을숲”으로 인증됨(2003)"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3501_12690,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -1143,7 +1143,7 @@ uf:Asset_163 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 덕산마을회관 근처 ‘삼노정’이라는 정자와 느티나무 마을 숲이 위치함
+    crm:P3_has_note """o 덕산마을회관 근처 ‘삼노정’이라는 정자와 느티나무 마을 숲이 위치함
 o 흉고 직경이 1m이상의 거목이 여러 그루가 있음
 o 벤치 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3500_12688,
@@ -1161,7 +1161,7 @@ uf:Asset_164 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 도로변 마을 입구 내 보호수가 위치함
+    crm:P3_has_note """o 도로변 마을 입구 내 보호수가 위치함
 o 보호수 주변으로 [신성리 호동마을 숲정이(향토문화유산 제 19호)]로 지정됨 o 보호수가 안내판만 설치되어 주변으로 돌담등 주변 정리가 필요해 보임."""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3500_12689,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -1184,7 +1184,7 @@ uf:Asset_165 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 숲에광장에는 보호수2그루(느티나무) 있음.
+    crm:P3_has_note """o 숲에광장에는 보호수2그루(느티나무) 있음.
 o 전라남도 문화재 자료 제59호 쌍봉리 충신각이 있음
 o 정자 풍영정과 3.1만세 함장.의거 기념비가 있음.
 o 하천을 따라 광장이 조성됨 o 보호수에서 당산제를 올리는 상석과 서낭당이 위치해 있음."""^^xsd:string ;
@@ -1209,7 +1209,7 @@ uf:Asset_167 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 정자목으로 마을 휴식장소로 활용
+    crm:P3_has_note """o 정자목으로 마을 휴식장소로 활용
 o 주변으로 대하1리 마을회관, 운동기구, 정자, 문경장수황씨종택이 있음 o 지정일자가 1982년인 보호수 표지석에 수령이 300년으로 표기됨"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3666_12826,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -1243,7 +1243,7 @@ uf:Asset_169 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ ○ o 상주 전통 곶감 농원에 위치함. 750년된 감나무 두 그루가 있으며, 관리상태가 양호하고 안내판이 잘 관리되고 있음
+    crm:P3_has_note """o 상주 전통 곶감 농원에 위치함. 750년된 감나무 두 그루가 있으며, 관리상태가 양호하고 안내판이 잘 관리되고 있음
 o 주변으로 감 농장들이 위치하고 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3637_12810,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -1254,7 +1254,7 @@ uf:Asset_17 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%A0%9C%EB%8B%A8> ;
-    crm:P3_has_note """○ o 도로와 인접하며, ‘큰골길’ 표지석 옆쪽으로 위치함
+    crm:P3_has_note """o 도로와 인접하며, ‘큰골길’ 표지석 옆쪽으로 위치함
 o 돌담으로 둘러져 있으며 앞으로는 계곡이 흐르고 있음
 o 마을 주택 및 밭이 주변에 위치함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3765_12896,
@@ -1270,7 +1270,7 @@ uf:Asset_170 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B1%B4%EC%B6%95%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 들어가는 길 정자 옆 마을회관이 있음"^^xsd:string ;
+    crm:P3_has_note "o 들어가는 길 정자 옆 마을회관이 있음"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3642_12813,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84> .
 
@@ -1284,7 +1284,7 @@ uf:Asset_171 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ ○ o 한그루 소나무에는 잎이 없음. 외과수술 흔적이 보임. 초본정리됨. 나무옆에 작은 목조건물(성황당)이 있으며 금줄과 소화기를 비치하였음. 주변에 논밭이 있음 o 수령 500년된 소나무"^^xsd:string ;
+    crm:P3_has_note "o 한그루 소나무에는 잎이 없음. 외과수술 흔적이 보임. 초본정리됨. 나무옆에 작은 목조건물(성황당)이 있으며 금줄과 소화기를 비치하였음. 주변에 논밭이 있음 o 수령 500년된 소나무"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3688_12859,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
 
@@ -1297,7 +1297,7 @@ uf:Asset_172 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%83%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ o 벤치와 물을 뜨는 바가지를 비치하여 마을쉼터로 활용
+    crm:P3_has_note """o 벤치와 물을 뜨는 바가지를 비치하여 마을쉼터로 활용
 o 백산서원 근처 o 예전에는 일주일에 한번씩 소독을 하여 식수로 사용하였으나, 현재는 수도가 잘 되어 있어 식수로 사용하지 않음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3689_12859,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84> .
@@ -1309,7 +1309,7 @@ uf:Asset_173 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%ED%8A%B9%EC%9D%B4%EB%82%98%EB%AC%B4> ;
-    crm:P3_has_note "○ o 상석(평촌) 버스정류장 뒤 위치하며, 주변에 논과 평촌쉼터가 있음 o 300년 된 느티나무"^^xsd:string ;
+    crm:P3_has_note "o 상석(평촌) 버스정류장 뒤 위치하며, 주변에 논과 평촌쉼터가 있음 o 300년 된 느티나무"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3693_12864,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
 
@@ -1320,7 +1320,7 @@ uf:Asset_174 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B1%B4%EC%B6%95%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 서원내부를 관람객들이 관람할 수 있도록 공개하고 있음
+    crm:P3_has_note """o 서원내부를 관람객들이 관람할 수 있도록 공개하고 있음
 o 새내마을과 논밭, 음양천"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3689_12859,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84> .
@@ -1347,7 +1347,7 @@ uf:Asset_176 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 300년된 향나무로 온양1리 마을회관 앞에 위치하고 있으며, 주변 정자가 있음. 
+    crm:P3_has_note """o 300년된 향나무로 온양1리 마을회관 앞에 위치하고 있으며, 주변 정자가 있음. 
 펜스로 잘 관리되고 있음.
 o 마을 주변에 위치하고, 바로 도로 건너편에 바다가 보임"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3701_12941,
@@ -1362,7 +1362,7 @@ uf:Asset_177 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%EC%A0%81%EC%A7%80>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 진입이 어려워 방치되고 있음.
+    crm:P3_has_note """o 진입이 어려워 방치되고 있음.
 o 마을 주민 농장, 밭 등으로 둘러싸여 있음
 o 주변으로 수풀이 우거져 있으며 사유지에 철조망이 둘러져 있어 접근이 어려움"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3699_12939,
@@ -1375,7 +1375,7 @@ uf:Asset_178 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%8B%9C%EC%84%A4%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 주변 논·밭과 마을이 있고 주변에 하천이 흐르고 있음."^^xsd:string ;
+    crm:P3_has_note "o 주변 논·밭과 마을이 있고 주변에 하천이 흐르고 있음."^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3675_12934,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80>,
@@ -1390,7 +1390,7 @@ uf:Asset_179 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%EC%A0%81%EC%A7%80>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 삼조어비각이 있으며, 연못 안에 400년된 회화나무가 있음
+    crm:P3_has_note """o 삼조어비각이 있으며, 연못 안에 400년된 회화나무가 있음
 o 나무는 몽천서원 건립 이전부터 있었음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3693_12937,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%97%B0%EB%AA%BB> .
@@ -1402,7 +1402,7 @@ uf:Asset_18 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%A0%9C%EB%8B%A8> ;
-    crm:P3_has_note """○ o 도로 인근 공장과 주택이 위치함
+    crm:P3_has_note """o 도로 인근 공장과 주택이 위치함
 o 도로 옆 주차장 사이에 위치하고 있으며, 돌담으로 둘러져 있음."""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3772_12897,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EB%8F%84%EB%A1%9C> .
@@ -1414,7 +1414,7 @@ uf:Asset_180 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%EC%A0%81%EC%A7%80>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 주변으로 구산해수욕장 및 월송정이 있음 o 소나무재선충예방·매개충 항체 나무주사를 맞음(2022.02.)"^^xsd:string ;
+    crm:P3_has_note "o 주변으로 구산해수욕장 및 월송정이 있음 o 소나무재선충예방·매개충 항체 나무주사를 맞음(2022.02.)"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3674_12946,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
 
@@ -1424,7 +1424,7 @@ uf:Asset_181 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B1%B4%EC%B6%95%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ ○ ○ ○ o 관광명소로 주차시설이 완비되어 있고, 카페가 있음. 그 주변으로 논이 있음"^^xsd:string ;
+    crm:P3_has_note "o 관광명소로 주차시설이 완비되어 있고, 카페가 있음. 그 주변으로 논이 있음"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3674_12946,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B4%80%EA%B4%91>,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -1444,7 +1444,7 @@ uf:Asset_182 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 다천2리 복지마을 입구에 위치하고 있으며, 다천보건진료소가 옆에 있음.
+    crm:P3_has_note """o 다천2리 복지마을 입구에 위치하고 있으며, 다천보건진료소가 옆에 있음.
 o 300년 느티나무로 높이 10m, 가슴높이 둘레 4.7m로 수세가 비교적 양호함. 마을길을 가운데 두고 동쪽과 서쪽에 보호수로 지정된 암수 나무가 있는데, 높이 1.9m 부위에 큰 동공이 있다. *울진군지, 2021
 o 보호수 옆 정자가 있으며 마을 주민 쉼터로 활용되어 있음. 서낭당이 보호수 옆으로 있음."""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3678_12939,
@@ -1459,7 +1459,7 @@ uf:Asset_183 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B1%B4%EC%B6%95%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 주변으로 논·밭과 마을이 있으며, 운암서원 뒤편으로 소나무 숲이 우거짐
+    crm:P3_has_note """o 주변으로 논·밭과 마을이 있으며, 운암서원 뒤편으로 소나무 숲이 우거짐
 o 소나무 수고는 약 30~40m로 높게 뻗어 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3674_12946,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -1473,7 +1473,7 @@ uf:Asset_184 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 대전3.1의거 기념비가 있음. 두곡숲 안에 오래된 가옥이 있으며, 주변으로 체육시설 및 휴식정자, 공중화장실이 위치해 있음
+    crm:P3_has_note """o 대전3.1의거 기념비가 있음. 두곡숲 안에 오래된 가옥이 있으며, 주변으로 체육시설 및 휴식정자, 공중화장실이 위치해 있음
 o 주변 논과 마을이 위치하고 근처에 하천이 흐르고 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3625_12935,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -1489,7 +1489,7 @@ uf:Asset_185 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ ○ o 마을에 위치하여 주변 벤치와 철봉 등 시설이 있어 지역주민들의 휴식·운동공간으로 활용됨"^^xsd:string ;
+    crm:P3_has_note "o 마을에 위치하여 주변 벤치와 철봉 등 시설이 있어 지역주민들의 휴식·운동공간으로 활용됨"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3620_12934,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%B5%EA%B0%84>,
@@ -1507,7 +1507,7 @@ uf:Asset_186 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 650년생 느티나무로 보호수 아래 마을 제사로 쓰일 수 있는 상석이 놓여져 있음. 주변으로 철봉 및 그네 등 운동시설이 있으나 노후되어 있음"^^xsd:string ;
+    crm:P3_has_note "o 650년생 느티나무로 보호수 아래 마을 제사로 쓰일 수 있는 상석이 놓여져 있음. 주변으로 철봉 및 그네 등 운동시설이 있으나 노후되어 있음"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3622_12936,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -1522,7 +1522,7 @@ uf:Asset_187 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 700년생 느티나무로 지지대가 설치되어 있으며, 표석과 주변 잔디 및 수목 관리가 잘 되어 있음
+    crm:P3_has_note """o 700년생 느티나무로 지지대가 설치되어 있으며, 표석과 주변 잔디 및 수목 관리가 잘 되어 있음
 o 주변 수목으로는 배롱나무와 참나무류가 분포하고 있음
 o 주변으로 마을이 형성되어 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3618_12925,
@@ -1539,7 +1539,7 @@ uf:Asset_188 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B8%B0%ED%83%80>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 화장실, 정자, 야외무대, 주차장, 생태하천, 산책로 등이 위치하여 주민쉼터로 활용
+    crm:P3_has_note """o 화장실, 정자, 야외무대, 주차장, 생태하천, 산책로 등이 위치하여 주민쉼터로 활용
 o 불영산 아래 위치하며, 동호리 마을회관이 위치하고 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3580_12792,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -1555,7 +1555,7 @@ uf:Asset_189 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 야영장, 개수대, 화장실, 벤치 등이 있어 마을쉼터 및 관광지로 활용
+    crm:P3_has_note """o 야영장, 개수대, 화장실, 벤치 등이 있어 마을쉼터 및 관광지로 활용
 o 마리면에서 관리하여 초본 잘 정리되어 있음. 풍계마을입구에 위치, 거창 위천 곡류부 o 개인소유였다가 도립공원으로 변경되었음. 최초 장풍숲을 조성한 서암 강동희 선생 송덕비가 있음."""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3573_12785,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -1569,7 +1569,7 @@ uf:Asset_19 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%A0%9C%EB%8B%A8> ;
-    crm:P3_has_note """○ o 봉화산 중턱에 위치하며, 도로를 따라 올라가다 커브길(컨테이너가 있음)에서 임도를 따라 10m 안쪽으로 들어가면 서낭당이 위치함.
+    crm:P3_has_note """o 봉화산 중턱에 위치하며, 도로를 따라 올라가다 커브길(컨테이너가 있음)에서 임도를 따라 10m 안쪽으로 들어가면 서낭당이 위치함.
 o 바다 풍경이 내려다 보이며 담이 둘러져 있음. 서낭당 뒤편으로 소나무 숲이 있음
 o 주변으로 육군 제23경비단 중대본부가 위치함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3773_12898,
@@ -1586,7 +1586,7 @@ uf:Asset_190 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 벤치가 있어 주민쉼터로 활용 o 수고 15m, 둘레 480cm, 500년된 느티나무"^^xsd:string ;
+    crm:P3_has_note "o 벤치가 있어 주민쉼터로 활용 o 수고 15m, 둘레 480cm, 500년된 느티나무"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3579_12792 .
 
 uf:Asset_191 a crm:E26_Physical_Feature ;
@@ -1597,7 +1597,7 @@ uf:Asset_191 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 남파랑길 42코스 남해바래길 중 앵강다숲길로 지정되어, 캠핑장, 운동장, 산책로, 놀이터 등 주민쉼터 및 관광지로 활용 중임 o 남해바래길 탐방안내센터가 있어 해설 및 안내가 잘 되어 있음."^^xsd:string ;
+    crm:P3_has_note "o 남파랑길 42코스 남해바래길 중 앵강다숲길로 지정되어, 캠핑장, 운동장, 산책로, 놀이터 등 주민쉼터 및 관광지로 활용 중임 o 남해바래길 탐방안내센터가 있어 해설 및 안내가 잘 되어 있음."^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3477_12795,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B4%80%EA%B4%91> .
 
@@ -1611,7 +1611,7 @@ uf:Asset_192 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 상주은모래해수욕장 방문객 쉼터 및 관광지로 활용, 상주마을과 농경지를 해풍으로부터 보호
+    crm:P3_has_note """o 상주은모래해수욕장 방문객 쉼터 및 관광지로 활용, 상주마을과 농경지를 해풍으로부터 보호
 o 상주은모래해수욕장, 오토캠핑장, 야영장 o 송림이 면적 8,942m²으로 방풍림이 조성되어 있고, 뒤쪽에 팽나무, 느티나무도 조성되어 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3472_12798,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -1625,7 +1625,7 @@ uf:Asset_193 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B5%B0%EB%9D%BD%EC%A7%80>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○   ○ o 남해바래길 중 비자림해풍길로 지정되어 주민편의시설, 등산코스, 산책로로 구성되어 있음
+    crm:P3_has_note """  o 남해바래길 중 비자림해풍길로 지정되어 주민편의시설, 등산코스, 산책로로 구성되어 있음
 o 바닷가 옆 산중턱 언덕에 위치"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3480_12796 .
 
@@ -1666,7 +1666,7 @@ uf:Asset_196 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ o 화장실, 운동기구, 정자, 평상, 주차장, 공연데크 등이 있어 주민쉼로 활용하고 있음. 
+    crm:P3_has_note """o 화장실, 운동기구, 정자, 평상, 주차장, 공연데크 등이 있어 주민쉼로 활용하고 있음. 
 o 2018년 소나무 재선충병 예방접종 실시하였음. 
 o 대곡천변에 위치하고 있으며, 주변에 논, 과수원등이 있음. o 제3회 아름다운숲 대상 수상"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3505_12812,
@@ -1694,7 +1694,7 @@ uf:Asset_198 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%8B%9C%EC%84%A4%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ o 단속사지 3층석탑 동,서탑이 위치함. 정당매, 단속사, 금륜대, 단속사역사문화 연구소가 위치함. o 후계목식재
+    crm:P3_has_note """o 단속사지 3층석탑 동,서탑이 위치함. 정당매, 단속사, 금륜대, 단속사역사문화 연구소가 위치함. o 후계목식재
 o 정당매가 노거수로 수세가 좋지 않아 2013년 가지의 일부를 접목으로 번식하여 2014년 완전 고사된 정당매 옆에 후계목을 식재하여 관리하고 있음 – 2014.03.20.비석글귀 -"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3532_12789 .
 
@@ -1718,7 +1718,7 @@ uf:Asset_2 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%B0%94%EC%9C%84>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ ○ o 도로 바로 옆에 위치함.
+    crm:P3_has_note """o 도로 바로 옆에 위치함.
 o 안내판이 잘 설치되어 있음.
 o 맞은편에 '장수대'가 새겨진 바위가 있음
 o 음식점 입구에 위치하며 뒤로는 계곡이 흐름 o 입간판 외에 장수바위를 손쉽게 인식할 수 있도록 펜스가 필요해보임"""^^xsd:string ;
@@ -1734,7 +1734,7 @@ uf:Asset_20 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%A0%9C%EB%8B%A8> ;
-    crm:P3_has_note """○ o 논 가운데 섬처럼 위치하며, 담이 둘러져 있고 주변으로 벤치가 노후가 되고, 풀이 우거져 있어 관리가 필요함. 주변으로 느티나무들이 있음
+    crm:P3_has_note """o 논 가운데 섬처럼 위치하며, 담이 둘러져 있고 주변으로 벤치가 노후가 되고, 풀이 우거져 있어 관리가 필요함. 주변으로 느티나무들이 있음
 o 주변으로 옥천IC가 위치함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3761_12903,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -1745,7 +1745,7 @@ uf:Asset_200 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ ○ o 조식 남명문집 목판, 산천조식유적이 위치함"^^xsd:string ;
+    crm:P3_has_note "o 조식 남명문집 목판, 산천조식유적이 위치함"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3527_12784 .
 
 uf:Asset_201 a crm:E26_Physical_Feature ;
@@ -1770,7 +1770,7 @@ uf:Asset_202 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%ED%8A%B9%EC%9D%B4%EB%82%98%EB%AC%B4> ;
-    crm:P3_has_note """○ o 남사예담촌 내에 위치하며 감나무 현황판을 설치하여 안내함
+    crm:P3_has_note """o 남사예담촌 내에 위치하며 감나무 현황판을 설치하여 안내함
 o 주변에 감나무 밭이 위치함 o 620년 수령의 감나무"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3527_12793,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -1783,7 +1783,7 @@ uf:Asset_203 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%ED%8A%B9%EC%9D%B4%EB%82%98%EB%AC%B4> ;
-    crm:P3_has_note "○ ○ o 민박집 마당 내에 위치한 670년 수령의 매실나무로 현황판과 기념비석을 비치함"^^xsd:string ;
+    crm:P3_has_note "o 민박집 마당 내에 위치한 670년 수령의 매실나무로 현황판과 기념비석을 비치함"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3527_12793 .
 
 uf:Asset_204 a crm:E26_Physical_Feature ;
@@ -1794,7 +1794,7 @@ uf:Asset_204 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B3%84%EA%B3%A1%C2%B7%ED%8F%AD%ED%8F%AC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note "○ o 도로주변으로 계곡이 흐르고 있으며, 바위가 많고 수질이 매우 좋음. o 인근 지리산 국립공원이 있음."^^xsd:string ;
+    crm:P3_has_note "o 도로주변으로 계곡이 흐르고 있으며, 바위가 많고 수질이 매우 좋음. o 인근 지리산 국립공원이 있음."^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3528_12764,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%84%EA%B3%A1>,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%B5%EC%9B%90>,
@@ -1808,7 +1808,7 @@ uf:Asset_205 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B3%84%EA%B3%A1%C2%B7%ED%8F%AD%ED%8F%AC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note "○ ○ ○ ○ ○ o 대성교 옆으로 계곡이 흐르고 있으며, 수심이 얕고 넓은 계곡을 형성하고 있음."^^xsd:string ;
+    crm:P3_has_note "o 대성교 옆으로 계곡이 흐르고 있으며, 수심이 얕고 넓은 계곡을 형성하고 있음."^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3526_12764,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%84%EA%B3%A1> .
 
@@ -1825,7 +1825,7 @@ uf:Asset_206 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 제2회 아름다운 마을숲 우수상 수상(2001)
+    crm:P3_has_note """o 제2회 아름다운 마을숲 우수상 수상(2001)
 o 소나무가 여러그루 식재되어 있으며, 하천과 기찻길이 주변에 있음 o 숲 아래 평상이 있어 쉼터로 이용됨.
 o 안내판이 파손되어 안내판과 주변관리가 필요함. o 주변 산림욕체험과 숙박시설이 있음."""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3510_12787,
@@ -1857,7 +1857,7 @@ uf:Asset_208 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 마을 숲 내 산책로를 잘 정비해놨으며, 디딤돌식 포장면이 되어 있음.
+    crm:P3_has_note """o 마을 숲 내 산책로를 잘 정비해놨으며, 디딤돌식 포장면이 되어 있음.
 o 정자와 작은 연못이 있어 휴식공간을 제공함."""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3524_12834,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -1876,7 +1876,7 @@ uf:Asset_209 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 마을숲과 숲의 유래와 인접하여 보호수가 있음.
+    crm:P3_has_note """o 마을숲과 숲의 유래와 인접하여 보호수가 있음.
 o 보호수 아래 명관리 지석묘 1호가 있음."""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3524_12834,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84> .
@@ -1891,7 +1891,7 @@ uf:Asset_21 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%83%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ ○ ○ ○ o 송지호 자전거 둘레길, 오토캠핑장, 전망타워 등 시설이 잘 갖춰짐.
+    crm:P3_has_note """o 송지호 자전거 둘레길, 오토캠핑장, 전망타워 등 시설이 잘 갖춰짐.
 o 소나무 숲과 무장애나눔길이 있어 이용객의 편의성이 높음. o 송호정에서 경치를 바라보기 좋음. o 2020년 송잎혹파리방파제 나무주사 실시"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3833_12851,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B2%BD%EC%B9%98> .
@@ -1912,7 +1912,7 @@ uf:Asset_211 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B1%B4%EC%B6%95%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ ○ ○ ○"^^xsd:string ;
+    crm:P3_has_note "○"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3539_12769 .
 
 uf:Asset_212 a crm:E26_Physical_Feature ;
@@ -1924,7 +1924,7 @@ uf:Asset_212 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B1%B4%EC%B6%95%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 올해 ‘제25회 6.25 나라사랑 호국음악회’를 견불사 무대장에서 실시함
+    crm:P3_has_note """o 올해 ‘제25회 6.25 나라사랑 호국음악회’를 견불사 무대장에서 실시함
 *견불사 처사 인터뷰 o 약 30년 전 개인 팬션을 스님이 구매하여 현재의 견불사가 됨(견불사 처사 인터뷰)
 o 현재는 코로나19로 인해 일반인 출입을 통제하고 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3540_12772 .
@@ -1937,7 +1937,7 @@ uf:Asset_213 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B3%84%EA%B3%A1%C2%B7%ED%8F%AD%ED%8F%AC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ ○ ○ ○ ○ ○ o 주변 반야정사와 탐방로(마적도사 전설탐방로)가 위치하고 있음 
+    crm:P3_has_note """o 주변 반야정사와 탐방로(마적도사 전설탐방로)가 위치하고 있음 
 o 지역 관광지로써 계곡 주변으로 펜션이 위치하고 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3541_12771,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%84%EA%B3%A1>,
@@ -1952,7 +1952,7 @@ uf:Asset_22 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%B0%94%EC%9C%84>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note "○ ○ ○ ○ o 해안가 절벽과 산 주변으로 모래사장에 위치한 서낭바위는 바위 위로 작은 소나무가 서있는것이 특징임. o 서낭바위 접근로가 데크로 잘 되어 있음 o 송지호 인근에 위치함"^^xsd:string ;
+    crm:P3_has_note "o 해안가 절벽과 산 주변으로 모래사장에 위치한 서낭바위는 바위 위로 작은 소나무가 서있는것이 특징임. o 서낭바위 접근로가 데크로 잘 되어 있음 o 송지호 인근에 위치함"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3832_12852,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
 
@@ -1967,7 +1967,7 @@ uf:Asset_23 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ o 도로 옆으로 금강소나무 군락이 조성되어 있으며, 수고가 약 30~40m로 우수함.
+    crm:P3_has_note """o 도로 옆으로 금강소나무 군락이 조성되어 있으며, 수고가 약 30~40m로 우수함.
 o 조사 시 제초작업을 실시하고 있어 관리가 잘 되어 있음. 
 o 만우솔밭 옆으로 산불 피해목을 쌓아놓고 목재펠릿 작업을 시행하고 있음
 o 주변으로 마을과 밭이 있음"""^^xsd:string ;
@@ -1990,7 +1990,7 @@ uf:Asset_24 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 약 500년된 느티나무로 3그루가 나란히 생립하고 있으며 오래전 묵호초등학교 분교가 있었던 자리로 마을 공동 놀이터로 활용되었다고 전해짐(출처 안내판)
+    crm:P3_has_note """o 약 500년된 느티나무로 3그루가 나란히 생립하고 있으며 오래전 묵호초등학교 분교가 있었던 자리로 마을 공동 놀이터로 활용되었다고 전해짐(출처 안내판)
 o 보호수 주변 정자와 벤치가 있어 마을주민의 쉼터로 이용되고 있으며, 뒤편으로 성황당이 위치하고 있음
 o 마을 주택과 밭이 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3756_12907,
@@ -2008,7 +2008,7 @@ uf:Asset_25 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 마을 언덕 부근에 도로 옆에 위치하며, 웅녀 소나무는 현재 고사한 상태이고 제사를 지내기 위한 상석 3개가 놓여 있음. 
+    crm:P3_has_note """o 마을 언덕 부근에 도로 옆에 위치하며, 웅녀 소나무는 현재 고사한 상태이고 제사를 지내기 위한 상석 3개가 놓여 있음. 
 o 웅녀 소나무 옆으로 소나무 4그루가 함께 있으며 펜스와 ‘고사목 쓰러짐 주의’ 간판이 설치되어 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3754_12909,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -2024,7 +2024,7 @@ uf:Asset_26 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ ○ o 700년생 느티나무로 현재 호박 밭 안에 보호수가 위치하고 있으며, 주변으로 비닐하우스 및 주택이 들어서 있어 접근이 용이하지 않음."^^xsd:string ;
+    crm:P3_has_note "o 700년생 느티나무로 현재 호박 밭 안에 보호수가 위치하고 있으며, 주변으로 비닐하우스 및 주택이 들어서 있어 접근이 용이하지 않음."^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3748_12911,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
 
@@ -2036,7 +2036,7 @@ uf:Asset_27 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%8F%99%EA%B5%B4>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ ○ ○ ○ o 총 1.4km 길이의 동굴로 입장료를 받고 유료로 관리되고 있음
+    crm:P3_has_note """o 총 1.4km 길이의 동굴로 입장료를 받고 유료로 관리되고 있음
 o 주차장에서 올라갈 수 있는 산책코스가 있으며, 주변으로 아파트가 위치함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3751_12910,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EB%8F%99%EA%B5%B4>,
@@ -2055,7 +2055,7 @@ uf:Asset_28 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 몇 해 전 태풍으로 인해 쓰러져 고사하여 현재는 나무 밑둥만 남아 있음(지역 주민 인터뷰). 주변으로 서낭당이 있으며, 팽나무·은행나무·소나무 등이 있음
+    crm:P3_has_note """o 몇 해 전 태풍으로 인해 쓰러져 고사하여 현재는 나무 밑둥만 남아 있음(지역 주민 인터뷰). 주변으로 서낭당이 있으며, 팽나무·은행나무·소나무 등이 있음
 o 주변으로 마을 주택과 밭, 개울이 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3730_12927,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -2075,7 +2075,7 @@ uf:Asset_29 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 500년 소나무가 몇 해 전 태풍으로 쓰러져 고사함. 현재는 나무 밑둥만 남아있음(지역 주민 인터뷰). 보호수 간판은 현재도 있으며, 주변으로 소나무·느티나무·벚나무 등이 있음
+    crm:P3_has_note """o 500년 소나무가 몇 해 전 태풍으로 쓰러져 고사함. 현재는 나무 밑둥만 남아있음(지역 주민 인터뷰). 보호수 간판은 현재도 있으며, 주변으로 소나무·느티나무·벚나무 등이 있음
 o 논·밭과 주민 가옥이 주변에 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3729_12927,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -2092,7 +2092,7 @@ uf:Asset_3 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 창의리 마을회관 입구에 위치하고 있음
+    crm:P3_has_note """o 창의리 마을회관 입구에 위치하고 있음
 o 보호수 주변으로 데크와 의자를 설치하여 주민들의 휴식공간을 제공함 o 데크와 펜스, 간판등 매우 관리가 잘 되어 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3768_12750,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -2106,7 +2106,7 @@ uf:Asset_30 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B1%B4%EC%B6%95%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ ○ ○"^^xsd:string ;
+    crm:P3_has_note "○"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3726_12932 .
 
 uf:Asset_31 a crm:E26_Physical_Feature ;
@@ -2116,7 +2116,7 @@ uf:Asset_31 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B3%84%EA%B3%A1%C2%B7%ED%8F%AD%ED%8F%AC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ ○ ○ ○ o 양구백자박물관 뒤편으로 직연폭포 가는 안내판과 길이 잘 준비되어 있음
+    crm:P3_has_note """o 양구백자박물관 뒤편으로 직연폭포 가는 안내판과 길이 잘 준비되어 있음
 o 직연폭포를 한 눈에 볼 수 있는 다리가 놓여있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3820_12795,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%ED%8F%AD%ED%8F%AC> .
@@ -2128,7 +2128,7 @@ uf:Asset_32 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%EC%A0%81%EC%A7%80>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 농로 옆 고인돌이 위치하며, 펜스와 안내판이 설치되어 있음.
+    crm:P3_has_note """o 농로 옆 고인돌이 위치하며, 펜스와 안내판이 설치되어 있음.
 o 4면을 판석으로 막아 묘실을 설치한 뒤 그 위에 상석을 올리는 복병식 고인돌 현태를 띄고 있음.  o 주변으로 논과 밭이 있고, 하천이 흐름"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3805_12857,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80>,
@@ -2143,7 +2143,7 @@ uf:Asset_33 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%B0%B0%EB%A6%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ o 법흥사 주변 사찰림으로 소나무가 우세목으로 수고가 30~40m 이상으로 숲을 이루고 있으며, 등산로가 잘 정비되어 있음
+    crm:P3_has_note """o 법흥사 주변 사찰림으로 소나무가 우세목으로 수고가 30~40m 이상으로 숲을 이루고 있으며, 등산로가 잘 정비되어 있음
 o 법흥사 가는 길에 펜션과 캠핑장이 위치함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3737_12825,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -2173,7 +2173,7 @@ uf:Asset_35 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%EC%A0%81%EC%A7%80>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 망산산림욕장 안에 위치하며, 현재는 석함만 남아있음 
+    crm:P3_has_note """o 망산산림욕장 안에 위치하며, 현재는 석함만 남아있음 
 o 개석의 상부가 노출되어 있음 
 o 빙허루 아래 체육시설 공간의 작은 언덕에 위치함 
 o 입구에 ‘철종대왕금표비’가 있음
@@ -2190,7 +2190,7 @@ uf:Asset_36 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B8%88%EC%84%9D%EA%B0%81%EB%A5%98>,
         <http://data.urbanforest.kr/vocab/type/%EA%B8%B0%EB%A1%9D%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 황정교 옆에 위치하며, ‘두산리 일대의 소나무는 황장목으로 함부로 벨 수 없는 구역’을 표시한 높이 약 1m 정도의 표식이 있음
+    crm:P3_has_note """o 황정교 옆에 위치하며, ‘두산리 일대의 소나무는 황장목으로 함부로 벨 수 없는 구역’을 표시한 높이 약 1m 정도의 표식이 있음
 o 논밭과 황정교 밑으로 계곡이 흐르고 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3730_12815,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%84%EA%B3%A1> .
@@ -2209,7 +2209,7 @@ uf:Asset_37 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 수령 500년의 느티나무로 김제남 신도비(강원도 문화재자료 제21호) 옆에 있으며 오른편으로 큰 연못이 있어 연꽃 등 마을 주민들의 쉼터로 활용
+    crm:P3_has_note """o 수령 500년의 느티나무로 김제남 신도비(강원도 문화재자료 제21호) 옆에 있으며 오른편으로 큰 연못이 있어 연꽃 등 마을 주민들의 쉼터로 활용
 o 논밭과 마을이 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3734_12782,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -2230,7 +2230,7 @@ uf:Asset_38 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 당산목으로 표지판에 ‘느릅나무(3)’으로 표기되어 3그루가 보호수로 지정되어 관리되고 있음
+    crm:P3_has_note """o 당산목으로 표지판에 ‘느릅나무(3)’으로 표기되어 3그루가 보호수로 지정되어 관리되고 있음
 o 보호수 아래 성황당이 있고 옆으로 정자가 있어 주민 쉼터로 활용됨. 보호수 주변으로 벤치가 있고 느릅나무 2그루가 더 있음.
 o 교회 및 밭과 주민들 가옥이 있음.
 o 보호수 앞 개울이 있으며 4~5m 정도의 다리가 조성되어 있음"""^^xsd:string ;
@@ -2245,7 +2245,7 @@ uf:Asset_39 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 석황사 내 보호수가 위치하고 있음. 
+    crm:P3_has_note """o 석황사 내 보호수가 위치하고 있음. 
 o 보호수 간판이 있고 펜스는 따로 없음.
 o 지대가 높아(2m) 펜스 역할을 하고 있음."""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3813_12828 .
@@ -2265,7 +2265,7 @@ uf:Asset_4 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B1%B4%EC%B6%95%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 분악산 중턱에 위치함
+    crm:P3_has_note """o 분악산 중턱에 위치함
 o 전흥사찰 46호이며, 향토유적4호로 경기도 지정문화재가 다수있음
 o 사찰주변으로 관리가 잘 되어 있음
 o 현등사 주변으로 소나무가 다수 분포함 o 사찰건물과 산세와의 조화가 어울리며 경관이 아름다움 o 운악산 계곡이 사찰 근처로 흐르고 있음.
@@ -2280,7 +2280,7 @@ uf:Asset_40 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ ○ ○ ○ o 주변으로 ‘수미쉼터’가 있고, 동강이 흐르고 있음"^^xsd:string ;
+    crm:P3_has_note "o 주변으로 ‘수미쉼터’가 있고, 동강이 흐르고 있음"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3731_12862,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
 
@@ -2308,7 +2308,7 @@ uf:Asset_42 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%B0%94%EC%9C%84>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note "○ ○ ○ o 몰운대 등산로가 잘 정비되어 있으며 수백 척의 암석을 깍아 세운 절벽으로 이루어져 있음. 등산로를 따라 ‘비선대’, ‘신선암’, ‘금강대’ 등이 있음."^^xsd:string ;
+    crm:P3_has_note "o 몰운대 등산로가 잘 정비되어 있으며 수백 척의 암석을 깍아 세운 절벽으로 이루어져 있음. 등산로를 따라 ‘비선대’, ‘신선암’, ‘금강대’ 등이 있음."^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3731_12881 .
 
 uf:Asset_43 a crm:E26_Physical_Feature ;
@@ -2323,7 +2323,7 @@ uf:Asset_43 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B3%84%EA%B3%A1%C2%B7%ED%8F%AD%ED%8F%AC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ ○ ○  o 노추산(1,332m) 남서쪽 줄기인 오장산에서 발원한 물로 조성되었으며, 경사길이 209m, 수직높이 127m의 규모로 전국에서 가장 큰 규모이다. 오장폭포 맞은편으로 주차장 및 벤치가 있어 경치를 감상할 수 있으며, 안내판 또한 잘 설치되어 있음
+    crm:P3_has_note """ o 노추산(1,332m) 남서쪽 줄기인 오장산에서 발원한 물로 조성되었으며, 경사길이 209m, 수직높이 127m의 규모로 전국에서 가장 큰 규모이다. 오장폭포 맞은편으로 주차장 및 벤치가 있어 경치를 감상할 수 있으며, 안내판 또한 잘 설치되어 있음
 o 오장폭포 옆 구절리 산1번지는 2006년 집중호우로 인한 산사태 복구(5ha)를 실시하였음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3753_12873,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B2%BD%EC%B9%98>,
@@ -2339,7 +2339,7 @@ uf:Asset_44 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B1%B4%EC%B6%95%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 구미정은 9가지의 미(美)를 가지고 있다고 붙여진 이름으로 계곡을 내려다 볼 수 있는 정자가 있어 쉬면서 경치를 감상 할 수 있음. 
+    crm:P3_has_note """o 구미정은 9가지의 미(美)를 가지고 있다고 붙여진 이름으로 계곡을 내려다 볼 수 있는 정자가 있어 쉬면서 경치를 감상 할 수 있음. 
 o 절별과 골지천의 경관이 아름다움· 골치전 산소길로 총 44km 중 1구간(23.3km)에 구미정 계곡이 속해 있음.
 o 월화폭포, 마산재전망대, 꽃벼루재, 한반도지형 등이 주변으로 위치함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3747_12882,
@@ -2362,7 +2362,7 @@ uf:Asset_45 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ o 150년생 소나무로 유천1리 마을회관 옆에 위치하여 보호수 아래 평상이 있어 주민들의 쉼터로 활용됨. 보호수 옆 서낭당이 위치하여 매년 풍년을 기원하기 위해 제사를 지냄 *출처 현황판"^^xsd:string ;
+    crm:P3_has_note "o 150년생 소나무로 유천1리 마을회관 옆에 위치하여 보호수 아래 평상이 있어 주민들의 쉼터로 활용됨. 보호수 옆 서낭당이 위치하여 매년 풍년을 기원하기 위해 제사를 지냄 *출처 현황판"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3748_12871,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84> .
 
@@ -2377,7 +2377,7 @@ uf:Asset_46 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 도피안사 건물 가운데에 위치하며 600년 느티나무 3그루가 있음.
+    crm:P3_has_note """o 도피안사 건물 가운데에 위치하며 600년 느티나무 3그루가 있음.
 o 수고 22m로 건강성 우수함 o 별도의 울타리 없이 안내판만 설치
 o 2그루는 외과수술 흔적이 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3824_12721 .
@@ -2396,7 +2396,7 @@ uf:Asset_47 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%EC%A0%81%EC%A7%80>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 43번 국도에서 순담계곡으로 돌아가는 오른쪽 풍전교 근처에 위치함.
+    crm:P3_has_note """o 43번 국도에서 순담계곡으로 돌아가는 오른쪽 풍전교 근처에 위치함.
 o 도로변 입구쪽에 안내판이 설치되어 있음
 o 바위 주변으로 별도의 펜스 및 시설물은 없음. o 주변에 「철원 이호민 선정비 (강원도 문화재자료 171호)」가 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3815_12730,
@@ -2414,7 +2414,7 @@ uf:Asset_48 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 소나무숲이 현재 ‘소울로스터리’라는 카페의 부지로 사용되고 있음.
+    crm:P3_has_note """o 소나무숲이 현재 ‘소울로스터리’라는 카페의 부지로 사용되고 있음.
 o 소나무 수고는 약 20~30m 정도로 길가 주변으로 위치하고 있음. o 개인카페부지로 이용되고 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3792_12776,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EB%8F%84%EB%A1%9C>,
@@ -2432,7 +2432,7 @@ uf:Asset_49 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 은행나무 2그루가 보호수로 지정되어 있으며, 펜스와 안내판이 설치되어 있음
+    crm:P3_has_note """o 은행나무 2그루가 보호수로 지정되어 있으며, 펜스와 안내판이 설치되어 있음
 o 펜스 내 수풀이 무성하여 제초 등 관리가 필요함 o 관리가 필요함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3775_12757 .
 
@@ -2445,7 +2445,7 @@ uf:Asset_5 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%B0%94%EC%9C%84>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note "○ ·o 현등사 입구로 올라가는 길목에 위치한 계곡 내 바위로 바위가 30°~40° 기울어져있어 경관적으로 아름다움 o 네이버 지도상 “민영환 바위”로 검색 됨"^^xsd:string ;
+    crm:P3_has_note "·o 현등사 입구로 올라가는 길목에 위치한 계곡 내 바위로 바위가 30°~40° 기울어져있어 경관적으로 아름다움 o 네이버 지도상 “민영환 바위”로 검색 됨"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3786_12733,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%84%EA%B3%A1> .
 
@@ -2459,7 +2459,7 @@ uf:Asset_50 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 개인 가옥 옆에 보호수가 있으며, 안내판이 설치되어 있음.
+    crm:P3_has_note """o 개인 가옥 옆에 보호수가 있으며, 안내판이 설치되어 있음.
 o 흉고 직경이 820cm로 수고 35m 거목임.
 o 지지대가 설치되어 있음. o 펜스가 없으므로 펜스 설치가 필요해 보임."""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3775_12757 .
@@ -2473,7 +2473,7 @@ uf:Asset_51 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%83%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ ○ ○ o 공원을 조성하여 지역 주민들의 쉼터로 활용되고 있음. 공원에는 공연장, 돌다리, 벤치 등이 있음. 황지연못은 상지, 중지, 하지 3개의 못으로 나뉨
+    crm:P3_has_note """o 공원을 조성하여 지역 주민들의 쉼터로 활용되고 있음. 공원에는 공연장, 돌다리, 벤치 등이 있음. 황지연못은 상지, 중지, 하지 3개의 못으로 나뉨
 o 제 2회 태백 황지연못 황부자 며느리축제가 22.09.23~25 개최됨."""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3717_12899,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%B5%EC%9B%90>,
@@ -2513,7 +2513,7 @@ uf:Asset_54 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 소나무 송진 채취 생채기가 남아있음.
+    crm:P3_has_note """o 소나무 송진 채취 생채기가 남아있음.
 o 마을숲으로 정자와 벤치가 조성되어 주민들의 휴식공간을 제공함.
 o 주변을 마을주택이 있음. o 가치치기 흔적이 있음.
 o 마을주민 인터뷰 결과 마을숲은 마을 공동 소유임"""^^xsd:string ;
@@ -2532,7 +2532,7 @@ uf:Asset_55 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%B0%94%EC%9C%84>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note "○ ○ o 볏바위 주변으로 펜스와 안내판이 설치되어 있으며, 길가 바로 옆에 위치함. o 관리상태가 양호함 o 주변으로 천과 간척대교가 지나감."^^xsd:string ;
+    crm:P3_has_note "o 볏바위 주변으로 펜스와 안내판이 설치되어 있으며, 길가 바로 옆에 위치함. o 관리상태가 양호함 o 주변으로 천과 간척대교가 지나감."^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3802_12782,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
 
@@ -2610,7 +2610,7 @@ uf:Asset_6 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B1%B4%EC%B6%95%EB%AC%BC>,
         <http://data.urbanforest.kr/vocab/type/%EC%82%AC%EC%A0%81%20%EB%B0%8F%20%EA%B7%BC%EB%8C%80%EC%9C%A0%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ o 서원이었으나 지금은 조말생 선생의 묘로 사용 됨
+    crm:P3_has_note """o 서원이었으나 지금은 조말생 선생의 묘로 사용 됨
 o 주변 개인 사유지와 주택이 있음(상가)"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3734_12748,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -2645,7 +2645,7 @@ uf:Asset_61 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ o 연동고속도로 고가도로가 위치하며, 주변에 천과 카페가 있음
+    crm:P3_has_note """o 연동고속도로 고가도로가 위치하며, 주변에 천과 카페가 있음
 o 정자와 벤치가 설치된 수리공원안에 위치하며, 수령 410년으로 음수대와 체육시설이 설치되어 주민들의 휴식처로 이용됨."""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3750_12823,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EA%B3%B5%EC%9B%90>,
@@ -2670,7 +2670,7 @@ uf:Asset_62 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%B0%94%EC%9C%84>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ o 442 지방도 도로 옆에 위치하며, 바위 옆으로 소나무가 있음
+    crm:P3_has_note """o 442 지방도 도로 옆에 위치하며, 바위 옆으로 소나무가 있음
 o 바위 뒤편 정자와 성황당이 있어 주민쉼터로 활용
 o 우항리 전통마을숲(산림청) 지정 간판이 있음
 o 주변에 도로와 밭, 과수원, 가옥이 위치함 o 이 마을숲은 문화자산으로서의 가치를 계승 및 발전시켜 지역주민들과 상생하며, 토속문화 공간으로 제공하기 위해 복원한 숲입니다. -우항리 전통마을숲 표지판-"""^^xsd:string ;
@@ -2727,7 +2727,7 @@ uf:Asset_65 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 마을 입구에 유래비, 장승 , 산책로, 데크, 벤치가 잘 조성되어 있으며, 계곡과 등산로가 인접함.
+    crm:P3_has_note """o 마을 입구에 유래비, 장승 , 산책로, 데크, 벤치가 잘 조성되어 있으며, 계곡과 등산로가 인접함.
 o 숲 내부에 보호수로 지정된 소나무 16본이 있으며 소나무 재선충병 전자예찰 표시가 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3673_12798,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84>,
@@ -2745,7 +2745,7 @@ uf:Asset_66 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%B0%94%EC%9C%84>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ ○ o 주변으로 소나무와 느티나무 식재 됨
+    crm:P3_has_note """o 주변으로 소나무와 느티나무 식재 됨
 o 계곡 옆 남근석이 위치하고 주변으로 나무와 기와형태 경계가 구분되어 있으며 남근석에는 금줄이 있고 입구에는 나무로 대문을 설치해둠
 o 동고제에 대한 표지판이 있으며, 제사를 지낸 것으로 추측됨"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3673_12798,
@@ -2778,7 +2778,7 @@ uf:Asset_68 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 정자가 있어 마을 쉼터로 이용 됨
+    crm:P3_has_note """o 정자가 있어 마을 쉼터로 이용 됨
 o 마을입구 도랑옆 위치"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3647_12760,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84> .
@@ -2806,7 +2806,7 @@ uf:Asset_7 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%B0%94%EC%9C%84>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ ○ o 「더 헤리티지」 주택단지 내 등산로를 이용하면 도보 10정도 거리에 위치함.
+    crm:P3_has_note """o 「더 헤리티지」 주택단지 내 등산로를 이용하면 도보 10정도 거리에 위치함.
 o ‘용바위 옹달샘’ 표지판이 설치되어 있음. o 용바위가 주변 나무, 수풀로 가려져 있음으로 관리가 필요해 보임"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3735_12709,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EC%A3%BC%EB%B3%80> .
@@ -2831,7 +2831,7 @@ uf:Asset_71 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ o 길을 따라 소나무와 느티나무가 있음
+    crm:P3_has_note """o 길을 따라 소나무와 느티나무가 있음
 o 옆으로 과수원과 논이 펼쳐져 있음.
 o 숲 내 정자, 벤치 및 운동기구가 있어 쉼터로 활용 o 나무가 모여 있지 않고 흩어져 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3646_12772 .
@@ -2863,7 +2863,7 @@ uf:Asset_73 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 우당고택주변 삼가천 주변에 구성된 소나무 숲으로 근처 군부대가 있음
+    crm:P3_has_note """o 우당고택주변 삼가천 주변에 구성된 소나무 숲으로 근처 군부대가 있음
 o 정자, 벤치가 있어 휴식공간으로 활용
 o 우당고택-중요민속문화재로 관광지 활용
 o 풍수지리적 보완을 위하여 나무를 식재하였다고 함
@@ -2882,7 +2882,7 @@ uf:Asset_74 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ ○ o 정자, 기념비, 벤치, 개수대가 있어 주민 쉼터로 활용"^^xsd:string ;
+    crm:P3_has_note "o 정자, 기념비, 벤치, 개수대가 있어 주민 쉼터로 활용"^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3644_12780 .
 
 uf:Asset_75 a crm:E26_Physical_Feature ;
@@ -2895,7 +2895,7 @@ uf:Asset_75 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 정자, 평상이 있어 주민쉼터로 활용
+    crm:P3_has_note """o 정자, 평상이 있어 주민쉼터로 활용
 o 마을 숲 표지판 있음
 o 소나무, 느티나무 식재, 밭이 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3642_12778,
@@ -2939,7 +2939,7 @@ uf:Asset_78 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EA%B3%84%EA%B3%A1%C2%B7%ED%8F%AD%ED%8F%AC>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ o 차량으로 계곡 밑까지 접근가능
+    crm:P3_has_note """o 차량으로 계곡 밑까지 접근가능
 o 주변 펜션, 식당, 화장실, 클럽ES제천리조트 전망대주차장 있음
 o 계곡 끝 지점이 충주호와 만남
 o 인명 구조함이 있음"""^^xsd:string ;
@@ -2958,7 +2958,7 @@ uf:Asset_79 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o 약 200년 된 팽나무와 느릅나무가 있으며, 수살제(마을의 상습적인 수해를 막기 위한 제사)를 지내기 위한 상석이 위치하고 있음. 보호수 주변 경계석과 잔디 제초가 잘 되어 있음
+    crm:P3_has_note """o 약 200년 된 팽나무와 느릅나무가 있으며, 수살제(마을의 상습적인 수해를 막기 위한 제사)를 지내기 위한 상석이 위치하고 있음. 보호수 주변 경계석과 잔디 제초가 잘 되어 있음
 o 도로와 인접하고 주변으로 마을과 주택이 있음
 o 장내마을 입구에 위치하고 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3673_12761,
@@ -2973,7 +2973,7 @@ uf:Asset_8 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%98%9B%EA%B8%B8>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ o 농다치 고개를 넘어가는 37번국도 도로에서 등산로로 연결되는 데크가 있음.
+    crm:P3_has_note """o 농다치 고개를 넘어가는 37번국도 도로에서 등산로로 연결되는 데크가 있음.
 o 능선을 따라 등산로가 이어져 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3757_12745,
         <http://data.urbanforest.kr/vocab/%ED%99%98%EA%B2%BD/%EB%8F%84%EB%A1%9C> .
@@ -3008,7 +3008,7 @@ uf:Asset_81 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EC%83%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ o 현재 약수우물에 파이프를 연결하여 물이 흐르고 있으며, 주민들이 이용할 수 있도록 정비가 잘 되어 있음
+    crm:P3_has_note """o 현재 약수우물에 파이프를 연결하여 물이 흐르고 있으며, 주민들이 이용할 수 있도록 정비가 잘 되어 있음
 o 마을회관이 옆에 있으며, 우물 위로 느티나무 보호수가 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3683_12739,
         <http://data.urbanforest.kr/vocab/%EC%9E%A5%EC%86%8C/%EB%A7%88%EC%9D%84> .
@@ -3034,7 +3034,7 @@ uf:Asset_83 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note "○ ○ o 지지대가 설치되어 있음."^^xsd:string ;
+    crm:P3_has_note "o 지지대가 설치되어 있음."^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3659_12758 .
 
 uf:Asset_84 a crm:E26_Physical_Feature ;
@@ -3046,7 +3046,7 @@ uf:Asset_84 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ ○ o 캠핑장, 야영장으로 활용 중
+    crm:P3_has_note """o 캠핑장, 야영장으로 활용 중
 o 숲 내부에 관리사무실이 있음 o 열을 맞춰 식재 되어 있음
 o 갈참나무, 은행나무, 느티나무가 숲을 이룸
 o 바로 옆 옥화대 개울이 흐르고 있음"""^^xsd:string ;
@@ -3150,7 +3150,7 @@ uf:Asset_90 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%B0%94%EC%9C%84>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0>,
         <http://data.urbanforest.kr/vocab/type/%EC%9E%90%EC%97%B0%EB%AC%BC> ;
-    crm:P3_has_note """○ o 개인사유지 내 숲속에 위치하며 펜스가 둘러져 있음
+    crm:P3_has_note """o 개인사유지 내 숲속에 위치하며 펜스가 둘러져 있음
 o 가까이 정자, 구원사 사찰이 위치함"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3636_12716 .
 
@@ -3182,7 +3182,7 @@ uf:Asset_92 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%A7%88%EC%9D%84%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%88%B2>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ ○ o "무령사”와 근처 무덤을 중심으로 소나무 숲이 조성되어 있음
+    crm:P3_has_note """o "무령사”와 근처 무덤을 중심으로 소나무 숲이 조성되어 있음
 o 산책로, 평상, 벤치, 산림욕 의자, 휴지통 등이 설치되어 있어 휴양시설로 활용되고 있음
 o 치수가 심어져 있으며, 전반적으로 관리가 잘 되고 있음
 o 운동기구와 정자가 있음"""^^xsd:string ;
@@ -3221,7 +3221,7 @@ uf:Asset_94 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 수고 24m, 나무둘레 6m, 수령 350년의 보호수로 지정된 팽나무
+    crm:P3_has_note """o 수고 24m, 나무둘레 6m, 수령 350년의 보호수로 지정된 팽나무
 o 공세리 메인 성당 옆 위치
 o 뿌리가 많이 드러나 있음"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3688_12691 .
@@ -3259,7 +3259,7 @@ uf:Asset_97 a crm:E26_Physical_Feature ;
     crm:P2_has_type <http://data.urbanforest.kr/vocab/type/%EB%82%98%EB%AC%B4>,
         <http://data.urbanforest.kr/vocab/type/%EB%B3%B4%ED%98%B8%EC%88%98>,
         <http://data.urbanforest.kr/vocab/type/%EC%9C%A0%ED%98%95%EC%82%B0%EB%A6%BC%EB%AC%B8%ED%99%94%EC%9E%90%EC%82%B0> ;
-    crm:P3_has_note """○ o 수관 폭이 매우 큼
+    crm:P3_has_note """o 수관 폭이 매우 큼
 o 공세리 성당 본관 왼 측면에 위치"""^^xsd:string ;
     crm:P53_has_former_or_current_location uf:Grid_3688_12691 .
 
