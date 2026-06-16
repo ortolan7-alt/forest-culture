@@ -2,3 +2,6 @@ streamlit
 pandas
 folium
 streamlit-folium
+altair
+rdflib
+pyvis
