@@ -498,7 +498,8 @@ def main():
 
             # 3. RDF 트리플(주어, 서술어, 목적어)을 네트워크 노드와 엣지로 변환
             # 너무 많은 노드는 브라우저를 느리게 하므로 제한(Limit) 설정 권장
-            MAX_TRIPLES = 200 
+            # MAX_TRIPLES = 200 
+            MAX_TRIPLES = 500
             
             for i, (subj, pred, obj) in enumerate(g):
                 if i >= MAX_TRIPLES:
