@@ -5,6 +5,7 @@ import math
 import base64
 import folium
 from streamlit_folium import st_folium
+import streamlit.components.v1 as components
 import altair as alt
 
 # 1. 페이지 설정 및 다크모드 대응 CSS 테마
@@ -15,51 +16,58 @@ st.markdown("""
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
     
     .stApp { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
-    
-    h1 {
-        color: var(--text-color) !important; font-weight: 800;
-        letter-spacing: -0.5px; text-align: center; margin-bottom: 5px !important;
-    }
-    
+    h1 { color: var(--text-color) !important; font-weight: 800; letter-spacing: -0.5px; text-align: center; margin-bottom: 5px !important; }
     .stMarkdown p { text-align: center; color: var(--text-color); opacity: 0.8; font-size: 1.1em; }
-    
     .stTabs [data-baseweb="tab-list"] { gap: 8px; padding-bottom: 10px; border-bottom: 2px solid rgba(128, 128, 128, 0.2); }
-    .stTabs [data-baseweb="tab"] {
-        height: 50px; background-color: var(--secondary-background-color);
-        border-radius: 8px 8px 0px 0px; padding: 10px 24px; color: var(--text-color);
-        opacity: 0.7; font-weight: 600; border: 1px solid rgba(128, 128, 128, 0.2);
-        border-bottom: none; transition: all 0.3s ease;
-    }
-    .stTabs [aria-selected="true"] {
-        color: #FFFFFF !important; background-color: #2ea043 !important;
-        border-color: #2ea043 !important; opacity: 1;
-    }
-    
+    .stTabs [data-baseweb="tab"] { height: 50px; background-color: var(--secondary-background-color); border-radius: 8px 8px 0px 0px; padding: 10px 24px; color: var(--text-color); opacity: 0.7; font-weight: 600; border: 1px solid rgba(128, 128, 128, 0.2); border-bottom: none; transition: all 0.3s ease; }
+    .stTabs [aria-selected="true"] { color: #FFFFFF !important; background-color: #2ea043 !important; border-color: #2ea043 !important; opacity: 1; }
     [data-testid="stSidebar"] { border-right: 1px solid rgba(128, 128, 128, 0.2); }
     
-    /* 팝업(모달창) 내부 이미지 원본 비율 유지 (자르지 않음) */
-    div[role="dialog"] .stImage img, 
-    div[data-testid="stDialog"] .stImage img {
-        height: auto !important;
-        max-height: 60vh !important;
-        object-fit: contain !important;
-        background-color: rgba(0,0,0,0.03);
-    }
+    /* 탭2 이미지 중앙 정렬 유지 */
+    div[data-testid="stImage"] { display: flex !important; justify-content: center !important; align-items: center !important; width: 100% !important; }
+    div[data-testid="stImage"] img { height: 250px !important; width: 100% !important; max-width: 280px !important; object-fit: cover !important; border-radius: 12px !important; margin: 0 auto !important; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
     
-    .stButton > button {
-        border-radius: 6px; border: 1px solid #2ea043; color: #2ea043;
-        background-color: transparent; font-weight: 600; transition: all 0.2s ease-in-out;
-    }
-    .stButton > button:hover {
-        background-color: #2ea043; color: #FFFFFF; border-color: #2ea043; transform: translateY(-2px);
-    }
+    /* 모달창 내부 이미지 원본 비율 유지 */
+    div[role="dialog"] div[data-testid="stImage"] img, div[data-testid="stDialog"] div[data-testid="stImage"] img { height: auto !important; width: 100% !important; max-height: 60vh !important; max-width: none !important; object-fit: contain !important; background-color: rgba(0,0,0,0.03); box-shadow: none !important; margin-bottom: 15px !important; }
     
+    .stButton > button { border-radius: 6px; border: 1px solid #2ea043; color: #2ea043; background-color: transparent; font-weight: 600; transition: all 0.2s ease-in-out; }
+    .stButton > button:hover { background-color: #2ea043; color: #FFFFFF; border-color: #2ea043; transform: translateY(-2px); }
     .reset-btn-container { margin-top: 28px; }
 </style>
 """, unsafe_allow_html=True)
 
+# ==========================================
+# ★ [NEW] 자산 ID 기반 자동 이미지 스크래핑 로직
+# ==========================================
+def get_images_for_asset(item, base_dir='asset_images'):
+    """
+    1순위: asset_images/{ID}/ 폴더 내의 모든 이미지를 가져옵니다.
+    2순위: 폴더가 없으면 CSV의 '이미지경로' 컬럼 데이터를 파싱합니다.
+    """
+    valid_img_paths = []
+    
+    # 1. 자산 ID를 기준으로 폴더 확인 (ID 컬럼이 있다고 가정)
+    asset_id = str(item.get('ID', '')).strip()
+    if asset_id and str(asset_id) != 'nan':
+        folder_path = os.path.join(base_dir, asset_id)
+        if os.path.exists(folder_path) and os.path.isdir(folder_path):
+            # 지원하는 이미지 확장자
+            exts = ('.png', '.jpg', '.jpeg', '.webp', '.gif')
+            for f in os.listdir(folder_path):
+                if f.lower().endswith(exts):
+                    valid_img_paths.append(os.path.join(folder_path, f))
+            # 파일 이름순 정렬 (예: 1.jpg, 2.jpg ...)
+            valid_img_paths.sort()
+            
+    # 2. 폴더에 이미지가 없다면 기존 CSV 방식(하위 호환) 적용
+    if not valid_img_paths:
+        csv_paths = str(item.get('이미지경로', ''))
+        valid_img_paths = [p.strip() for p in csv_paths.split(',') if p.strip() and os.path.exists(p.strip())]
+        
+    return valid_img_paths
+
 def get_base64_of_image(image_path):
-    if pd.notna(image_path) and os.path.exists(str(image_path)):
+    if image_path and os.path.exists(str(image_path)):
         with open(image_path, "rb") as img_file:
             return base64.b64encode(img_file.read()).decode()
     return ""
@@ -75,8 +83,8 @@ def show_detail_modal(item):
     col_img, col_text = st.columns([1, 1.2]) 
     
     with col_img:
-        img_paths_str = str(item.get('이미지경로', ''))
-        valid_img_paths = [p.strip() for p in img_paths_str.split(',') if p.strip() and os.path.exists(p.strip())]
+        # ★ 새로운 자동 스크래핑 함수 적용
+        valid_img_paths = get_images_for_asset(item)
         
         if not valid_img_paths:
             st.image('https://via.placeholder.com/800x600?text=No+Image', use_container_width=True)
@@ -206,7 +214,7 @@ def main():
 
     item_to_show = None
 
-    # [탭 1] 하이라이트 전시관 (유지)
+    # [탭 1] 하이라이트 전시관
     with tab1:
         st.write("")
         st.markdown("### 🌲 하이라이트 전시관")
@@ -226,8 +234,10 @@ def main():
         translate_z = 700 
 
         for i, row in display_df.iterrows():
-            img_paths_str = str(row.get('이미지경로', ''))
-            first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
+            # ★ 동적 폴더 검색으로 첫 번째(대표) 이미지 할당
+            folder_imgs = get_images_for_asset(row)
+            first_img = folder_imgs[0] if folder_imgs else ""
+            
             base64_str = get_base64_of_image(first_img)
             img_src = f"data:image/jpeg;base64,{base64_str}" if base64_str else "https://via.placeholder.com/400x500?text=No+Image"
             
@@ -299,9 +309,9 @@ def main():
         </body>
         </html>
         """
-        st.components.v1.html(html_code, height=750) # iframe 교체
+        st.components.v1.html(html_code, height=750) 
 
-    # [탭 2] 분석 및 유사 자원 (★ 완벽한 강제 중앙 정렬 적용 ★)
+    # [탭 2] 분석 및 유사 자원 
     with tab2:
         st.write("")
         st.subheader("📊 산림문화자원 분석 및 탐색 대시보드")
@@ -354,10 +364,10 @@ def main():
             for i, (idx, row) in enumerate(visible_items.iterrows()):
                 with cols[i]:
                     with st.container():
-                        img_paths_str = str(row.get('이미지경로', ''))
-                        first_img = img_paths_str.split(',')[0].strip() if img_paths_str else ''
+                        # ★ 동적 폴더 검색 로직 적용
+                        folder_imgs = get_images_for_asset(row)
+                        first_img = folder_imgs[0] if folder_imgs else ""
                         
-                        # ★ Streamlit st.image() 대신 HTML/CSS 강제 렌더링으로 100% 중앙 정렬 보장
                         base64_str = get_base64_of_image(first_img)
                         img_src = f"data:image/jpeg;base64,{base64_str}" if base64_str else "https://via.placeholder.com/400x300?text=No+Image"
                         
@@ -367,11 +377,9 @@ def main():
                         </div>
                         """, unsafe_allow_html=True)
                         
-                        # 텍스트 가운데 정렬
                         st.markdown(f"<div style='text-align:center; margin-top:8px;'><b>{str(row.get('명칭', ''))}</b></div>", unsafe_allow_html=True)
                         st.markdown(f"<div style='text-align:center; font-size:0.85rem; opacity:0.7; margin-bottom:10px;'>📍 {row.get('지역', '')} | 🏷️ {row.get('중분류', '')}</div>", unsafe_allow_html=True)
                         
-                        # 버튼 가운데 정렬 배치
                         btn_col1, btn_col2, btn_col3 = st.columns([0.5, 4, 0.5])
                         with btn_col2:
                             if st.button("상세 정보 열람", key=f"btn_detail_t2_{row.name}", use_container_width=True):
