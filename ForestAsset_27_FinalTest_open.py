@@ -521,7 +521,7 @@ def main():
                 return uri_str
             # ==========================================
 
-            MAX_TRIPLES = 300 
+            MAX_TRIPLES = 500 
             
             # 2. 노드 및 엣지 생성
             for i, (subj, pred, obj) in enumerate(g):
