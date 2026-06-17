@@ -465,7 +465,8 @@ def main():
         st.subheader("🕸️ 산림문화자원 지식 그래프 (Knowledge Graph)")
         st.write("자원, 지역, 유형 간의 의미론적 관계를 탐색합니다. (마우스 휠로 확대/축소 및 드래그 가능)")
         
-        ttl_file_path = "forest_culture_graphdb_ready.ttl" 
+        # ttl_file_path = "forest_culture_graphdb_ready.ttl" <- 초기버전
+        ttl_file_path = "forest_culture_full.ttl"
         g = rdflib.Graph()
         
         try:
@@ -520,7 +521,7 @@ def main():
                 return uri_str
             # ==========================================
 
-            MAX_TRIPLES = 500 
+            MAX_TRIPLES = 300 
             
             # 2. 노드 및 엣지 생성
             for i, (subj, pred, obj) in enumerate(g):
